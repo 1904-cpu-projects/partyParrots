@@ -1,4 +1,5 @@
 const db = require('./connection');
+const Sequelize = require('sequelize');
 
 const Beverage = db.define('beverage', {
   id: {
@@ -19,7 +20,7 @@ const Beverage = db.define('beverage', {
     type: Sequelize.TEXT
   },
   category: {
-    type: Sequelize.ENUM([])
+    type: Sequelize.ENUM(['category1','category2', 'category3'])
   },
   price: {
     type: Sequelize.INTEGER
