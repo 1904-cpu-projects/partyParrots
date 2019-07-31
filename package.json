@@ -7,8 +7,12 @@
     "test": "tests"
   },
   "scripts": {
+    "start": "npm run server",
+    "start:dev": "npm run build:dev & npm run server:dev",
     "build": "webpack  --config webpack.production.config.js",
-    "build:dev": "webpack --watch"
+    "build:dev": "webpack --watch",
+    "server": "node ./server/index.js",
+    "server:dev": "nodemon ./server/index.js --ignore public/ --ignore src/"
   },
   "repository": {
     "type": "git",
