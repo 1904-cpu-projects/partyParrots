@@ -1,0 +1,30 @@
+{
+  "name": "grace-shopper-party-parrots",
+  "version": "1.0.0",
+  "description": "A fullstack e-commerce site.",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/1904-cpu-projects/team-jsn.git"
+  },
+  "keywords": [
+    "react",
+    "redux",
+    "node",
+    "express",
+    "sequelize",
+    "postgresql"
+  ],
+  "author": "Justin Stephanie Nick",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/1904-cpu-projects/team-jsn/issues"
+  },
+  "homepage": "https://github.com/1904-cpu-projects/team-jsn#readme"
+}
