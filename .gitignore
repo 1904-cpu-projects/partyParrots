@@ -1,4 +1,5 @@
 node_modules
 public/main.js
+public/main.js.map
 .DS_Store
 .env*
