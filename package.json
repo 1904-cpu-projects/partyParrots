@@ -7,6 +7,7 @@
     "test": "tests"
   },
   "scripts": {
+    "test": "jest",
     "start": "npm run server",
     "start:dev": "npm run build:dev & npm run server:dev",
     "build": "webpack  --config webpack.production.config.js",
