@@ -100,7 +100,7 @@ User.comparePasswords = (inputStr, password) => {
 User.login = async function(email, password) {
   try {
     const user = await this.findOne({ where: { email } });
-    if (!user && !user.id) {
+    if (!user) {
       throw authError('No user registered with that email.', 'email');
     }
     await this.comparePasswords(password, user.password);
