@@ -53,7 +53,7 @@ const User = db.define('user', {
 User.beforeCreate(async instance => {
   const hash = await User.hash(instance.password);
   instance.password = hash;
-  return hash;
+  return instance;
 });
 
 User.beforeUpdate(async instance => {
