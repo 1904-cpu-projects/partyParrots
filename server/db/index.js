@@ -33,7 +33,11 @@ const Beverage = db.define('beverage', {
     }
   },
   category: {
-    type: Sequelize.ENUM(['category1','category2', 'category3'])
+    type: Sequelize.ENUM(['category1','category2', 'category3']),
+    allowNull: false,
+    validate: {
+      notEmpty: true
+    }
   },
   price: {
     type: Sequelize.FLOAT,
