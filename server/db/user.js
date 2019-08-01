@@ -1,6 +1,8 @@
 const Sequelize = require('sequelize');
 const bcrypt = require('bcryptjs');
+
 const db = require('./connection');
+const { authError } = require('../../utils/backend');
 
 const User = db.define('user', {
   id: {
@@ -48,24 +50,6 @@ const User = db.define('user', {
   },
 });
 
-User.prototype.toJSON = function() {
-  const values = this.get();
-  delete values.password;
-  return values;
-};
-
-User.hash = str => {
-  return new Promise((resolve, reject) => {
-    bcrypt.hash(str, 12, (err, hash) => {
-      if (err) {
-        reject(err);
-      } else {
-        resolve(hash);
-      }
-    });
-  });
-};
-
 User.beforeCreate(async instance => {
   const hash = await User.hash(instance.password);
   instance.password = hash;
@@ -79,5 +63,51 @@ User.beforeUpdate(async instance => {
   }
   return instance;
 });
+
+User.prototype.toJSON = function() {
+  const values = this.get();
+  delete values.password;
+  return values;
+};
+
+User.hash = str => {
+  return new Promise((resolve, reject) => {
+    bcrypt.hash(str, 12, (err, hash) => {
+      if (err) {
+        reject(err);
+      } else if (hash) {
+        resolve(hash);
+      }
+    });
+  });
+};
+
+User.comparePasswords = (inputStr, password) => {
+  return new Promise((resolve, reject) => {
+    bcrypt.compare(inputStr, password, (err, success) => {
+      if (err) {
+        reject(err);
+      } else if (success) {
+        resolve(true);
+      } else {
+        const error = authError('Invalid password.', 'password');
+        reject(error);
+      }
+    });
+  });
+};
+
+User.login = async function(email, password) {
+  try {
+    const user = await this.findOne({ where: { email } });
+    if (!user && !user.id) {
+      throw authError('No user registered with that email.', 'email');
+    }
+    await this.comparePasswords(password, user.password);
+    return user;
+  } catch (error) {
+    throw error;
+  }
+};
 
 module.exports = User;
