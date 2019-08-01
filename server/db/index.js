@@ -6,7 +6,6 @@ const Beverage = db.define('beverage', {
     primaryKey: true,
     type: Sequelize.UUID,
     defaultValue: Sequelize.UUIDV4,
-    unique:true
   },
   name: {
     type: Sequelize.STRING,
