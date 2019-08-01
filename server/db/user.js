@@ -3,7 +3,7 @@ const db = require('./connection');
 
 const User = db.define('user', {
   id: {
-    type: db.Sequelize.UUID,
+    type: Sequelize.UUID,
     defaultValue: db.Sequelize.UUIDV4,
     unique: true,
     primaryKey: true,
@@ -12,19 +12,20 @@ const User = db.define('user', {
     type: Sequelize.STRING,
     allowNull: false,
     validate: {
-      notNull: true,
+      notEmpty: true,
     },
   },
   lastName: {
     type: Sequelize.STRING,
     allowNull: false,
     validate: {
-      notNull: true,
+      notEmpty: true,
     },
   },
   email: {
     type: Sequelize.STRING,
     unique: true,
+    allowNull: false,
     validate: {
       isEmail: true,
     },
@@ -33,28 +34,16 @@ const User = db.define('user', {
     type: Sequelize.STRING,
     allowNull: false,
     validate: {
-      notNull: false,
+      notEmpty: false,
     },
   },
   imageURL: {
     type: Sequelize.STRING,
+    defaultValue: 'https://upload.wikimedia.org/wikipedia/commons/6/67/User_Avatar.png',
     validate: {
       isUrl: true,
     },
   },
 })
-
-//syncAndSeed for testing purposes
-const userSyncAndSeed = async () => {
-  await db.sync({force: false});
-  await User.create({
-    firstName: 'Prof',
-    lastName: 'Katz',
-    email: 'Prof@fullstack.com',
-    password: 'whosEric'
-  })
-}
-
-userSyncAndSeed();
 
 module.exports = User;
