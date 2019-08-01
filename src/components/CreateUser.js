@@ -36,6 +36,7 @@ export default class CreateUser extends Component{
     }
 
     render() {
+        console.log(this.state)
         return (    
             <form onSubmit = {this.handleSubmit}>
                  <label>First Name:</label>
@@ -44,8 +45,9 @@ export default class CreateUser extends Component{
                     <input type = 'text' name = 'lastName' value = {this.state.lastName} onChange = {this.handleChange}/><br/>
                  <label>Email:</label>
                     <input type = 'text' name = 'email' value = {this.state.email} onChange = {this.handleChange}/><br/>
-                 <label>password:</label>
-                    <input type="password" name="password" value = {this.state.password} minLength="8" required onChange={this.handleChange}/><br/> 
+                 <label>Create Password (Minimum 8 characters):</label>
+                    <input type="password" name="password" value = {this.state.password} minLength="8" required onChange={this.handleChange}/><br/>
+                <button type = 'submit'>Create New User</button> 
             </form>
         )
     }
