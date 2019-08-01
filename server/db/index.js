@@ -12,55 +12,56 @@ const Beverage = db.define('beverage', {
     allowNull: false,
     validate: {
       notEmpty: true,
-    }
+    },
   },
   manufacturer: {
     type: Sequelize.STRING,
     allowNull: false,
     validate: {
-      notEmpty: true
-    }
+      notEmpty: true,
+    },
   },
   percentAlcohol: {
     type: Sequelize.FLOAT,
-    allowNull: false
+    allowNull: false,
   },
   description: {
     type: Sequelize.TEXT,
     allowNull: false,
     validate: {
-      notEmpty: true
-    }
+      notEmpty: true,
+    },
   },
   category: {
-    type: Sequelize.ENUM(['category1','category2', 'category3']),
+    type: Sequelize.ENUM(['category1', 'category2', 'category3']),
     allowNull: false,
     validate: {
-      notEmpty: true
-    }
+      notEmpty: true,
+    },
   },
   price: {
     type: Sequelize.FLOAT,
-    allowNull: false
+    allowNull: false,
   },
   size: {
     type: Sequelize.FLOAT,
-    allowNull: false
+    allowNull: false,
   },
   quantity: {
     type: Sequelize.INTEGER,
-    allowNull: false
+    allowNull: false,
   },
   imageURL: {
     type: Sequelize.STRING,
-    defaultValue: 'https://brouwlandprod-yappa.netdna-ssl.com/image/fancy/products-20151110012036-0175273.jpg',
-    validate : {
-      isURL: true
-    }
-  }
-})
+    defaultValue:
+      'https://brouwlandprod-yappa.netdna-ssl.com/image/fancy/products-20151110012036-0175273.jpg',
+    validate: {
+      isURL: true,
+    },
+  },
+});
 
 module.exports = {
   db,
-  Beverage
+  Beverage,
 };
