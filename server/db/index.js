@@ -5,16 +5,22 @@ const Beverage = db.define('beverage', {
   id: {
     primaryKey: true,
     type: Sequelize.UUID,
-    defaultValue: Sequelize.UUIDV4
+    defaultValue: Sequelize.UUIDV4,
+    unique:true
   },
   name: {
     type: Sequelize.STRING,
-    notEmpty: true,
-    unique: true
+    allowNull: false,
+    validate: {
+      notEmpty: true,
+    }
   },
   manufacturer: {
     type: Sequelize.STRING,
-    notEmpty: true
+    allowNull: false,
+    validate: {
+      notEmpty: true
+    }
   },
   percentAlcohol: {
     type: Sequelize.FLOAT,
@@ -22,7 +28,10 @@ const Beverage = db.define('beverage', {
   },
   description: {
     type: Sequelize.TEXT,
-    notEmpty: true
+    allowNull: false,
+    validate: {
+      notEmpty: true
+    }
   },
   category: {
     type: Sequelize.ENUM(['category1','category2', 'category3'])
@@ -41,7 +50,10 @@ const Beverage = db.define('beverage', {
   },
   imageURL: {
     type: Sequelize.STRING,
-    defaultValue: 'https://brouwlandprod-yappa.netdna-ssl.com/image/fancy/products-20151110012036-0175273.jpg'
+    defaultValue: 'https://brouwlandprod-yappa.netdna-ssl.com/image/fancy/products-20151110012036-0175273.jpg',
+    validate : {
+      isURL: true
+    }
   }
 })
 
