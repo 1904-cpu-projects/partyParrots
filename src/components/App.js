@@ -1,6 +1,7 @@
 import React from 'react';
+import CreateUser from './CreateUser';
 
 export default function App() {
-    return <h3>Hello World!</h3>
+    return <CreateUser />
 }
 
