@@ -19,9 +19,9 @@ const store = new SessionStore({
 });
 
 const middleware = session({
-  secret: process.env.SECRET || 'bad secret',
-  name: 'sid',
   store,
+  secret: process.env.SECRET || 'bad secret',
+  name: process.env.NAME || 'sid',
   resave: false,
   saveUninitialized: true,
 });
