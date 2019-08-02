@@ -135,6 +135,8 @@ describe('custom methods', () => {
       expect(newUser).toBeTruthy();
       expect(newUser.email).not.toEqual(user.email);
       expect(newUser.email).toBe('lamoMclamerson2@email.com');
+      // delete newUser from db
+      await newUser.destroy();
     } catch (error) {
       throw error;
     }

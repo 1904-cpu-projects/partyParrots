@@ -1,3 +1,7 @@
+// need to set jest environment so connect-session-sequelize wont error
+/**
+ * @jest-environment node
+ */
 require('@babel/polyfill');
 const request = require('supertest');
 const app = require('../../../server/app/index');
