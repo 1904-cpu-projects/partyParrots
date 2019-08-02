@@ -104,4 +104,39 @@ describe('custom methods', () => {
       expect(error.subtype).toBe('password');
     }
   });
+
+  test('signup method fails for used email', async () => {
+    try {
+      await user.save();
+      const newUser = await User.signup({
+        firstName: 'lamo2',
+        lastName: 'mclamerson',
+        email: 'lamoMclamerson@email.com',
+        password: 'iAmLame2',
+      });
+      if (newUser) {
+        throw Error('Signup should have failed. Used same email as user.');
+      }
+    } catch (error) {
+      expect(error.message).toBe('A user is already registered to this email.');
+      expect(error.subtype).toBe('email');
+    }
+  });
+
+  test('signup method creates a new user with new email', async () => {
+    try {
+      await user.save();
+      const newUser = await User.signup({
+        firstName: 'lamo2',
+        lastName: 'mclamerson',
+        email: 'lamoMclamerson2@email.com',
+        password: 'iAmLame2',
+      });
+      expect(newUser).toBeTruthy();
+      expect(newUser.email).not.toEqual(user.email);
+      expect(newUser.email).toBe('lamoMclamerson2@email.com');
+    } catch (error) {
+      throw error;
+    }
+  });
 });

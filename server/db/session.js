@@ -1,5 +1,5 @@
-const Sequelize = require('express-session');
-const { db } = require('./connection');
+const Sequelize = require('sequelize');
+const db = require('./connection');
 
 const Session = db.define('session', {
   sid: {
@@ -8,7 +8,7 @@ const Session = db.define('session', {
   },
   userId: Sequelize.STRING,
   expires: Sequelize.DATE,
-  data: Sequelize.STRING(50000),
+  data: Sequelize.TEXT,
 });
 
 module.exports = Session;

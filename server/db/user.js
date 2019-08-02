@@ -82,6 +82,31 @@ User.hash = str => {
   });
 };
 
+User.signup = async function({
+  firstName,
+  lastName,
+  email,
+  password,
+  imageURL,
+}) {
+  try {
+    const defaults = { firstName, lastName, password };
+    if (imageURL) {
+      defaults.imageURL = imageURL;
+    }
+    const [user, created] = await this.findOrCreate({
+      where: { email },
+      defaults,
+    });
+    if (created) {
+      return user;
+    }
+    throw authError('A user is already registered to this email.', 'email');
+  } catch (error) {
+    throw error;
+  }
+};
+
 User.comparePasswords = (inputStr, password) => {
   return new Promise((resolve, reject) => {
     bcrypt.compare(inputStr, password, (err, success) => {
