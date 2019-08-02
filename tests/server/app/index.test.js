@@ -1,4 +1,3 @@
-// need to set jest environment so connect-session-sequelize wont error
 /**
  * @jest-environment node
  */

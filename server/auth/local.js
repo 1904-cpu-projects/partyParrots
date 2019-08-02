@@ -37,9 +37,10 @@ router.delete('/logout', (req, res, next) => {
 
 router.use((error, req, res, next) => {
   if (error.type === 'Auth') {
-    return res
-      .sendStatus(error.status)
-      .json({ [error.subtype]: error.message });
+    res.status(error.status).json({ [error.subtype]: error.message });
+  } else {
+    next(error);
   }
-  next(error);
 });
+
+module.exports = router;
