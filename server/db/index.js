@@ -14,7 +14,7 @@ Cart.hasMany(CartItem);
 CartItem.belongsTo(Beverage);
 Beverage.hasMany(CartItem);
 
-db.sync({ force: false });
+db.sync({ force: true });
 
 module.exports = {
   db,
