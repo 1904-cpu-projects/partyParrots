@@ -1,4 +1,4 @@
-const session = require('session');
+const session = require('express-session');
 const createSessionStore = require('connect-session-sequelize');
 const { db } = require('../db/index');
 
