@@ -21,20 +21,6 @@ router.put('/login', async (req, res, next) => {
   }
 });
 
-router.delete('/logout', (req, res, next) => {
-  if (req.session) {
-    req.session.destroy(err => {
-      if (err) {
-        next(err);
-      } else {
-        res.sendStatus(204);
-      }
-    });
-  } else {
-    res.sendStatus(401);
-  }
-});
-
 router.use((error, req, res, next) => {
   if (error.type === 'Auth') {
     res.status(error.status).json({ [error.subtype]: error.message });

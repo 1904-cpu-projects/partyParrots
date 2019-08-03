@@ -3,7 +3,9 @@ const { db } = require('./db/index');
 
 const PORT = process.env.PORT || 3000;
 
-db.sync()
+const force = process.env.force || false;
+
+db.sync({ force })
   .then(() => {
     app.listen(PORT, () => console.log(`App listening at port: ${PORT}`));
   })

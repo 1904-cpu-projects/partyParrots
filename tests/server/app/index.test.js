@@ -2,6 +2,7 @@
  * @jest-environment node
  */
 require('@babel/polyfill');
+
 const request = require('supertest');
 const app = require('../../../server/app/index');
 

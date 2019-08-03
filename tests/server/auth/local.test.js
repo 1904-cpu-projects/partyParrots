@@ -1,8 +1,8 @@
 /**
  * @jest-environment node
  */
-
 require('@babel/polyfill');
+
 const request = require('supertest');
 const app = require('../../../server/app/index');
 const { User, db } = require('../../../server/db/index');
@@ -13,7 +13,7 @@ beforeAll(() => db.sync({ force: true }));
 
 afterAll(() => User.destroy({ where: { id: userId } }));
 
-describe('local authentication endpoints', function() {
+describe('local authentication endpoints', () => {
   describe('/signup', () => {
     test('it should send back a new user', done => {
       request(app)
@@ -66,7 +66,8 @@ describe('local authentication endpoints', function() {
             done();
           }
         });
-      //
     });
   });
+
+  describe('/login', () => {});
 });
