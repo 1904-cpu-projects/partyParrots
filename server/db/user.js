@@ -7,7 +7,7 @@ const { authError } = require('../../utils/backend');
 const User = db.define('user', {
   id: {
     type: Sequelize.UUID,
-    defaultValue: db.Sequelize.UUIDV4,
+    defaultValue: Sequelize.UUIDV4,
     unique: true,
     primaryKey: true,
   },
