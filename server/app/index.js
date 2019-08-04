@@ -19,6 +19,8 @@ app.use(express.json());
 
 app.use(express.static(staticPath));
 
+app.use('/api/beverages', require('../api/beverages'));
+
 app.get('/hello', (req, res) => res.send('hi!'));
 
 module.exports = app;
