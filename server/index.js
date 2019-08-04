@@ -3,7 +3,7 @@ const { db } = require('./db/index');
 
 const PORT = process.env.PORT || 3000;
 
-const force = false;
+const force = true;
 
 db.sync({ force })
   .then(() => {
