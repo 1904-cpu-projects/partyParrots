@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
-export default class CreateUser extends Component{
+class CreateUser extends Component{
 
     constructor(){
         super()
@@ -52,4 +53,6 @@ export default class CreateUser extends Component{
     }
 
 }
+
+export default connect( null, null )( CreateUser );
 

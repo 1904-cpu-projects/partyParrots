@@ -2,6 +2,10 @@ import React from 'react';
 import CreateUser from './CreateUser';
 
 export default function App() {
-    return <CreateUser />
+    return (
+        <div>
+            <CreateUser />
+        </div>
+    )
 }
 
