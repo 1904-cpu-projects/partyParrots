@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { Component } from 'react';
 import axios from 'axios';
 import Form from './LoginForm';
+import { connect } from 'react-redux';
 
 class UserLogin extends Component {
   constructor(props) {
@@ -75,4 +76,4 @@ class UserLogin extends Component {
   }
 }
 
-export default UserLogin;
+export default connect( null, null )( UserLogin );
