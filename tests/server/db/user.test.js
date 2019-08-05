@@ -66,7 +66,6 @@ describe('custom methods', () => {
       const areSame = await User.comparePasswords('iAmLame', user.password);
       expect(areSame).toBe(true);
     } catch (error) {
-      console.log(error);
       throw error;
     }
   });

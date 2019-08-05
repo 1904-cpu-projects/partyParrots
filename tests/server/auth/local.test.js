@@ -1,17 +1,14 @@
-/**
- * @jest-environment node
- */
 require('@babel/polyfill');
 
 const request = require('supertest');
 const app = require('../../../server/app/index');
 const { User, db } = require('../../../server/db/index');
 
-beforeAll(() => db.sync())
+beforeAll(() => db.sync());
 
 afterAll(async () => {
-  await User.destroy({ where: { email: 'lamoMclamerson@email.com' } })
-  return db.close()
+  await User.destroy({ where: { email: 'lamoMclamerson@email.com' } });
+  return db.close();
 });
 
 describe('local authentication endpoints', () => {
