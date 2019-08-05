@@ -5,9 +5,14 @@ require('@babel/polyfill');
 
 const request = require('supertest');
 const app = require('../../../server/app/index');
-const { User } = require('../../../server/db/index');
+const { User, db } = require('../../../server/db/index');
 
-afterAll(() => User.destroy({ where: { email: 'lamoMclamerson@email.com' } }));
+beforeAll(() => db.sync())
+
+afterAll(async () => {
+  await User.destroy({ where: { email: 'lamoMclamerson@email.com' } })
+  return db.close()
+});
 
 describe('local authentication endpoints', () => {
   describe('/signup', () => {

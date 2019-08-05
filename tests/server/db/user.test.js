@@ -18,6 +18,8 @@ afterEach(async () => {
   user = null;
 });
 
+afterAll(() => db.close());
+
 describe('custom methods', () => {
   test('toJSON', () => {
     const values = user.toJSON();
