@@ -3,9 +3,13 @@ import CreateUser from './CreateUser';
 
 export default function App() {
     return (
-        <div>
-            <CreateUser />
-        </div>
+        <section className = "section">
+            <div className = "columns is-centered" >
+                <div className = "column is-half" >
+                    <CreateUser />
+                </div>
+            </div>
+        </section>
     )
 }
 
