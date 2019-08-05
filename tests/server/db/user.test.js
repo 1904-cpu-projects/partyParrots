@@ -1,4 +1,5 @@
 require('@babel/polyfill');
+
 const { User, db } = require('../../../server/db/index');
 
 beforeAll(() => db.sync());
