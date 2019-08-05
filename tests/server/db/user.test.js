@@ -1,7 +1,13 @@
 require('@babel/polyfill');
 const { User, db } = require('../../../server/db/index');
 
-beforeAll(() => db.sync());
+beforeAll(async () => {
+  await db.sync();
+  console.log(
+    await User.findOne({ where: { email: 'lamoMclamerson@email.com' } })
+  );
+
+});
 
 let user;
 beforeEach(() => {
@@ -60,10 +66,14 @@ describe('custom methods', () => {
 
   test('resolves true for the correct password', async () => {
     try {
+      console.log(
+        await User.findOne({ where: { email: 'lamoMclamerson@email.com' } })
+      );
       await user.save();
       const areSame = await User.comparePasswords('iAmLame', user.password);
       expect(areSame).toBe(true);
     } catch (error) {
+      console.log(error);
       throw error;
     }
   });
