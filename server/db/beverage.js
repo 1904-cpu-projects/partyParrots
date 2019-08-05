@@ -33,7 +33,8 @@ const Beverage = db.define('beverage', {
     },
   },
   category: {
-    type: Sequelize.ENUM(['category1', 'category2', 'category3']),
+    type: Sequelize.ENUM,
+    values: ['Amber', 'Blonde', 'Brown', 'Cream', 'Dark', 'Pale', 'Strong', 'Wheat', 'Red', 'IPA', 'Pilsner', 'Golden', 'Fruit', 'Honey', 'Sour'],
     allowNull: false,
     validate: {
       notEmpty: true,

@@ -8,7 +8,7 @@ const Session = db.define('session', {
   },
   userId: Sequelize.STRING,
   expires: Sequelize.DATE,
-  data: Sequelize.TEXT,
+  data: Sequelize.STRING,
 });
 
 module.exports = Session;
