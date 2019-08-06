@@ -54,12 +54,15 @@ const Form = ({ values, errors, handleChange, handleSubmit, clear }) => {
       )}
       <div className="field is-grouped">
         <div className="control">
-          <button type="submit" className="button is-link">
+          <button
+            type="submit"
+            className="button is-rounded is-centered is-primary"
+          >
             Login
           </button>
         </div>
         <div className="control">
-          <button type="button" className="button is-text" onClick={clear}>
+          <button type="button" className="button is-rounded is-danger" onClick={clear}>
             Clear
           </button>
         </div>

@@ -117,7 +117,7 @@ class CreateUser extends Component {
         <div className="field">
           <div className="has-text-centered">
             <button
-              className="button is-rounded is-small is-centered is-primary"
+              className="button is-rounded is-centered is-primary"
               type="submit"
             >
               Submit
