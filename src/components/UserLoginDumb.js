@@ -9,10 +9,10 @@ class UserLogin extends Component {
     this.state = {
       values: {
         email: '',
-        password: ''
+        password: '',
       },
       error: {},
-    }
+    };
     this.clear = this.clear.bind(this);
     this.handleErrors = this.handleErrors.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -30,34 +30,34 @@ class UserLogin extends Component {
 
   handleErrors = errors => {
     this.setState(state => ({
-      ...state, errors,
+      ...state,
+      errors,
     }));
   };
 
-  handleChange = ({target}) => {
+  handleChange = ({ target }) => {
     const { name, value } = target;
     this.setState(state => ({
       ...state,
-      values: { ...this.state.values, [name]: value }
+      values: { ...this.state.values, [name]: value },
     }));
   };
 
-  handleSubmit = async (ev) => {
+  handleSubmit = async ev => {
     ev.preventDefault();
-    try{
+    try {
       const res = await axios.get('/login', {
-        ...this.state.values
-      })
+        ...this.state.values,
+      });
 
       if (res.data.errors) {
         this.handleErrors(res.data.errors);
       } else {
         //allow user to proceed with res.data
       }
-    }
-    catch (err) {
+    } catch (err) {
       if (err.message.includes('401')) {
-        this.handleErrors({ auth: 'Invalid email or password.' })
+        this.handleErrors({ auth: 'Invalid email or password.' });
       } else {
         console.error(err);
       }
@@ -68,12 +68,16 @@ class UserLogin extends Component {
     const { handleChange, handleSubmit, clear } = this;
     return (
       <Form
-      {...this.state}
-      handleChange={handleChange}
-      handleSubmit={handleSubmit}
-      clear={clear} />
-    )
+        {...this.state}
+        handleChange={handleChange}
+        handleSubmit={handleSubmit}
+        clear={clear}
+      />
+    );
   }
 }
 
-export default connect( null, null )( UserLogin );
+export default connect(
+  null,
+  null
+)(UserLogin);
