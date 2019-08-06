@@ -74,6 +74,7 @@ describe('custom methods', () => {
   test('login works for correct credentials', async () => {
     try {
       await user.save();
+      await user.reload();
       const _user = await User.login(user.email, 'iAmLame');
       expect(_user.email).toBe(user.email);
       expect(_user.password).toBe(user.password);
