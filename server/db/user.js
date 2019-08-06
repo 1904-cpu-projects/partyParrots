@@ -48,6 +48,10 @@ const User = db.define('user', {
       isUrl: true,
     },
   },
+  isAdmin: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false,
+  },
 });
 
 User.beforeCreate(async instance => {

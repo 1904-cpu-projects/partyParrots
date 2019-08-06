@@ -17,6 +17,16 @@ const Cart = db.define('cart', {
     type: Sequelize.BOOLEAN,
     defaultValue: true,
   },
+  purchaseDate: {
+    type: Sequelize.DATE,
+  },
 });
+
+Cart.beforeSave(instance => {
+  if (instance.changed('active') && instance.active === false) {
+    instance.purchaseDate = (new Date());
+  }
+  return instance;
+})
 
 module.exports = Cart;
