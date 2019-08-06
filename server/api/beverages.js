@@ -12,7 +12,6 @@ router.get('/', async(req, res, next) => {
   }
 });
 
-
 router.get('/:id',  async(req, res, next) => {
   try {
     const beverage = await Beverage.findByPK(req.params.id)
@@ -35,7 +34,6 @@ router.post('/', async(req, res, next) => {
     }
   }
   else {res.status(401).send('Please login as an Administrator')}
-  //Redirect to /login route once it's set up
 });
 
 router.put('/:id', async (req, res, next) => {
@@ -54,10 +52,9 @@ router.put('/:id', async (req, res, next) => {
     }
   }
   else {res.status(401).send('Please login as an Administrator')}
-  //Redirect to /login route once it's set up
 });
 
-router.delete('/id', async (req, res, next) => {
+router.delete('/:id', async (req, res, next) => {
   if (req.isAdmin) {
     try {
       await Beverage.destroy({
@@ -72,7 +69,6 @@ router.delete('/id', async (req, res, next) => {
     }
   }
   else {res.status(401).send('Please login as an Administrator')}
-  //Redirect to /login route once it's set up
 })
 
 module.exports = router;

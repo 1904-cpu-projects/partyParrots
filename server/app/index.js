@@ -19,7 +19,7 @@ app.use(express.json());
 
 app.use(express.static(staticPath));
 
-app.use('/api/beverages', require('../api/beverages'));
+app.use('/api', require('../api/index.js'));
 
 app.get('/hello', (req, res) => res.send('hi!'));
 
