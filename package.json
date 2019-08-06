@@ -13,7 +13,8 @@
     "build": "webpack  --config webpack.production.config.js",
     "build:dev": "webpack --watch",
     "server": "node ./server/index.js",
-    "server:dev": "nodemon ./server/index.js --ignore public/ --ignore src/"
+    "server:dev": "nodemon ./server/index.js --ignore public/ --ignore src/",
+    "seed": "node seed.js"
   },
   "repository": {
     "type": "git",
