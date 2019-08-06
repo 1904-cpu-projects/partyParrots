@@ -1,5 +1,6 @@
 import React from 'react';
 import CreateUser from './CreateUser';
+import LoginForm from './UserLoginDumb';
 
 export default function App() {
   return (
@@ -7,6 +8,7 @@ export default function App() {
       <div className="columns is-centered">
         <div className="column is-half">
           <CreateUser />
+          <LoginForm />
         </div>
       </div>
     </section>

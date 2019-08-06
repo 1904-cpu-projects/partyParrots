@@ -11,7 +11,7 @@ class UserLogin extends Component {
         email: '',
         password: '',
       },
-      error: {},
+      errors: {},
     };
     this.clear = this.clear.bind(this);
     this.handleErrors = this.handleErrors.bind(this);
@@ -39,7 +39,7 @@ class UserLogin extends Component {
     const { name, value } = target;
     this.setState(state => ({
       ...state,
-      values: { ...this.state.values, [name]: value },
+      values: { ...state.values, [name]: value },
     }));
   };
 
@@ -65,10 +65,11 @@ class UserLogin extends Component {
   };
 
   render() {
-    const { handleChange, handleSubmit, clear } = this;
+    const { state, handleChange, handleSubmit, clear } = this;
     return (
       <Form
-        {...this.state}
+        values={state.values}
+        errors={state.errors}
         handleChange={handleChange}
         handleSubmit={handleSubmit}
         clear={clear}
