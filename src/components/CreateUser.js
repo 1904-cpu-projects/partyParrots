@@ -1,4 +1,10 @@
 import React, { Component } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faUserPlus,
+  faEnvelope,
+  faKey,
+} from '@fortawesome/free-solid-svg-icons';
 import { connect } from 'react-redux';
 
 class CreateUser extends Component {
@@ -55,7 +61,7 @@ class CreateUser extends Component {
               placeholder="First Name"
             />
             <span className="icon is-small is-left">
-              <i className="fas fa-user-plus" />
+              <FontAwesomeIcon icon={faUserPlus} />
             </span>
           </div>
         </div>
@@ -71,7 +77,7 @@ class CreateUser extends Component {
               placeholder="Last Name"
             />
             <span className="icon is-small is-left">
-              <i className="fas fa-user-plus" />
+              <FontAwesomeIcon icon={faUserPlus} />
             </span>
           </div>
         </div>
@@ -87,7 +93,7 @@ class CreateUser extends Component {
               placeholder="Email Address"
             />
             <span className="icon is-small is-left">
-              <i className="fas fa-envelope" />
+              <FontAwesomeIcon icon={faEnvelope} />
             </span>
           </div>
         </div>
@@ -103,7 +109,7 @@ class CreateUser extends Component {
               placeholder="Create a Password"
             />
             <span className="icon is-small is-left">
-              <i className="fas fa-key" />
+              <FontAwesomeIcon icon={faKey} />
             </span>
           </div>
         </div>
