@@ -1,26 +1,24 @@
 const { User } = require('../db/index');
+const { Cache } = require('../../utils/index');
 
-const superHighTechCache = {};
-
-const removeCachedUser = id => {
-  if (superHighTechCache[id]) {
-    delete superHighTechCache[id];
-  }
-};
+const cache = new Cache();
+const removeCachedUser = cache.clear.bind(cache);
 
 const serializeUserMiddleware = async (request, response, next) => {
   try {
     const id = request.session.userId;
+
     if (id) {
       let user;
+      const cachedUser = cache.get(id);
 
-      if (superHighTechCache[id] && superHighTechCache[id].id) {
-        user = superHighTechCache[id];
+      if (cachedUser && cachedUser.id) {
+        user = cachedUser;
       } else {
         user = await User.findOne({
           where: { id: request.session.userId },
         });
-        superHighTechCache[user.id] = user;
+        cache.set(user.id, user);
       }
 
       request.user = user;
