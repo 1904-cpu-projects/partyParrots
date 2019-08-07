@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
-export default class CreateUser extends Component{
+class CreateUser extends Component{
 
     constructor(){
         super()
@@ -38,18 +39,62 @@ export default class CreateUser extends Component{
     render() {
         return (    
             <form onSubmit = {this.handleSubmit}>
-                 <label>First Name:</label>
-                    <input type = 'text' name = 'firstName' value = {this.state.firstName} onChange = {this.handleChange}/><br/>
-                 <label>Last Name:</label>
-                    <input type = 'text' name = 'lastName' value = {this.state.lastName} onChange = {this.handleChange}/><br/>
-                 <label>Email:</label>
-                    <input type = 'text' name = 'email' value = {this.state.email} onChange = {this.handleChange}/><br/>
-                 <label>Create Password (Minimum 8 characters):</label>
-                    <input type="password" name="password" value = {this.state.password} minLength="8" required onChange={this.handleChange}/><br/>
-                <button type = 'submit'>Create New User</button> 
+
+                <div className = "field is-centered">
+                    <div className = "has-text-centered">
+                        <label className = "is-size-3">Sign up today!</label>
+                    </div>
+                </div>
+
+                <div className = "field">
+                    <div className = "control has-icons-left">
+                        <input className = "input" type = 'text' name = 'firstName' value = {this.state.firstName} onChange = {this.handleChange} placeholder="First Name"/>
+                        <span className="icon is-small is-left">
+                            <i className="fas fa-user-plus"></i>
+                        </span>
+                    </div>
+                </div>
+
+                <div className = "field">
+                    <div className="control has-icons-left">
+                        <input className = "input" type = 'text' name = 'lastName' value = {this.state.lastName} onChange = {this.handleChange} placeholder="Last Name"/>
+                        <span className="icon is-small is-left">
+                            <i className="fas fa-user-plus"></i>
+                        </span>
+                    </div>
+                </div>
+
+
+                <div className = "field">
+                    <div className="control has-icons-left">
+                        <input className = "input" type = 'email' name = 'email' value = {this.state.email} onChange = {this.handleChange} placeholder="Email Address"/>
+                        <span className="icon is-small is-left">
+                            <i className="fas fa-envelope"></i>
+                        </span>
+                    </div>
+                </div>
+
+
+                <div className = "field">
+                    <div className="control has-icons-left">
+                        <input className = "input" type="password" name="password" value = {this.state.password} onChange={this.handleChange} placeholder="Create a Password"/>
+                        <span className="icon is-small is-left">
+                            <i className="fas fa-key"></i>
+                        </span>
+                    </div>
+                </div>
+
+                <div className = "field">
+                    <div className = "has-text-centered">
+                    <button className = "button is-rounded is-small is-centered is-primary" type = 'submit'>Submit</button> 
+                    </div>
+                </div>
+                
             </form>
         )
     }
 
 }
+
+export default connect( null, null )( CreateUser )
 
