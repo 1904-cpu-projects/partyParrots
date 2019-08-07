@@ -4,6 +4,8 @@ const { Cache } = require('../../utils/index');
 const cache = new Cache();
 const removeCachedUser = cache.clear.bind(cache);
 
+const cacheDuration = 1000 * 60 * 5;
+
 const serializeUserMiddleware = async (request, response, next) => {
   try {
     const id = request.session.userId;
@@ -18,7 +20,7 @@ const serializeUserMiddleware = async (request, response, next) => {
         user = await User.findOne({
           where: { id: request.session.userId },
         });
-        cache.set(user.id, user);
+        cache.set(user.id, user, cacheDuration);
       }
 
       request.user = user;

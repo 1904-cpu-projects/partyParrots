@@ -9,6 +9,7 @@ class Cache {
 
   set(key, value, expiration) {
     this.clear(key);
+
     const oneMinute = 1000 * 60 * 1;
     expiration = expiration || oneMinute;
 
