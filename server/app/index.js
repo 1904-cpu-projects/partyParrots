@@ -19,6 +19,7 @@ app.use(express.json());
 
 app.use(express.static(staticPath));
 
+app.use('/auth', require('../auth/index'));
 app.use('/api', require('../api/index.js'));
 
 app.get('/hello', (req, res) => res.send('hi!'));
