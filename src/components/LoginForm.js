@@ -2,15 +2,7 @@ import React from 'react';
 
 const Form = ( values, errors, handleChange, handleSubmit, clear ) => {
   return (
-    <section className = "section">
-    <div className = "columns is-centered" >
-    <div className = "column is-half" >
 
-    <div className = "field is-centered">
-      <div className = "has-text-centered">
-        <label className = "is-size-3">Log In</label>
-      </div>
-    </div>
 
     <form onSubmit={handleSubmit}>
       <div className='field'>
@@ -56,21 +48,19 @@ const Form = ( values, errors, handleChange, handleSubmit, clear ) => {
       )}
       <div className='field is-grouped'>
         <div className='control'>
-          <button type='submit' className='button is-link'>
+          <button type='submit' className='button is-success is-rounded'>
             Login
           </button>
         </div>
         <div className='control'>
-          <button type='button' className='button is-text' onClick={clear}>
+          <button type='button' className='button is-rounded' onClick={clear}>
             Clear
           </button>
         </div>
       </div>
     </form>
 
-    </div>
-    </div>
-    </section>
+
   );
 };
 
