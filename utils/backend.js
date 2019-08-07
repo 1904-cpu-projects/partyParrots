@@ -7,6 +7,15 @@ const authError = (msg = 'Error', subtype = 'Error') => {
   return error;
 };
 
+const isAdminMiddleware = (req, res, next) => {
+  if (!req.isAdmin) {
+    res.sendStatus(401);
+  } else {
+    next();
+  }
+};
+
 module.exports = {
   authError,
+  isAdminMiddleware,
 };

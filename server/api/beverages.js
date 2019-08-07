@@ -1,11 +1,23 @@
 const express = require('express');
 const router = express.Router();
 const { Beverage } = require('../db/index');
+const { BeverageCategories } = require('../../utils/index');
+const { isAdminMiddleware } = require('../../utils/backend');
 
 router.get('/', async (req, res, next) => {
   try {
-    const beverages = await Beverage.findAll();
-    res.send(beverages);
+    const { category } = req.query;
+    let beverages;
+
+    if (category && BeverageCategories.includes(category)) {
+      beverages = await Beverage.findAll({
+        where: { category },
+      });
+    } else {
+      beverages = await Beverage.findAll();
+    }
+
+    res.json(beverages);
   } catch (err) {
     next(err);
   }
@@ -14,58 +26,45 @@ router.get('/', async (req, res, next) => {
 router.get('/:id', async (req, res, next) => {
   try {
     const beverage = await Beverage.findOne({ where: { id: req.params.id } });
-    res.send(beverage);
+    res.json(beverage);
   } catch (err) {
     next(err);
   }
 });
 
-router.post('/', async (req, res, next) => {
-  //allows only Admin to create new Beverages
-  if (req.isAdmin) {
-    try {
-      const newBeverage = await Beverage.create(req.body);
-      res.status(201).send(newBeverage);
-    } catch (err) {
-      next(err);
-    }
-  } else {
-    res.status(401).send('Please login as an Administrator');
+router.post('/', isAdminMiddleware, async (req, res, next) => {
+  try {
+    const newBeverage = await Beverage.create(req.body);
+    res.status(201).json(newBeverage);
+  } catch (err) {
+    next(err);
   }
 });
 
-router.put('/:id', async (req, res, next) => {
-  if (req.isAdmin) {
-    try {
-      const [_, updateBeverage] = await Beverage.update(req.body, {
-        where: {
-          id: req.params.id,
-        },
-        returning: true,
-      });
-      res.send(updateBeverage);
-    } catch (err) {
-      next(err);
-    }
-  } else {
-    res.status(401).send('Please login as an Administrator');
+router.put('/:id', isAdminMiddleware, async (req, res, next) => {
+  try {
+    const [_, updateBeverage] = await Beverage.update(req.body, {
+      where: {
+        id: req.params.id,
+      },
+      returning: true,
+    });
+    res.json(updateBeverage);
+  } catch (err) {
+    next(err);
   }
 });
 
-router.delete('/:id', async (req, res, next) => {
-  if (req.isAdmin) {
-    try {
-      await Beverage.destroy({
-        where: {
-          id: req.params.id,
-        },
-      });
-      res.send(`A beverage with the id of ${req.params.id} was destroyed`);
-    } catch (err) {
-      next(err);
-    }
-  } else {
-    res.status(401).send('Please login as an Administrator');
+router.delete('/:id', isAdminMiddleware, async (req, res, next) => {
+  try {
+    await Beverage.destroy({
+      where: {
+        id: req.params.id,
+      },
+    });
+    res.sendStatus(204);
+  } catch (err) {
+    next(err);
   }
 });
 
