@@ -1,12 +1,30 @@
 const { User } = require('../db/index');
 
-const middleware = async (request, response, next) => {
+const superHighTechCache = {};
+
+const removeCachedUser = id => {
+  if (superHighTechCache[id]) {
+    delete superHighTechCache[id];
+  }
+};
+
+const serializeUserMiddleware = async (request, response, next) => {
   try {
-    if (request.session.userId) {
-      const user = await User.findOne({
-        where: { id: request.session.userId },
-      });
+    const id = request.session.userId;
+    if (id) {
+      let user;
+
+      if (superHighTechCache[id] && superHighTechCache[id].id) {
+        user = superHighTechCache[id];
+      } else {
+        user = await User.findOne({
+          where: { id: request.session.userId },
+        });
+        superHighTechCache[user.id] = user;
+      }
+
       request.user = user;
+
       if (user.isAdmin) {
         request.isAdmin = true;
       }
@@ -17,4 +35,4 @@ const middleware = async (request, response, next) => {
   }
 };
 
-module.exports = middleware;
+module.exports = { serializeUserMiddleware, removeCachedUser };
