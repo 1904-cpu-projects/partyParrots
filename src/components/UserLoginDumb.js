@@ -66,6 +66,7 @@ class UserLogin extends Component {
 
   render() {
     const { handleChange, handleSubmit, clear } = this;
+    console.log('...', this.state.values)
     return (
       <Form
       {...this.state}

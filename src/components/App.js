@@ -1,15 +1,21 @@
-import React from 'react';
-import CreateUser from './CreateUser';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import LoginForm from './LoginForm';
+import Nav from './Nav';
+import { HashRouter, Route } from 'react-router-dom';
 
-export default function App() {
-    return (
-        <section className = "section">
-            <div className = "columns is-centered" >
-                <div className = "column is-half" >
-                    <CreateUser />
-                </div>
-            </div>
-        </section>
-    )
+class App extends Component{
+    
+    render(){
+        return ( 
+            <HashRouter>
+                < Route path = "/" component = { Nav } />
+                < Route exact path = "/login" component = { LoginForm } />
+            </HashRouter>
+        )  
+    }  
 }
+
+export default connect ( null, null )( App );
+
 

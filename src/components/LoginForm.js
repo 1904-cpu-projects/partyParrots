@@ -1,37 +1,49 @@
 import React from 'react';
 
-const Form = ({ values, errors, handleChange, handleSubmit, clear }) => {
+const Form = ( values, errors, handleChange, handleSubmit, clear ) => {
   return (
+    <section className = "section">
+    <div className = "columns is-centered" >
+    <div className = "column is-half" >
+
+    <div className = "field is-centered">
+      <div className = "has-text-centered">
+        <label className = "is-size-3">Log In</label>
+      </div>
+    </div>
+
     <form onSubmit={handleSubmit}>
       <div className='field'>
-        <label className='label' htmlFor='email'>
-          Email:
-        </label>
-        <div className='control'>
+        <div className='control has-icons-left'>
           <input
             className='input'
             name='email'
             type='email'
-            value='{values.email}'
+            value={values.email}
             onChange={handleChange}
+            placeholder='Email Address'
           />
-        </div>
-        {errors.email && errors.email.length && (
+          <span className="icon is-small is-left">
+            <i className="fas fa-envelope"></i>
+          </span>
+         </div>
+         {errors.email && errors.email.length && (
           <p className='help is-danger'>{errors.email}</p>
         )}
-      </div>>
+       </div>
       <div className='field'>
-        <label className='label' htmlFor='password'>
-          Password:
-        </label>
-        <div className='control'>
+        <div className='control has-icons-left'>
           <input
             className='input'
             name='password'
             type='password'
             value={values.password}
             onChange={handleChange}
+            placeholder='Password'
           />
+          <span className="icon is-small is-left">
+            <i className="fas fa-key"></i>
+          </span>
         </div>
         {errors.password && errors.password.length && (
           <p className='help is-danger'>{errors.password}</p>
@@ -55,6 +67,10 @@ const Form = ({ values, errors, handleChange, handleSubmit, clear }) => {
         </div>
       </div>
     </form>
+
+    </div>
+    </div>
+    </section>
   );
 };
 
