@@ -11,7 +11,7 @@ class UserLogin extends Component {
         email: '',
         password: '',
       },
-      error: {},
+      errors: {},
     };
     this.clear = this.clear.bind(this);
     this.handleErrors = this.handleErrors.bind(this);
