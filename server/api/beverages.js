@@ -4,12 +4,18 @@ const { Beverage } = require('../db/index');
 const { BeverageCategories } = require('../../utils/index');
 const { isAdminMiddleware } = require('../../utils/backend');
 
+// turn categories into a dictionary for quicker lookup
+const categories = BeverageCategories.reduce((dict, cat) => {
+  dict[cat] = true;
+  return dict;
+}, {});
+
 router.get('/', async (req, res, next) => {
   try {
     const { category } = req.query;
     let beverages;
 
-    if (category && BeverageCategories.includes(category)) {
+    if (category && categories[category]) {
       beverages = await Beverage.findAll({
         where: { category },
       });
