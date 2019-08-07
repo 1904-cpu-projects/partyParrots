@@ -1,4 +1,5 @@
 require('@babel/polyfill');
+
 const { User, db } = require('../../../server/db/index');
 
 beforeAll(() => db.sync());
@@ -17,6 +18,8 @@ afterEach(async () => {
   await user.destroy();
   user = null;
 });
+
+afterAll(() => db.close());
 
 describe('custom methods', () => {
   test('toJSON', () => {
@@ -71,6 +74,7 @@ describe('custom methods', () => {
   test('login works for correct credentials', async () => {
     try {
       await user.save();
+      await user.reload();
       const _user = await User.login(user.email, 'iAmLame');
       expect(_user.email).toBe(user.email);
       expect(_user.password).toBe(user.password);
@@ -102,6 +106,43 @@ describe('custom methods', () => {
       }
       expect(error.message).toBe('Invalid password.');
       expect(error.subtype).toBe('password');
+    }
+  });
+
+  test('signup method fails for used email', async () => {
+    try {
+      await user.save();
+      const newUser = await User.signup({
+        firstName: 'lamo2',
+        lastName: 'mclamerson',
+        email: 'lamoMclamerson@email.com',
+        password: 'iAmLame2',
+      });
+      if (newUser) {
+        throw Error('Signup should have failed. Used same email as user.');
+      }
+    } catch (error) {
+      expect(error.message).toBe('A user is already registered to this email.');
+      expect(error.subtype).toBe('email');
+    }
+  });
+
+  test('signup method creates a new user with new email', async () => {
+    try {
+      await user.save();
+      const newUser = await User.signup({
+        firstName: 'lamo2',
+        lastName: 'mclamerson',
+        email: 'lamoMclamerson2@email.com',
+        password: 'iAmLame2',
+      });
+      expect(newUser).toBeTruthy();
+      expect(newUser.email).not.toEqual(user.email);
+      expect(newUser.email).toBe('lamoMclamerson2@email.com');
+      // delete newUser from db
+      await newUser.destroy();
+    } catch (error) {
+      throw error;
     }
   });
 });
