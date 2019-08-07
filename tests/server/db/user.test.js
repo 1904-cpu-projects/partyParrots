@@ -34,6 +34,7 @@ describe('custom methods', () => {
       email: 'lamoMclamerson@email.com',
       imageURL:
         'https://upload.wikimedia.org/wikipedia/commons/6/67/User_Avatar.png',
+      isAdmin: false,
     });
     // add id back to values & instance so destroy works
     values.id = id;
