@@ -32,6 +32,7 @@ describe('custom methods', () => {
       firstName: 'lamo',
       lastName: 'mclamerson',
       email: 'lamoMclamerson@email.com',
+      isAdmin: false,
       imageURL:
         'https://upload.wikimedia.org/wikipedia/commons/6/67/User_Avatar.png',
     });
