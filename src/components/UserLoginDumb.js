@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Form from './LoginForm';
 import { connect } from 'react-redux';
+import { loginUser } from '../actions/user';
 
 class UserLogin extends Component {
   constructor(props) {
@@ -43,20 +44,23 @@ class UserLogin extends Component {
     }));
   };
 
-  handleSubmit = async ev => {
+  handleSubmit = async (ev) => {
     ev.preventDefault();
     try {
-      const res = await axios.get('/login', {
+      const res = await axios.put('/auth/local/login', {
         ...this.state.values,
-      });
+      }, {validateStatus: function (status) {return (status >= 200 && status < 300) || status === 401} });
 
       if (res.data.errors) {
         this.handleErrors(res.data.errors);
       } else {
-        //allow user to proceed with res.data
+        console.log(res.data)
+        this.props._loginUser(res.data)
+        window.history.back()
       }
     } catch (err) {
       if (err.message.includes('401')) {
+        console.log(err.message)
         this.handleErrors({ auth: 'Invalid email or password.' });
       } else {
         console.error(err);
@@ -66,7 +70,6 @@ class UserLogin extends Component {
 
   render() {
     const { handleChange, handleSubmit, clear } = this;
-    console.log('...', this.state.values);
     return (
       <section className="section">
         <div className="columns is-centered">
@@ -89,7 +92,15 @@ class UserLogin extends Component {
   }
 }
 
+const mapDispatchToProps = (dispatch) => {
+  return {
+    _loginUser: (user) => {
+      dispatch(loginUser(user))
+    }
+  }
+}
+
 export default connect(
   null,
-  null
+  mapDispatchToProps
 )(UserLogin);

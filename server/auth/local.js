@@ -12,6 +12,7 @@ router.post('/signup', async (req, res, next) => {
 });
 
 router.put('/login', async (req, res, next) => {
+  console.log(req.body)
   try {
     const user = await User.login(req.body.email, req.body.password);
     req.session.userId = user.id;
@@ -20,6 +21,7 @@ router.put('/login', async (req, res, next) => {
     next(error);
   }
 });
+
 
 router.use((error, req, res, next) => {
   if (error.type === 'Auth') {
