@@ -11,7 +11,6 @@ export const fetchAllBeverages = () => async dispatch => {
         const api = await Axios.get('/api/beverages');
         const response = api.data;
         dispatch(_fetchAllBeverages( response ));
-
     }
     catch( err ){
         console.log('there was an error in fetchAllBeverages')

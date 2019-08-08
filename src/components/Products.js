@@ -9,12 +9,13 @@ class Products extends Component {
     }
 
     render(){
-        return this.props.beverages && this.props.beverages.map( beverage => {return <li key={ beverage.id }>{ beverage.name }</li>})  
+        return this.props.beverages.map( beverage => {return <li key={ beverage.id }>{ beverage.name }</li>}) 
     }
 
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = state => (
+{
     beverages: state.beverages
 })
 
