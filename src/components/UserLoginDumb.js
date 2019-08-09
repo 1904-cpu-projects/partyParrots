@@ -49,18 +49,16 @@ class UserLogin extends Component {
     try {
       const res = await axios.put('/auth/local/login', {
         ...this.state.values,
-      }, {validateStatus: function (status) {return (status >= 200 && status < 300) || status === 401} });
+      });
 
       if (res.data.errors) {
         this.handleErrors(res.data.errors);
       } else {
-        console.log(res.data)
         this.props._loginUser(res.data)
         window.history.back()
       }
     } catch (err) {
       if (err.message.includes('401')) {
-        console.log(err.message)
         this.handleErrors({ auth: 'Invalid email or password.' });
       } else {
         console.error(err);
