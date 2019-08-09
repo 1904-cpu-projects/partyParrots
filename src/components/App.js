@@ -1,26 +1,23 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Route, withRouter } from 'react-router-dom';
 import LoginForm from './UserLoginDumb';
 import Nav from './Nav';
-import SelectCat from './FilterForm/SelectCat/SelectCat';
+import Products from './Products';
+import { HashRouter, Route } from 'react-router-dom';
 
 class App extends Component {
   render() {
     return (
-      <Fragment>
-        <Route exact path="/" component={Nav} />
-        <Route path="/products/:category/:search?" component={SelectCat} />
-
+      <HashRouter>
+        <Route path="/" component={Nav} />
         <Route exact path="/login" component={LoginForm} />
-      </Fragment>
+        <Route exact path="/products" component={Products} />
+      </HashRouter>
     );
   }
 }
 
-export default withRouter(
-  connect(
-    null,
-    null
-  )(App)
-);
+export default connect(
+  null,
+  null
+)(App);

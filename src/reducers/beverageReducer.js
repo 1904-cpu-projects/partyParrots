@@ -1,10 +1,10 @@
-import { GOT_BEVS } from '../actions/beverages';
+import FETCH_ALL_BEVERAGES from '../actions/constants';
 
 export default function(state = [], action) {
   switch (action.type) {
-    case GOT_BEVS: {
-      return action.beverages;
-    }
+    case FETCH_ALL_BEVERAGES:
+      return action.payload;
+
     default:
       return state;
   }

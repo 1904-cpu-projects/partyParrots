@@ -10,6 +10,29 @@ const categories = BeverageCategories.reduce((dict, cat) => {
   return dict;
 }, {});
 
+router.use((req, res, next) => {
+  const method = req.method;
+  if (method === 'POST' || method === 'PUT') {
+    const { body } = req;
+
+    req.payload = {
+      name: body.name,
+      manufacturer: body.manufacturer,
+      percentAlcohol: body.percentAlcohol,
+      description: body.description,
+      category: body.category,
+      price: body.price,
+      size: body.size,
+      quantity: body.quantity,
+    };
+
+    if (body.imageURL) {
+      req.payload.imageURL = body.imageURL;
+    }
+  }
+  next();
+});
+
 router.get('/', async (req, res, next) => {
   try {
     const { category } = req.query;
@@ -32,7 +55,7 @@ router.get('/', async (req, res, next) => {
 router.get('/:id', async (req, res, next) => {
   try {
     const beverage = await Beverage.findOne({ where: { id: req.params.id } });
-    res.json(beverage);
+    res.send(beverage);
   } catch (err) {
     next(err);
   }
@@ -40,7 +63,7 @@ router.get('/:id', async (req, res, next) => {
 
 router.post('/', isAdminMiddleware, async (req, res, next) => {
   try {
-    const newBeverage = await Beverage.create(req.body);
+    const newBeverage = await Beverage.create(req.payload);
     res.status(201).json(newBeverage);
   } catch (err) {
     next(err);
@@ -49,7 +72,7 @@ router.post('/', isAdminMiddleware, async (req, res, next) => {
 
 router.put('/:id', isAdminMiddleware, async (req, res, next) => {
   try {
-    const [_, updateBeverage] = await Beverage.update(req.body, {
+    const [_, updateBeverage] = await Beverage.update(req.payload, {
       where: {
         id: req.params.id,
       },

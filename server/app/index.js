@@ -4,7 +4,7 @@ const morgan = require('morgan');
 const compression = require('compression');
 const helmet = require('helmet');
 const sessionMiddleware = require('./sessionMiddlewarare');
-const serializeUserMiddleware = require('./serializeUserMiddleware');
+const { serializeUserMiddleware } = require('./serializeUserMiddleware');
 
 const staticPath = path.join(__dirname, '..', '..', 'public');
 const app = express();

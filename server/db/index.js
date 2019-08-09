@@ -2,17 +2,17 @@ const db = require('./connection');
 const User = require('./user');
 const Beverage = require('./beverage');
 const Session = require('./session');
-const Cart = require('./cart');
-const CartItem = require('./cartItems');
+const Order = require('./order');
+const OrderItem = require('./orderItem');
 
-Cart.belongsTo(User);
-User.hasMany(Cart);
+Order.belongsTo(User);
+User.hasMany(Order);
 
-CartItem.belongsTo(Cart);
-Cart.hasMany(CartItem);
+OrderItem.belongsTo(Order);
+Order.hasMany(OrderItem);
 
-CartItem.belongsTo(Beverage);
-Beverage.hasMany(CartItem);
+OrderItem.belongsTo(Beverage);
+Beverage.hasMany(OrderItem);
 
 module.exports = {
   db,

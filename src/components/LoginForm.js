@@ -1,8 +1,8 @@
 import React from 'react';
 
-const Form = ( values, errors, handleChange, handleSubmit, clear ) => {
-  return (
+const Form = ({ values, errors, handleChange, handleSubmit, clear }) => {
 
+  return (
 
     <form onSubmit={handleSubmit}>
       <div className='field'>
@@ -59,8 +59,6 @@ const Form = ( values, errors, handleChange, handleSubmit, clear ) => {
         </div>
       </div>
     </form>
-
-
   );
 };
 

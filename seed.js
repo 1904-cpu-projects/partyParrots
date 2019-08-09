@@ -17,7 +17,7 @@ const makeBeverageData = (
   price,
   size,
   quantity
-// eslint-disable-next-line max-params
+  // eslint-disable-next-line max-params
 ) => ({
   name,
   manufacturer,
@@ -62,7 +62,16 @@ const beveragesData = [
     12,
     50
   ),
-  makeBeverageData('Miller Lite', 'Miller Brewing Company', 4.2, 'You best be playing Edward 40 hands!', 'Lager', 1.99, 12, 50),
+  makeBeverageData(
+    'Miller Lite',
+    'Miller Brewing Company',
+    4.2,
+    'You best be playing Edward 40 hands!',
+    'Lager',
+    1.99,
+    12,
+    50
+  ),
   makeBeverageData(
     '805',
     'Firestone Walker Brewing Company',
@@ -76,12 +85,11 @@ const beveragesData = [
 ];
 
 db.sync({ force: true })
-  .then(async () => {
+  .then(() => {
     const userProms = usersData.map(user => User.create(user));
     const bevProms = beveragesData.map(bev => Beverage.create(bev));
 
-    await Promise.all(userProms);
-    await Promise.all(bevProms);
+    return Promise.all([Promise.all(userProms), Promise.all(bevProms)]);
   })
   .then(() => console.log('Seed complete!'))
   .catch(console.error);
