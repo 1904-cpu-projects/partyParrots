@@ -2,14 +2,14 @@ const db = require('./connection');
 const User = require('./user');
 const Beverage = require('./beverage');
 const Session = require('./session');
-const Cart = require('./cart');
+const Order = require('./order');
 const CartItem = require('./cartItems');
 
-Cart.belongsTo(User);
-User.hasMany(Cart);
+Order.belongsTo(User);
+User.hasMany(Order);
 
-CartItem.belongsTo(Cart);
-Cart.hasMany(CartItem);
+CartItem.belongsTo(Order);
+Order.hasMany(CartItem);
 
 CartItem.belongsTo(Beverage);
 Beverage.hasMany(CartItem);

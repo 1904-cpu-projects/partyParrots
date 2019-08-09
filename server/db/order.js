@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 const db = require('./connection');
 
-const Cart = db.define('cart', {
+const Order = db.define('order', {
   id: {
     type: Sequelize.UUID,
     defaultValue: Sequelize.UUIDV4,
@@ -13,20 +13,20 @@ const Cart = db.define('cart', {
   userId: {
     type: Sequelize.UUID,
   },
-  active: {
+  purchased: {
     type: Sequelize.BOOLEAN,
-    defaultValue: true,
+    defaultValue: false,
   },
   purchaseDate: {
     type: Sequelize.DATE,
   },
 });
 
-Cart.beforeSave(instance => {
-  if (instance.changed('active') && instance.active === false) {
-    instance.purchaseDate = (new Date());
+Order.beforeSave(instance => {
+  if (instance.changed('purchased') && instance.purchased === true) {
+    instance.purchaseDate = new Date();
   }
   return instance;
-})
+});
 
-module.exports = Cart;
+module.exports = Order;
