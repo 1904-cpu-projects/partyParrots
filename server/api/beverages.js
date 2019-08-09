@@ -2,6 +2,29 @@ const express = require('express');
 const router = express.Router();
 const { Beverage } = require('../db/index');
 
+router.use((req, res, next) => {
+  const method = req.method;
+  if (method === 'POST' || method === 'PUT') {
+    const { body } = req;
+
+    req.payload = {
+      name: body.name,
+      manufacturer: body.manufacturer,
+      percentAlcohol: body.percentAlcohol,
+      description: body.description,
+      category: body.category,
+      price: body.price,
+      size: body.size,
+      quantity: body.quantity,
+    };
+
+    if (body.imageURL) {
+      req.payload.imageURL = body.imageURL;
+    }
+  }
+  next();
+});
+
 router.get('/', async (req, res, next) => {
   try {
     const beverages = await Beverage.findAll();
@@ -13,7 +36,7 @@ router.get('/', async (req, res, next) => {
 
 router.get('/:id', async (req, res, next) => {
   try {
-    const beverage = await Beverage.findByPK(req.params.id);
+    const beverage = await Beverage.findOne({ where: { id: req.params.id } });
     res.send(beverage);
   } catch (err) {
     next(err);
@@ -21,10 +44,9 @@ router.get('/:id', async (req, res, next) => {
 });
 
 router.post('/', async (req, res, next) => {
-  //allows only Admin to create new Beverages
   if (req.isAdmin) {
     try {
-      const newBeverage = await Beverage.create(req.body);
+      const newBeverage = await Beverage.create(req.payload);
       res.status(201).send(newBeverage);
     } catch (err) {
       next(err);
@@ -37,7 +59,7 @@ router.post('/', async (req, res, next) => {
 router.put('/:id', async (req, res, next) => {
   if (req.isAdmin) {
     try {
-      const [_, updateBeverage] = await Beverage.update(req.body, {
+      const [_, updateBeverage] = await Beverage.update(req.payload, {
         where: {
           id: req.params.id,
         },

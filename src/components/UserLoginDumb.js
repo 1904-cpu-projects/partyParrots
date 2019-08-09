@@ -51,8 +51,8 @@ class UserLogin extends Component {
         ...this.state.values,
       });
 
-      if (res.data.errors) {
-        this.handleErrors(res.data.errors);
+      if (res.data.error) {
+        this.handleErrors(res.data.error);
       } else {
         this.props._loginUser(res.data)
         window.history.back()
