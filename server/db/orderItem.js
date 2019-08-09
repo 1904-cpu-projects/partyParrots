@@ -7,7 +7,7 @@ const OrderItem = db.define('order_item', {
     defaultValue: Sequelize.UUIDV4,
     primaryKey: true,
   },
-  cartId: {
+  orderId: {
     type: Sequelize.UUID,
     allowNull: false,
   },

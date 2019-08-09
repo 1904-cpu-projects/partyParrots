@@ -16,7 +16,16 @@ const isAdminMiddleware = (req, res, next) => {
   }
 };
 
+const isLoggedInMiddleware = (req, res, next) => {
+  if (req.user && req.user.id) {
+    next();
+  } else {
+    res.sendStatus(401);
+  }
+};
+
 module.exports = {
   isAdminMiddleware,
+  isLoggedInMiddleware,
   AuthError,
 };
