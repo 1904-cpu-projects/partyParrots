@@ -13,7 +13,11 @@ router.get('/', async (req, res, next) => {
 
 router.get('/:id', async (req, res, next) => {
   try {
-    const beverage = await Beverage.findByPK(req.params.id);
+    const beverage = await Beverage.findOne({
+      where: {
+        id: req.params.id
+      }
+    });
     res.send(beverage);
   } catch (err) {
     next(err);
