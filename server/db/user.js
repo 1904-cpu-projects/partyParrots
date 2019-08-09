@@ -2,7 +2,7 @@ const Sequelize = require('sequelize');
 const bcrypt = require('bcryptjs');
 
 const db = require('./connection');
-const { authError } = require('../../utils/backend');
+const { AuthError } = require('../../utils/backend');
 
 const User = db.define('user', {
   id: {
@@ -105,7 +105,7 @@ User.signup = async function({
     if (created) {
       return user;
     }
-    throw authError('A user is already registered to this email.', 'email');
+    throw new AuthError('A user is already registered to this email.', 'email');
   } catch (error) {
     throw error;
   }
@@ -119,7 +119,7 @@ User.comparePasswords = (inputStr, password) => {
       } else if (success) {
         resolve(true);
       } else {
-        const error = authError('Invalid password.', 'password');
+        const error = new AuthError('Invalid password.', 'password');
         reject(error);
       }
     });
@@ -130,7 +130,7 @@ User.login = async function(email, password) {
   try {
     const user = await this.findOne({ where: { email } });
     if (!user) {
-      throw authError('No user registered with that email. ', email);
+      throw new AuthError('No user registered with that email.', 'email');
     }
     await this.comparePasswords(password, user.password);
     return user;
