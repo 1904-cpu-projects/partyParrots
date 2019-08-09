@@ -21,6 +21,7 @@ router.put('/login', async (req, res, next) => {
   }
 });
 
+
 router.use((error, req, res, next) => {
   if (error.type === 'Auth') {
     res
