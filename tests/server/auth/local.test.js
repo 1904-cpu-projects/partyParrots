@@ -11,8 +11,6 @@ afterAll(async () => {
   return db.close();
 });
 
-// fixed
-
 describe('local authentication endpoints', () => {
   describe('/signup', () => {
     test('it should send back a new user', done => {
