@@ -66,20 +66,3 @@ describe('test beverages get routes', function() {
       })
   })
 });
-
-// describe('test beverages admin routes', function() {
-//   test('it should send back hi', done => {
-//     request(app)
-//       .get('/hello')
-//       .expect(200)
-//       .end((err, { text }) => {
-//         if (err) {
-//           done(err);
-//         } else {
-//           expect(text).toBeTruthy();
-//           expect(text).toBe('hi!');
-//           done();
-//         }
-//       });
-//   });
-// });
