@@ -1,4 +1,3 @@
-// Designed for use in user model
 class AuthError extends Error {
   constructor(message, subtype) {
     super(message);

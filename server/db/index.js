@@ -19,4 +19,6 @@ module.exports = {
   Beverage,
   User,
   Session,
+  Order,
+  OrderItem,
 };

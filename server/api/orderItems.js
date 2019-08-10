@@ -1,12 +1,6 @@
 const router = require('express').Router();
 const { Order, OrderItem, Beverage } = require('../db/index');
 
-// make updates to other models... Bev (quantity) update quant method?
-
-// should post, put send back an orderItem and an updated bev ?
-// should del send back updated bev?
-// should api check availability of product before posting and putting?
-
 const itemExistsMiddleware = (req, res, next) => {
   if (!req.item) {
     res.sendStatus(400);
@@ -18,7 +12,7 @@ const itemExistsMiddleware = (req, res, next) => {
 router.use(async (req, res, next) => {
   if (
     req.method === 'POST' ||
-    (req.method === 'GET' && req.route.path === '/api/orderItems/')
+    (req.method === 'GET' && req.originalUrl === '/api/orderItems/')
   ) {
     const userId = req.user.id;
     const [order] = await Order.findOrCreate({
