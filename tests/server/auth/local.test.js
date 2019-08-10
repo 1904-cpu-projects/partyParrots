@@ -54,8 +54,8 @@ describe('local authentication endpoints', () => {
             done(err);
           } else {
             expect(body).toBeTruthy();
-            expect(body.errors.email).toBeTruthy();
-            expect(body.errors.email).toBe(
+            expect(body.error.email).toBeTruthy();
+            expect(body.error.email).toBe(
               'A user is already registered to this email.'
             );
             done();
@@ -80,9 +80,9 @@ describe('local authentication endpoints', () => {
             done(err);
           } else {
             expect(body).toBeTruthy();
-            expect(body.errors).toBeTruthy();
-            expect(body.errors.email).toBeTruthy();
-            expect(body.errors.email).toBe(
+            expect(body.error).toBeTruthy();
+            expect(body.error.email).toBeTruthy();
+            expect(body.error.email).toBe(
               'No user registered with that email.'
             );
             done();
@@ -105,9 +105,9 @@ describe('local authentication endpoints', () => {
             done(err);
           } else {
             expect(body).toBeTruthy();
-            expect(body.errors).toBeTruthy();
-            expect(body.errors.password).toBeTruthy();
-            expect(body.errors.password).toBe('Invalid password.');
+            expect(body.error).toBeTruthy();
+            expect(body.error.password).toBeTruthy();
+            expect(body.error.password).toBe('Invalid password.');
             done();
           }
         });

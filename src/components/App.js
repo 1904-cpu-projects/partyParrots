@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import LoginForm from './UserLoginDumb';
 import Nav from './Nav';
+import Products from './Products';
+import CreateUser from './CreateUser';
 import { HashRouter, Route } from 'react-router-dom';
 
 class App extends Component{
@@ -11,6 +13,8 @@ class App extends Component{
             <HashRouter>
                 < Route path = "/" component = { Nav } />
                 < Route exact path = "/login" component = { LoginForm } />
+                < Route exact path = "/signup" component = { CreateUser } />
+                < Route exact path = "/products" component = { Products } />
             </HashRouter>
         )
     }

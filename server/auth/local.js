@@ -21,11 +21,12 @@ router.put('/login', async (req, res, next) => {
   }
 });
 
+
 router.use((error, req, res, next) => {
   if (error.type === 'Auth') {
     res
       .status(error.status)
-      .json({ errors: { [error.subtype]: error.message } });
+      .json({ error: { [error.subtype]: error.message } });
   } else {
     next(error);
   }
