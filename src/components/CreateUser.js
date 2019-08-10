@@ -40,7 +40,7 @@ class CreateUser extends Component{
         return (    
             <section className = "section">
             <div className = "columns is-centered" >
-            <div className = "column is-half" >
+            <div className = "column is-one-third" >
 
 
             <form onSubmit = {this.handleSubmit}>
@@ -91,7 +91,7 @@ class CreateUser extends Component{
 
                 <div className = "field">
                     <div className = "has-text-centered">
-                    <button className = "button is-rounded is-small is-centered is-primary" type = 'submit'>Submit</button> 
+                    <button className = "button is-rounded is-centered is-primary" type = 'submit'>Submit</button> 
                     </div>
                 </div>
                 
