@@ -1,5 +1,6 @@
 const Sequelize = require('sequelize');
 const db = require('./connection');
+const { BeverageCategories } = require('../../utils/index');
 
 const Beverage = db.define('beverage', {
   id: {
@@ -34,7 +35,7 @@ const Beverage = db.define('beverage', {
   },
   category: {
     type: Sequelize.ENUM,
-    values: ['Amber', 'Blonde', 'Brown', 'Cream', 'Dark', 'Pale', 'Strong', 'Wheat', 'Red', 'IPA', 'Pilsner', 'Golden', 'Fruit', 'Honey', 'Sour', 'Lager'],
+    values: BeverageCategories,
     allowNull: false,
     validate: {
       notEmpty: true,

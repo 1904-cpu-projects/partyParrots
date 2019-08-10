@@ -20,6 +20,7 @@ class App extends Component{
     }
 }
 
-export default connect ( null, null )( App );
-
-
+export default connect(
+  null,
+  null
+)(App);

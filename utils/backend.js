@@ -8,6 +8,15 @@ class AuthError extends Error {
   }
 }
 
+const isAdminMiddleware = (req, res, next) => {
+  if (!req.isAdmin) {
+    res.sendStatus(401);
+  } else {
+    next();
+  }
+};
+
 module.exports = {
+  isAdminMiddleware,
   AuthError,
 };
