@@ -1,7 +1,11 @@
 const router = require('express').Router();
 const { Order, OrderItem, Beverage } = require('../db/index');
 
-// make updates to other models... Bev (quantity)
+// make updates to other models... Bev (quantity) update quant method?
+
+// should post, put send back an orderItem and an updated bev ?
+// should del send back updated bev?
+// should api check availability of product before posting and putting?
 
 const itemExistsMiddleware = (req, res, next) => {
   if (!req.item) {
@@ -48,16 +52,30 @@ router.get('/:id', async (req, res, next) => {
 router.post('/', async (req, res, next) => {
   try {
     const { beverageId, purchasePrice, quantity } = req.body;
-    const [item, created] = await OrderItem.findOrCreate({
-      where: { orderId: req.orderId, beverageId },
-      defaults: { purchasePrice, quantity },
+    const { orderId } = req;
+
+    const existingItem = await Beverage.findOne({
+      where: { orderId, beverageId },
     });
 
-    if (created) {
-      res.json(item);
-    } else {
+    if (existingItem) {
       res.sendStatus(400);
     }
+
+    const beverage = await Beverage.updateQuantity(
+      beverageId,
+      'subtract',
+      quantity
+    );
+
+    const item = await OrderItem.create({
+      purchasePrice,
+      quantity,
+      orderId,
+      beverageId,
+    });
+
+    res.json({ item, beverage });
   } catch (error) {
     next(error);
   }
@@ -75,8 +93,21 @@ router.param('id', async (req, res, next, id) => {
 
 router.put('/:id', itemExistsMiddleware, async (req, res, next) => {
   try {
-    const updatedItem = await req.item.update({ quantity: req.body.quantity });
-    res.json(updatedItem);
+    const difference = req.body.quantity - req.item.quantity;
+
+    if (difference === 0) {
+      res.sendStatus(400);
+    }
+
+    const beverage = await Beverage.updateQuantity(
+      req.item.beverageId,
+      difference > 0 ? 'subtract' : 'add',
+      Math.abs(difference)
+    );
+
+    const item = await req.item.update({ quantity: req.body.quantity });
+
+    res.json({ item, beverage });
   } catch (error) {
     next(error);
   }
@@ -84,11 +115,25 @@ router.put('/:id', itemExistsMiddleware, async (req, res, next) => {
 
 router.delete('/:id', itemExistsMiddleware, async (req, res, next) => {
   try {
+    const beverage = await Beverage.updateQuantity(
+      req.item.beverageId,
+      'add',
+      req.item.quantity
+    );
+
     await req.item.destroy();
-    res.sendStatus(204);
+
+    res.status(204).json({ beverage });
   } catch (error) {
     next(error);
   }
+});
+
+router.use((err, req, res, next) => {
+  if (err.type === 'Quantity') {
+    return res.status(err.status).json({ [err.beverageId]: err.quantity });
+  }
+  next();
 });
 
 module.exports = router;

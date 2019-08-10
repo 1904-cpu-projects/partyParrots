@@ -8,6 +8,16 @@ class AuthError extends Error {
   }
 }
 
+class QuantityError extends Error {
+  constructor(bevId, quant) {
+    super();
+    this.type = 'Quantity';
+    this.status = 400;
+    this.beverageId = bevId;
+    this.quantity = quant;
+  }
+}
+
 const isAdminMiddleware = (req, res, next) => {
   if (!req.isAdmin) {
     res.sendStatus(401);
@@ -28,4 +38,5 @@ module.exports = {
   isAdminMiddleware,
   isLoggedInMiddleware,
   AuthError,
+  QuantityError,
 };
