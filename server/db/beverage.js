@@ -1,5 +1,7 @@
 const Sequelize = require('sequelize');
 const db = require('./connection');
+const { BeverageCategories } = require('../../utils/index');
+const { QuantityError } = require('../../utils/backend');
 
 const Beverage = db.define('beverage', {
   id: {
@@ -34,7 +36,7 @@ const Beverage = db.define('beverage', {
   },
   category: {
     type: Sequelize.ENUM,
-    values: ['Amber', 'Blonde', 'Brown', 'Cream', 'Dark', 'Pale', 'Strong', 'Wheat', 'Red', 'IPA', 'Pilsner', 'Golden', 'Fruit', 'Honey', 'Sour', 'Lager'],
+    values: BeverageCategories,
     allowNull: false,
     validate: {
       notEmpty: true,
@@ -61,5 +63,30 @@ const Beverage = db.define('beverage', {
     },
   },
 });
+
+Beverage.updateQuantity = async function(id, operation, quantity) {
+  try {
+    const beverage = await this.findOne({ where: { id } });
+
+    if (!beverage) {
+      throw Error('No beverage with id ' + id);
+    }
+
+    let newQuantity;
+
+    if (operation === 'add') {
+      newQuantity = beverage.quantity + quantity;
+    } else if (operation === 'subtract') {
+      if (quantity > beverage.quantity) {
+        throw new QuantityError(id, beverage.quantity);
+      }
+      newQuantity = beverage.quantity - quantity;
+    }
+
+    return beverage.update({ quantity: newQuantity });
+  } catch (error) {
+    throw error;
+  }
+};
 
 module.exports = Beverage;

@@ -1,3 +1,22 @@
+const BeverageCategories = [
+  'Amber',
+  'Blonde',
+  'Brown',
+  'Cream',
+  'Dark',
+  'Pale',
+  'Strong',
+  'Wheat',
+  'Red',
+  'IPA',
+  'Pilsner',
+  'Golden',
+  'Fruit',
+  'Honey',
+  'Sour',
+  'Lager',
+];
+
 class Cache {
   constructor() {
     this.data = {};
@@ -43,4 +62,4 @@ class Cache {
   }
 }
 
-module.exports = { Cache };
+module.exports = { BeverageCategories, Cache };
