@@ -48,7 +48,7 @@ router.post('/', async (req, res, next) => {
     const { beverageId, purchasePrice, quantity } = req.body;
     const { orderId } = req;
 
-    const existingItem = await Beverage.findOne({
+    const existingItem = await OrderItem.findOne({
       where: { orderId, beverageId },
     });
 
@@ -125,9 +125,10 @@ router.delete('/:id', itemExistsMiddleware, async (req, res, next) => {
 
 router.use((err, req, res, next) => {
   if (err.type === 'Quantity') {
-    return res.status(err.status).json({ [err.beverageId]: err.quantity });
+    res.status(err.status).json({ [err.beverageId]: err.quantity });
+  } else {
+    next();
   }
-  next();
 });
 
 module.exports = router;

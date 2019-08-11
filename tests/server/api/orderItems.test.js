@@ -25,7 +25,9 @@ beforeAll(async () => {
 });
 
 afterAll(async () => {
-  await Order.destroy({ where: { userId: user.id } });
+  const order = await Order.findOne({ where: { userId: user.id } });
+  await OrderItem.destroy({ where: { orderId: order.id } });
+  await order.destroy();
   await user.destroy();
   return db.close();
 });
@@ -121,6 +123,103 @@ describe('/api/orderItems/', () => {
         expect(res.body.item.id).toBe(item.id);
 
         await Promise.all([item.destroy(), order.destroy()]);
+      } catch (error) {
+        throw error;
+      }
+    });
+  });
+
+  describe('POST /', () => {
+    test('it sends an error when requesting to purchase more than available', async () => {
+      try {
+        const [beverage] = await Beverage.findAll({ limit: 1 });
+        const res = await server
+          .post('/api/orderItems/')
+          .send({
+            beverageId: beverage.id,
+            purchasePrice: beverage.price,
+            quantity: beverage.quantity + 20,
+          })
+          .set('cookie', cookie)
+          .set('Accept', 'application/json');
+
+        expect(res.status).toBe(400);
+        expect(res.body[beverage.id]).toBe(beverage.quantity);
+      } catch (error) {
+        throw error;
+      }
+    });
+
+    test('it updates a products quantity and creates an orderItem', async () => {
+      try {
+        let [beverage] = await Beverage.findAll({ limit: 1 });
+        const quantity = beverage.quantity;
+
+        const res = await server
+          .post('/api/orderItems/')
+          .send({
+            beverageId: beverage.id,
+            purchasePrice: beverage.price,
+            quantity: beverage.quantity - 20,
+          })
+          .set('cookie', cookie)
+          .set('Accept', 'application/json');
+
+        expect(res.status).toBe(200);
+        expect(res.body.item).toBeTruthy();
+        expect(res.body.item.quantity).toBe(quantity - 20);
+        expect(res.body.beverage.quantity).toBe(20);
+      } catch (error) {
+        throw error;
+      }
+    });
+  });
+
+  describe('PUT /:id', () => {
+    test('it sends an error when requesting to purchase more than available', async () => {
+      try {
+        const res1 = await server.get('/api/orderItems/').set('cookie', cookie);
+        expect(res1.body.items.length).toBe(1);
+
+        const item = res1.body.items[0];
+        const beverage = await Beverage.findOne({
+          where: { id: item.beverageId },
+        });
+
+        const res2 = await server
+          .put(`/api/orderItems/${item.id}`)
+          .send({ quantity: item.quantity + beverage.quantity + 100 })
+          .set('Cookie', cookie)
+          .set('Accept', 'application/json');
+
+        expect(res2.status).toBe(400);
+        expect(res2.body[beverage.id]).toBe(beverage.quantity);
+      } catch (error) {
+        throw error;
+      }
+    });
+
+    test('it updates a products quantity and updates an orderItem', async () => {
+      try {
+        const res1 = await server.get('/api/orderItems/').set('cookie', cookie);
+        expect(res1.body.items.length).toBe(1);
+
+        const item = res1.body.items[0];
+        const beverage = await Beverage.findOne({
+          where: { id: item.beverageId },
+        });
+
+        const res2 = await server
+          .put(`/api/orderItems/${item.id}`)
+          .send({ quantity: item.quantity + beverage.quantity - 5 })
+          .set('Cookie', cookie)
+          .set('Accept', 'application/json');
+
+        expect(res2.status).toBe(200);
+        expect(res2.body.item).toBeTruthy();
+        expect(res2.body.beverage).toBeTruthy();
+        expect(res2.body.item.quantity).toBe(item.quantity + beverage.quantity - 5);
+        expect(res2.body.beverage.quantity).toBe(5);
       } catch (error) {
         throw error;
       }
