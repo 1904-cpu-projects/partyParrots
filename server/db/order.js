@@ -7,9 +7,6 @@ const Order = db.define('order', {
     defaultValue: Sequelize.UUIDV4,
     primaryKey: true,
   },
-  // userId: {
-  //   type: Sequelize.UUID,
-  // },
   purchased: {
     type: Sequelize.BOOLEAN,
     defaultValue: false,
