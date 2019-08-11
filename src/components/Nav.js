@@ -5,24 +5,24 @@ import { Link } from 'react-router-dom';
 function Nav() {
   return (
     <div>
-      <nav class="navbar" role="navigation" aria-label="main navigation">
-        <div class="navbar-brand">
-          < Link to = "/home" class="navbar-item has-text-grey-darker">Bougie Brews</Link>
-          <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+      <nav className="navbar" role="navigation" aria-label="main navigation">
+        <div className="navbar-brand">
+          < Link to = "/home" className="navbar-item has-text-grey-darker">Bougie Brews</Link>
+          <a role="button" className="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
           </a>
         </div>      
-        <div id="Navbar" class="navbar-menu">
-          <div class="navbar-start"> 
-            < Link to = "/products" class="navbar-item has-text-grey">Products</Link>
-            < Link to = "/signup" class="navbar-item has-text-grey">Sign Up</ Link >
-            < Link to = "/login" class="navbar-item has-text-grey">Log In</ Link >
+        <div id="Navbar" className="navbar-menu">
+          <div className="navbar-start"> 
+            < Link to = "/products" className="navbar-item has-text-grey">Products</Link>
+            < Link to = "/signup" className="navbar-item has-text-grey">Sign Up</ Link >
+            < Link to = "/login" className="navbar-item has-text-grey">Log In</ Link >
           </div>
-          <div class="navbar-end">
-            <div class="navbar-item">
-              < Link to = "/cart" class="button is-light"><i className='fa fa-shopping-cart has-text-grey-dark'></i></Link>
+          <div className="navbar-end">
+            <div className="navbar-item">
+              < Link to = "/cart" className="button is-light"><i className='fa fa-shopping-cart has-text-grey-dark'></i></Link>
             </div>
           </div>
         </div>
