@@ -114,6 +114,8 @@ describe('/api/orderItems/', () => {
           quantity: 1,
         });
 
+        console.log('past creating!!!');
+
         const res = await server
           .get('/api/orderItems/' + item.id)
           .set('cookie', cookie);
@@ -122,7 +124,11 @@ describe('/api/orderItems/', () => {
         expect(typeof res.body.item).toBe('object');
         expect(res.body.item.id).toBe(item.id);
 
+        console.log('about to delete!!!');
+
         await Promise.all([item.destroy(), order.destroy()]);
+
+        console.log('delete!!!');
       } catch (error) {
         throw error;
       }
