@@ -7,14 +7,14 @@ const OrderItem = db.define('order_item', {
     defaultValue: Sequelize.UUIDV4,
     primaryKey: true,
   },
-  orderId: {
-    type: Sequelize.UUID,
-    allowNull: false,
-  },
-  beverageId: {
-    type: Sequelize.UUID,
-    allowNull: false,
-  },
+  // orderId: {
+  //   type: Sequelize.UUID,
+  //   allowNull: false,
+  // },
+  // beverageId: {
+  //   type: Sequelize.UUID,
+  //   allowNull: false,
+  // },
   purchasePrice: {
     type: Sequelize.FLOAT,
     allowNull: false,
