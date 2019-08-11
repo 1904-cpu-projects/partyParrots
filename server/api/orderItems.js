@@ -28,7 +28,7 @@ router.get('/', async (req, res, next) => {
     const items = await OrderItem.findAll({
       where: { orderId: req.orderId },
     });
-    res.json(items);
+    res.json({ items });
   } catch (error) {
     next(error);
   }
@@ -37,7 +37,7 @@ router.get('/', async (req, res, next) => {
 router.get('/:id', async (req, res, next) => {
   try {
     const item = await OrderItem.findOne({ where: { id: req.params.id } });
-    res.json(item);
+    res.json({ item });
   } catch (error) {
     next(error);
   }
