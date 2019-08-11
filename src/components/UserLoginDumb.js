@@ -71,7 +71,7 @@ class UserLogin extends Component {
     return (
       <section className="section">
         <div className="columns is-centered">
-          <div className="column is-half">
+          <div className="column is-one-third">
             <div className="field is-centered">
               <div className="has-text-centered">
                 <label className="is-size-3">Log In</label>

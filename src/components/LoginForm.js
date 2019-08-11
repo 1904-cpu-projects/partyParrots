@@ -46,18 +46,17 @@ const Form = ({ values, errors, handleChange, handleSubmit, clear }) => {
           <p className='help is-danger'>{errors.auth}</p>
         </div>
       )}
-      <div className='field is-grouped'>
-        <div className='control'>
-          <button type='submit' className='button is-success is-rounded'>
+      <div className='field is-centered'>
+        <div className='has-text-centered'>
+          <button type='submit' className='button is-primary is-rounded'>
             Login
           </button>
-        </div>
-        <div className='control'>
           <button type='button' className='button is-rounded' onClick={clear}>
             Clear
-          </button>
+          </button> 
         </div>
-      </div>
+       </div> 
+
     </form>
   );
 };
