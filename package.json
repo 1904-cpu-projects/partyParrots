@@ -7,7 +7,7 @@
     "test": "tests"
   },
   "scripts": {
-    "test": "jest --config=jest.config.js -i",
+    "test": "jest --config=jest.config.js -i --forceExit",
     "test:dev": "jest --config=jest.config.js -i --watchAll",
     "start": "npm run server",
     "start:dev": "npm run build:dev & npm run server:dev",
