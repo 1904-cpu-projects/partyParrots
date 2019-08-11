@@ -117,7 +117,7 @@ router.delete('/:id', itemExistsMiddleware, async (req, res, next) => {
 
     await req.item.destroy();
 
-    res.status(204).json({ beverage });
+    res.json({ beverage });
   } catch (error) {
     next(error);
   }
@@ -127,7 +127,7 @@ router.use((err, req, res, next) => {
   if (err.type === 'Quantity') {
     res.status(err.status).json({ [err.beverageId]: err.quantity });
   } else {
-    next();
+    next(err);
   }
 });
 

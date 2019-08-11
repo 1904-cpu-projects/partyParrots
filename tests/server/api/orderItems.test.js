@@ -218,8 +218,37 @@ describe('/api/orderItems/', () => {
         expect(res2.status).toBe(200);
         expect(res2.body.item).toBeTruthy();
         expect(res2.body.beverage).toBeTruthy();
-        expect(res2.body.item.quantity).toBe(item.quantity + beverage.quantity - 5);
+        expect(res2.body.item.quantity).toBe(
+          item.quantity + beverage.quantity - 5
+        );
         expect(res2.body.beverage.quantity).toBe(5);
+      } catch (error) {
+        throw error;
+      }
+    });
+  });
+
+  describe('DELETE /:id', () => {
+    test('it deletes an orderItem and updates beverage quantity', async () => {
+      try {
+        const res1 = await server.get('/api/orderItems/').set('cookie', cookie);
+        expect(res1.body.items.length).toBe(1);
+
+        const item = res1.body.items[0];
+        const beverage = await Beverage.findOne({
+          where: { id: item.beverageId },
+        });
+
+        const res2 = await server
+          .delete(`/api/orderItems/${item.id}`)
+          .set('cookie', cookie)
+          .set('Accept', 'application/json');
+
+        expect(res2.status).toBe(200);
+        expect(res2.body.beverage).toBeTruthy();
+        expect(res2.body.beverage.quantity).toBe(
+          beverage.quantity + item.quantity
+        );
       } catch (error) {
         throw error;
       }
