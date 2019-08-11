@@ -5,18 +5,20 @@ const Session = require('./session');
 const Order = require('./order');
 const OrderItem = require('./orderItem');
 
-Order.belongsTo(User);
 User.hasMany(Order);
+Order.belongsTo(User);
 
-OrderItem.belongsTo(Order);
 Order.hasMany(OrderItem);
+OrderItem.belongsTo(Order);
 
-OrderItem.belongsTo(Beverage);
 Beverage.hasMany(OrderItem);
+OrderItem.belongsTo(Beverage);
 
 module.exports = {
   db,
   Beverage,
   User,
   Session,
+  Order,
+  OrderItem,
 };
