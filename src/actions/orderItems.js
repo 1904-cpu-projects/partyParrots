@@ -49,7 +49,7 @@ export const makeItem = body => async (dispatch, _, axios) => {
   try {
     const { data, status } = await axios.post('/api/orderItems', body, {
       validateStatus(_status) {
-        return (_status >= 200 && _status < 300) || _status === 400;
+        return _status === 200 || _status === 400;
       },
     });
 
