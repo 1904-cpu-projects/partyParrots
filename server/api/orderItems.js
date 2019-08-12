@@ -27,8 +27,9 @@ router.get('/', async (req, res, next) => {
   try {
     const items = await OrderItem.findAll({
       where: { orderId: req.orderId },
+      include: [{ model: Beverage }],
     });
-    res.json({ items });
+    res.json(items);
   } catch (error) {
     next(error);
   }
@@ -36,8 +37,11 @@ router.get('/', async (req, res, next) => {
 
 router.get('/:id', async (req, res, next) => {
   try {
-    const item = await OrderItem.findOne({ where: { id: req.params.id } });
-    res.json({ item });
+    const item = await OrderItem.findOne({
+      where: { id: req.params.id },
+      include: [{ model: Beverage }],
+    });
+    res.json(item);
   } catch (error) {
     next(error);
   }
@@ -56,11 +60,7 @@ router.post('/', async (req, res, next) => {
       res.sendStatus(400);
     }
 
-    const beverage = await Beverage.updateQuantity(
-      beverageId,
-      'subtract',
-      quantity
-    );
+    await Beverage.updateQuantity(beverageId, 'subtract', quantity);
 
     const item = await OrderItem.create({
       purchasePrice,
@@ -69,7 +69,9 @@ router.post('/', async (req, res, next) => {
       beverageId,
     });
 
-    res.json({ item, beverage });
+    await item.reload({ include: [{ model: Beverage }] });
+
+    res.json(item);
   } catch (error) {
     next(error);
   }
@@ -93,7 +95,7 @@ router.put('/:id', itemExistsMiddleware, async (req, res, next) => {
       res.sendStatus(400);
     }
 
-    const beverage = await Beverage.updateQuantity(
+    await Beverage.updateQuantity(
       req.item.beverageId,
       difference > 0 ? 'subtract' : 'add',
       Math.abs(difference)
@@ -101,7 +103,11 @@ router.put('/:id', itemExistsMiddleware, async (req, res, next) => {
 
     const item = await req.item.update({ quantity: req.body.quantity });
 
-    res.json({ item, beverage });
+    await item.reload({
+      include: [{ model: Beverage }],
+    });
+
+    res.json(item);
   } catch (error) {
     next(error);
   }
@@ -109,7 +115,7 @@ router.put('/:id', itemExistsMiddleware, async (req, res, next) => {
 
 router.delete('/:id', itemExistsMiddleware, async (req, res, next) => {
   try {
-    const beverage = await Beverage.updateQuantity(
+    await Beverage.updateQuantity(
       req.item.beverageId,
       'add',
       req.item.quantity
@@ -117,7 +123,7 @@ router.delete('/:id', itemExistsMiddleware, async (req, res, next) => {
 
     await req.item.destroy();
 
-    res.json({ beverage });
+    res.sendStatus(204);
   } catch (error) {
     next(error);
   }
