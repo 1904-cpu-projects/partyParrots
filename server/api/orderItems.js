@@ -89,6 +89,18 @@ router.param('id', async (req, res, next, id) => {
 
 router.put('/:id', itemExistsMiddleware, async (req, res, next) => {
   try {
+    if (req.body.quantity === 0) {
+      await Beverage.updateQuantity(
+        req.item.beverageId,
+        'add',
+        req.item.quantity
+      );
+
+      await req.item.destroy();
+
+      res.sendStatus(204);
+    }
+
     const difference = req.body.quantity - req.item.quantity;
 
     if (difference === 0) {

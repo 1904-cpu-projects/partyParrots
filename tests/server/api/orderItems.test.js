@@ -221,10 +221,27 @@ describe('/api/orderItems/', () => {
         expect(res2.status).toBe(200);
         expect(res2.body).toBeTruthy();
         expect(res2.body.beverage).toBeTruthy();
-        expect(res2.body.quantity).toBe(
-          item.quantity + beverage.quantity - 5
-        );
+        expect(res2.body.quantity).toBe(item.quantity + beverage.quantity - 5);
         expect(res2.body.beverage.quantity).toBe(5);
+      } catch (error) {
+        throw error;
+      }
+    });
+
+    test('it deletes an order item when quantity is 0', async () => {
+      try {
+        const res1 = await server.get('/api/orderItems/').set('cookie', cookie);
+        expect(res1.body.length).toBe(1);
+
+        const item = res1.body[0];
+
+        const res2 = await server
+          .put(`/api/orderItems/${item.id}`)
+          .send({ quantity: 0 })
+          .set('Cookie', cookie)
+          .set('Accept', 'application/json');
+
+        expect(res2.status).toBe(204);
       } catch (error) {
         throw error;
       }
@@ -234,13 +251,19 @@ describe('/api/orderItems/', () => {
   describe('DELETE /:id', () => {
     test('it deletes an orderItem and updates beverage quantity', async () => {
       try {
-        const res1 = await server.get('/api/orderItems/').set('cookie', cookie);
-        expect(res1.body.length).toBe(1);
-
-        const item = res1.body[0];
+        const [beverage] = await Beverage.findAll({ limit: 1 });
+        const res1 = await server
+          .post('/api/orderItems/')
+          .send({
+            beverageId: beverage.id,
+            purchasePrice: beverage.price,
+            quantity: beverage.quantity - 20,
+          })
+          .set('cookie', cookie)
+          .set('Accept', 'application/json');
 
         const res2 = await server
-          .delete(`/api/orderItems/${item.id}`)
+          .delete(`/api/orderItems/${res1.body.id}`)
           .set('cookie', cookie)
           .set('Accept', 'application/json');
 
