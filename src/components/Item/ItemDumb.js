@@ -16,17 +16,26 @@ const makeOptions = quantity => {
   return options;
 };
 
-const Item = ({ item }) => {
+const Item = ({ item, updateItem, deleteItem }) => {
   return (
     <li className="list-item">
       <div className="container">
         <span>
-          {item.beverage.name} by {item.beverage.manufacturer} : {item.beverage.price}
+          {item.beverage.name} by {item.beverage.manufacturer} :{' '}
+          {item.beverage.price}
         </span>{' '}
-        <button className="button is-danger" type="button">
+        <button
+          className="button is-danger"
+          type="button"
+          onClick={() => deleteItem(item.id)}
+        >
           Delete
-        </button> {' '}
-        <select value={item.quantity} name="quantity">
+        </button>{' '}
+        <select
+          value={item.quantity}
+          onChange={e => updateItem(item.id, parseInt(e.target.value, 10))}
+          name="quantity"
+        >
           <Option number={1} />
           {makeOptions(item.beverage.quantity)}
         </select>

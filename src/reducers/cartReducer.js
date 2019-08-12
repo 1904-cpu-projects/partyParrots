@@ -1,5 +1,11 @@
 import { createSelector } from 'reselect';
-import { GET_ITEMS, START_ITEM_REQ } from '../actions/orderItems';
+import {
+  GET_ITEMS,
+  UPDATED_ITEM,
+  START_ITEM_REQ,
+  DELETED_ITEM,
+  MADE_ITEM,
+} from '../actions/orderItems';
 
 const initialState = {
   items: [],
@@ -8,12 +14,26 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case GET_ITEMS: {
-      const items = action.items;
-      return { ...initialState, items, makingRequest: false };
-    }
     case START_ITEM_REQ: {
       return { ...state, makingRequest: true };
+    }
+    case GET_ITEMS: {
+      const items = action.items;
+      return { ...state, items, makingRequest: false };
+    }
+    case MADE_ITEM: {
+      const items = [...state.items, action.item];
+      return { ...state, items, makingRequest: false };
+    }
+    case UPDATED_ITEM: {
+      const items = state.items.map(item =>
+        item.id === action.item.id ? action.item : item
+      );
+      return { ...state, items, makingRequest: false };
+    }
+    case DELETED_ITEM: {
+      const items = state.items.filter(item => item.id !== action.id);
+      return { ...state, items, makingRequest: false };
     }
     default:
       return state;

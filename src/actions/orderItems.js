@@ -1,5 +1,3 @@
-import { stringLiteralTypeAnnotation } from "@babel/types";
-
 export const GET_ITEMS = 'GET_ITEMS';
 export const GET_ITEM = 'GET_ITEM';
 export const MADE_ITEM = 'MADE_ITEM';
@@ -25,7 +23,7 @@ const gotItems = items => ({
 
 export const getItems = () => async (dispatch, _, axios) => {
   try {
-    dispatch(startRequest())
+    dispatch(startRequest());
     const { data } = await axios.get('/api/orderItems/');
     dispatch(gotItems(data));
   } catch (error) {
@@ -40,6 +38,7 @@ const gotItem = item => ({
 
 export const getItem = id => async (dispatch, _, axios) => {
   try {
+    dispatch(startRequest());
     const { data } = await axios.get(`/api/orderItems/${id}`);
     dispatch(gotItem(data));
   } catch (error) {
@@ -54,6 +53,8 @@ const madeItem = item => ({
 
 export const makeItem = body => async (dispatch, _, axios) => {
   try {
+    dispatch(startRequest());
+
     const { data, status } = await axios.post('/api/orderItems', body, {
       validateStatus(_status) {
         return _status === 200 || _status === 400;
@@ -82,6 +83,8 @@ const deletedItem = id => ({
 
 export const updateItem = (id, quantity) => async (dispatch, _, axios) => {
   try {
+    dispatch(startRequest());
+
     const { data, status } = await axios.put(
       `/api/orderItems/${id}`,
       { quantity },
@@ -106,6 +109,8 @@ export const updateItem = (id, quantity) => async (dispatch, _, axios) => {
 
 export const deleteItem = id => async (dispatch, _, axios) => {
   try {
+    dispatch(startRequest());
+
     const { status } = await axios.delete(`/api/orderItems/${id}`);
 
     if (status === 204) {

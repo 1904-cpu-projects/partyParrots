@@ -1,6 +1,6 @@
 import React, { Fragment, Component } from 'react';
 import { withRouter } from 'react-router-dom';
-import Item from '../Item/ItemDumb';
+import Item from '../Item/Item';
 
 class ItemList extends Component {
   componentDidMount() {
