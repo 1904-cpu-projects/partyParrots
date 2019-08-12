@@ -1,5 +1,6 @@
 import React, { Fragment, Component } from 'react';
 import { withRouter } from 'react-router-dom';
+import Item from '../Item/ItemDumb';
 
 class ItemList extends Component {
   componentDidMount() {
@@ -30,7 +31,7 @@ class ItemList extends Component {
               {renderEmpty ? (
                 <li className="list-item has-text-centered">Empty Cart</li>
               ) : (
-                items.map(item => <li className='list-item' key={item.id}>{item.id}</li>)
+                items.map(item => <Item key={item.id} item={item} />)
               )}
               <li className="list-item has-text-centered">Total: {total}</li>
             </ul>
