@@ -18,29 +18,63 @@ const makeOptions = quantity => {
 
 const Item = ({ item, updateItem, deleteItem }) => {
   return (
-    <li className="list-item">
-      <div className="container">
-        <span>
-          {item.beverage.name} by {item.beverage.manufacturer} :{' '}
-          {item.beverage.price}
-        </span>{' '}
-        <button
-          className="button is-danger"
-          type="button"
-          onClick={() => deleteItem(item.id)}
-        >
-          Delete
-        </button>{' '}
-        <select
-          value={item.quantity}
-          onChange={e => updateItem(item.id, parseInt(e.target.value, 10))}
-          name="quantity"
-        >
-          <Option number={1} />
-          {makeOptions(item.beverage.quantity)}
-        </select>
+    <div
+      style={{
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignContent: 'center',
+      }}
+      className="list-item"
+    >
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+        }}
+      >
+        <div className="content">
+          <p>
+            {item.beverage.name} by {item.beverage.manufacturer}
+          </p>
+          <p>$ {item.beverage.price}</p>
+        </div>
       </div>
-    </li>
+
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+        }}
+      >
+        <div className="field is-grouped">
+          <p className="control">
+            <div className="select">
+              <select
+                value={item.quantity}
+                onChange={e =>
+                  updateItem(item.id, parseInt(e.target.value, 10))
+                }
+                name="quantity"
+              >
+                <Option number={1} />
+                {makeOptions(item.beverage.quantity)}
+              </select>
+            </div>
+          </p>
+          <p className="control">
+            <button
+              className="button is-danger"
+              type="button"
+              onClick={() => deleteItem(item.id)}
+            >
+              Delete
+            </button>
+          </p>
+        </div>
+      </div>
+    </div>
   );
 };
 
