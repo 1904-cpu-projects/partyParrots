@@ -7,7 +7,7 @@
     "test": "tests"
   },
   "scripts": {
-    "css:build": "path/to/binary/in/node_modules --omit-source-map-url ./public/style/mystyles.scss ./public/style/style.css",
+    "css:build": "./node_modules/.bin/node-sass --omit-source-map-url ./public/style/mystyles.scss ./public/style/style.css",
     "css:watch": "npm run css:build -- --watch",
     "test": "jest --config=jest.config.js -i",
     "test:dev": "jest --config=jest.config.js -i --watchAll",
