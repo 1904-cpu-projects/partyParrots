@@ -1,3 +1,5 @@
+import { stringLiteralTypeAnnotation } from "@babel/types";
+
 export const GET_ITEMS = 'GET_ITEMS';
 export const GET_ITEM = 'GET_ITEM';
 export const MADE_ITEM = 'MADE_ITEM';
@@ -6,11 +8,15 @@ export const DELETED_ITEM = 'DELETED_ITEM';
 
 export const UPDATE_BEV_QUANT = 'UPDATE_BEV_QUANT';
 
+export const START_ITEM_REQ = 'START_ITEM_REQ';
+
 const updateBevQuant = ({ id, quantity }) => ({
   type: UPDATE_BEV_QUANT,
   id,
   quantity,
 });
+
+const startRequest = () => ({ type: START_ITEM_REQ });
 
 const gotItems = items => ({
   type: GET_ITEMS,
@@ -19,6 +25,7 @@ const gotItems = items => ({
 
 export const getItems = () => async (dispatch, _, axios) => {
   try {
+    dispatch(startRequest())
     const { data } = await axios.get('/api/orderItems/');
     dispatch(gotItems(data));
   } catch (error) {

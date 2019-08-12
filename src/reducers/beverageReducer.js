@@ -1,4 +1,4 @@
-import FETCH_ALL_BEVERAGES from '../actions/constants';
+import { FETCH_ALL_BEVERAGES } from '../actions/sharedConstants';
 
 export default function(state = [], action) {
   switch (action.type) {
