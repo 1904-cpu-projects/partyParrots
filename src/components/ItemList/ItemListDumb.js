@@ -1,9 +1,11 @@
 import React, { Fragment, Component } from 'react';
 import { withRouter } from 'react-router-dom';
+import Item from '../Item/Item';
 
 class ItemList extends Component {
   componentDidMount() {
-    this.props.fetchItems();
+    // try to avoid double with App didMount request by using makingRequest
+    !this.props.makingRequest && this.props.fetchItems();
   }
 
   goToCheckout = () => {
@@ -30,7 +32,7 @@ class ItemList extends Component {
               {renderEmpty ? (
                 <li className="list-item has-text-centered">Empty Cart</li>
               ) : (
-                items.map(item => <li className='list-item' key={item.id}>{item.id}</li>)
+                items.map(item => <Item key={item.id} item={item} />)
               )}
               <li className="list-item has-text-centered">Total: {total}</li>
             </ul>

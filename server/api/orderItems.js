@@ -141,11 +141,10 @@ router.delete('/:id', itemExistsMiddleware, async (req, res, next) => {
   }
 });
 
-router.use((err, req, res, next) => {
+router.use(async (err, req, res, next) => {
   if (err.type === 'Quantity') {
-    res
-      .status(err.status)
-      .json({ error: { id: err.beverageId, quantity: err.quantity } });
+    const beverage = await Beverage.findOne({ where: { id: err.beverageId } });
+    res.status(err.status).json(beverage);
   } else {
     next(err);
   }

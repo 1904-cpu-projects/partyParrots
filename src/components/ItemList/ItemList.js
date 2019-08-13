@@ -1,7 +1,13 @@
 import { connect } from 'react-redux';
-import { getItems } from '../../actions/orderItems';
 import { cartTotalSelector } from '../../reducers/cartReducer';
+import { getItems } from '../../actions/orderItems';
 import ItemList from './ItemListDumb';
+
+const mapDispatchToProps = dispatch => ({
+  fetchItems() {
+    dispatch(getItems());
+  },
+});
 
 const mapStateToProps = state => {
   const { items, makingRequest } = state.cart;
@@ -11,12 +17,6 @@ const mapStateToProps = state => {
     total: cartTotalSelector(state),
   };
 };
-
-const mapDispatchToProps = dispatch => ({
-  fetchItems() {
-    dispatch(getItems());
-  },
-});
 
 export default connect(
   mapStateToProps,

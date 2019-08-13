@@ -146,8 +146,7 @@ describe('/api/orderItems/', () => {
           .set('Accept', 'application/json');
 
         expect(res.status).toBe(400);
-        expect(res.body.error.id).toBe(beverage.id);
-        expect(res.body.error.quantity).toBe(beverage.quantity);
+        expect(res.body.quantity).toBe(beverage.quantity);
       } catch (error) {
         throw error;
       }
@@ -197,8 +196,7 @@ describe('/api/orderItems/', () => {
           .set('Accept', 'application/json');
 
         expect(res2.status).toBe(400);
-        expect(res2.body.error.id).toBe(beverage.id);
-        expect(res2.body.error.quantity).toBe(beverage.quantity);
+        expect(res2.body.quantity).toBe(beverage.quantity);
       } catch (error) {
         throw error;
       }
