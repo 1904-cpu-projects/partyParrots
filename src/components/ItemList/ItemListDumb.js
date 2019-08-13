@@ -4,7 +4,7 @@ import Item from '../Item/Item';
 
 class ItemList extends Component {
   componentDidMount() {
-    // try to avoid double request with makingRequest
+    // try to avoid double with App didMount request by using makingRequest
     !this.props.makingRequest && this.props.fetchItems();
   }
 
