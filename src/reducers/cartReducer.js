@@ -52,7 +52,6 @@ export default (state = initialState, action) => {
 };
 
 // Selectors
-
 const itemsSelector = state => state.cart.items;
 
 const _itemTotalsSelector = items =>

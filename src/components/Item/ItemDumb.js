@@ -6,7 +6,7 @@ const makeOptions = (currentQuantity, quantity) => {
   const options = [];
   let i = 2;
 
-  while (i < 11 && i <= (currentQuantity + quantity)) {
+  while (i < 11 && i <= currentQuantity + quantity) {
     options.push(<Option key={i} number={i} />);
     i++;
   }
@@ -32,6 +32,7 @@ const Item = ({ item, updateItem, deleteItem }) => {
         }}
       >
         <div className="content">
+          {/* make beverage name a link to single bev modal route */}
           <p>
             {item.beverage.name} by {item.beverage.manufacturer}
           </p>
