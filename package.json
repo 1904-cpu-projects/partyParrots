@@ -8,13 +8,13 @@
   },
   "scripts": {
     "css:build": "./node_modules/.bin/node-sass --omit-source-map-url ./public/style/mystyles.scss ./public/style/style.css",
-    "css:watch": "npm run css:build -- --watch",
+    "css:watch": "npm run css:build & npm run css:build -- -w",
     "test": "jest --config=jest.config.js -i --forceExit",
     "test:dev": "jest --config=jest.config.js -i --watchAll",
     "start": "npm run server",
     "start:dev": "npm run css:watch & npm run build:dev & npm run server:dev",
     "build": "./node_modules/.bin/webpack  --config webpack.production.config.js & npm run css:build",
-    "build:dev": "webpack --watch",
+    "build:dev": "./node_modules/.bin/webpack --watch",
     "server": "node ./server/index.js",
     "server:dev": "nodemon ./server/index.js --ignore public/ --ignore src/",
     "seed": "node seed.js"
