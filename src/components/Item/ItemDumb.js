@@ -2,13 +2,11 @@ import React from 'react';
 
 const Option = ({ number }) => <option value={number}>{number}</option>;
 
-const makeOptions = quantity => {
-  if (quantity === 0) return null;
-
+const makeOptions = (currentQuantity, quantity) => {
   const options = [];
   let i = 2;
 
-  while (i < 11 && i <= quantity + 1) {
+  while (i < 11 && i <= (currentQuantity + quantity)) {
     options.push(<Option key={i} number={i} />);
     i++;
   }
@@ -59,7 +57,7 @@ const Item = ({ item, updateItem, deleteItem }) => {
                 name="quantity"
               >
                 <Option number={1} />
-                {makeOptions(item.beverage.quantity)}
+                {makeOptions(item.quantity, item.beverage.quantity)}
               </select>
             </div>
           </p>
