@@ -1,0 +1,2 @@
+export const FETCH_ALL_BEVERAGES = 'FETCH_ALL_BEVERAGES';
+export const UPDATED_BEV = 'UPDATED_BEV'
