@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { HashRouter, Route } from 'react-router-dom';
 import GuestOnly from '../GuestOnly/GuestOnly';
 import LoginForm from '../Login/UserLoginDumb';
-import Nav from './Nav/Nav';
+import Nav from '../Nav/Nav';
 import Products from '../Products';
 import SignUp from '../SignUp/SignUp';
 import ItemList from '../ItemList/ItemList';
