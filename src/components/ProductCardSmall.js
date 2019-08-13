@@ -52,27 +52,15 @@ export default class ProductCardSmall extends Component {
             </a>
           </figure>
           <div
-            className="level"
-            style={{ marginBottom: "0px", marginTop: "7px" }}
+            className="level center"
+            
           >
             <a
-              className="title is-6"
-              style={{ marginLeft: "10px" }}
+              className="title is-7"
+              style={{ margin: "6px" }}
               onClick={this.handleClick}
             >
               {this.props.beverage.name}
-            </a>
-          </div>
-          <div className="level">
-            <div className="level-left">
-              <small style={{ marginLeft: "10px" }}>
-                {"$" + this.props.beverage.price + " ea."}
-              </small>
-            </div>
-            <a className="level-right button is-text">
-              <span className="icon is-small">
-                <i className="fas fa-cart-plus" />
-              </span>
             </a>
           </div>
         </div>
