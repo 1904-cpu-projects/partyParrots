@@ -3,6 +3,11 @@ import { withRouter } from 'react-router-dom';
 import Item from '../Item/Item';
 
 class ItemList extends Component {
+  componentDidMount() {
+    // try to avoid double request with makingRequest
+    !this.props.makingRequest && this.props.fetchItems();
+  }
+
   goToCheckout = () => {
     this.props.history.push('/checkout');
   };
