@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ProductCardSmall from './ProductCardSmall';
-import { fetchAllBeverages } from '../actions/beverageActions';
 
 class Products extends Component {
   render() {
