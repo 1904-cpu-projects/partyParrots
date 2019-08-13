@@ -1,4 +1,4 @@
-import { FETCH_ALL_BEVERAGES } from './sharedConstants';
+import { FETCH_ALL_BEVERAGES, UPDATED_BEV } from './sharedConstants';
 import Axios from 'axios';
 
 const _fetchAllBeverages = response => ({
@@ -15,3 +15,8 @@ export const fetchAllBeverages = () => async dispatch => {
     console.log('there was an error in fetchAllBeverages');
   }
 };
+
+export const updatedBeverage = beverage => ({
+  type: UPDATED_BEV,
+  beverage,
+});

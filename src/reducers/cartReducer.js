@@ -1,4 +1,5 @@
 import { createSelector } from 'reselect';
+import { UPDATED_BEV } from '../actions/sharedConstants';
 import {
   GET_ITEMS,
   UPDATED_ITEM,
@@ -33,6 +34,16 @@ export default (state = initialState, action) => {
     }
     case DELETED_ITEM: {
       const items = state.items.filter(item => item.id !== action.id);
+      return { ...state, items, makingRequest: false };
+    }
+    case UPDATED_BEV: {
+      const items = state.items.map(item => {
+        if (item.beverage.id === action.beverage.id) {
+          return { ...item, beverage: action.beverage };
+        } else {
+          return item;
+        }
+      });
       return { ...state, items, makingRequest: false };
     }
     default:
