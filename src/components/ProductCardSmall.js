@@ -1,39 +1,87 @@
-import React from 'react';
+import React, { Component } from "react";
+import DetailedProduct from "./DetailedProduct";
 
-export default function ProductCardSmall(props){
+export default class ProductCardSmall extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      //hard-coded placeholder image until we get seed:
+      image:
+        "https://cdn.shoplightspeed.com/shops/611413/files/7188569/lost-coast-brewery-lost-coast-brewery-sharkinator.jpg",
+      modal: false
+    };
 
-return <div className = "box center full-height">
-            <div className="column full-height">
+    this.handleClick = this.handleClick.bind(this);
+    this.onHover = this.onHover.bind(this);
+    this.onLeave = this.onLeave.bind(this);
+  }
 
-              <figure className="image center" >
-                <img src={props.beverage.imageURL}/>
-              </figure>
+  handleClick() {
+    this.setState({
+      modal: !this.state.modal
+    });
+  }
 
-              <div className="level" style={{marginBottom: '10px', marginTop: '7px'}}>  
-                <p className="title is-6">{props.beverage.name}</p>
-              </div>
+  onHover() {
+    this.setState({
+      //hard-coded placeholder image until we get seed:
+      image:
+        "https://untappd.akamaized.net/site/beer_logos_hd/beer-677170_7ee29_hd.jpeg"
+    });
+  }
+  onLeave() {
+    this.setState({
+      //hard-coded placeholder image until we get seed:
+      image:
+        "https://cdn.shoplightspeed.com/shops/611413/files/7188569/lost-coast-brewery-lost-coast-brewery-sharkinator.jpg"
+    });
+  }
 
-              <div className="level">
-
-                <div className="level-left">
-                  <p className="is-6">{"$" + props.beverage.price}</p>
-                  <div className="select is-small" style={{marginLeft:'6px'}}>
-                    <select>
-                      <option>1</option>
-                      <option>2</option>
-                    </select>
-                  </div>
-                </div>
-
-                <a className="level-right button is-text">
-                  <span className="icon is-small">
-                    <i className="fas fa-cart-plus"></i>
-                  </span>
-                </a>
-
-              </div>
-
-            </div>        
-          </div>    
-  
+  render() {
+    return (
+      <div>
+        <div className="card">
+          <figure className="image is-3by3">
+            <a onClick={this.handleClick}>
+              <img
+                src={this.state.image}
+                className="full-height"
+                onMouseEnter={this.onHover}
+                onMouseLeave={this.onLeave}
+              />
+            </a>
+          </figure>
+          <div
+            className="level"
+            style={{ marginBottom: "0px", marginTop: "7px" }}
+          >
+            <a
+              className="title is-6"
+              style={{ marginLeft: "10px" }}
+              onClick={this.handleClick}
+            >
+              {this.props.beverage.name}
+            </a>
+          </div>
+          <div className="level">
+            <div className="level-left">
+              <small style={{ marginLeft: "10px" }}>
+                {"$" + this.props.beverage.price + " ea."}
+              </small>
+            </div>
+            <a className="level-right button is-text">
+              <span className="icon is-small">
+                <i className="fas fa-cart-plus" />
+              </span>
+            </a>
+          </div>
+        </div>
+        <DetailedProduct
+          modal={this.state.modal}
+          handleClick={this.handleClick}
+          beverage={this.props.beverage}
+        />
+      </div>
+    );
+  }
 }
