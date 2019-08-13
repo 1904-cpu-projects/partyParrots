@@ -9,6 +9,7 @@ import ItemList from '../ItemList/ItemList';
 class App extends Component {
   // fetching beverages here is temporary, but right spot for cart
   componentDidMount() {
+    this.props.fetchMe();
     this.props.fetchItems();
     this.props.fetchBeverages();
   }
