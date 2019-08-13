@@ -39,7 +39,7 @@ const deletedItem = id => ({
 
 // Thunks
 const validateStatus = _status => {
-  return _status === 200 || _status === 400;
+  return (_status >= 200 && _status < 300) || _status === 400;
 };
 
 export const getItems = () => async (dispatch, _, axios) => {
