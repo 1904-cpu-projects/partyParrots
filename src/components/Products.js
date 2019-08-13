@@ -2,12 +2,12 @@ import React from "react";
 import { connect } from "react-redux";
 import ProductCardSmall from "./ProductCardSmall";
 
-function Products() {
+function Products(props) {
     return (
       <section className="section" style={{ paddingTop: "175px" }}>
         <div className="container">
           <div className="columns is-centered is-multiline">
-            {this.props.beverages.map(beverage => (
+            {props.beverages.map(beverage => (
               <div key={beverage.id} className="column is-2">
                 <ProductCardSmall beverage={beverage} />
               </div>
