@@ -1,14 +1,8 @@
-import React, { Component } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import ProductCardSmall from "./ProductCardSmall";
-import { fetchAllBeverages } from "../actions/beverageActions";
 
-class Products extends Component {
-  componentDidMount() {
-    this.props.fetchBeverages();
-  }
-
-  render() {
+function Products() {
     return (
       <section className="section" style={{ paddingTop: "175px" }}>
         <div className="container">
@@ -22,22 +16,12 @@ class Products extends Component {
         </div>
       </section>
     );
-  }
 }
 
 const mapStateToProps = state => ({
   beverages: state.beverages
 });
 
-const mapDispatchToProps = dispatch => {
-  return {
-    fetchBeverages: () => {
-      dispatch(fetchAllBeverages());
-    }
-  };
-};
-
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
 )(Products);
