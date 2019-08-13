@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { HashRouter, Route } from 'react-router-dom';
-import LoginForm from '../UserLoginDumb';
-import Nav from '../Nav';
+import LoginForm from '../Login/UserLoginDumb';
+import Nav from './Nav/Nav';
 import Products from '../Products';
 import SignUp from '../SignUp/SignUp';
 import ItemList from '../ItemList/ItemList';
