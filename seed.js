@@ -43,6 +43,22 @@ const usersData = [
 
 const beveragesData = [
   makeBeverageData(
+    'Sculpin',
+    'Ballast Point Brewing',
+    7,
+    'This delicious Ballast Point Ale took a Bronze Medal at the 2007 Great American Beer Festival in the Pro Am category.',
+    'IPA',
+    13.99,
+    12,
+    20
+  ),
+  makeBeverageData(
+    'Delirium Tremens',
+    'Huyghe Brewery',
+    8.5,
+
+  ),
+  makeBeverageData(
     'Coors Light',
     'Coors Brewing Company',
     4.2,
