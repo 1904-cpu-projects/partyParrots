@@ -16,7 +16,7 @@ beforeEach(async() => {
     manufacturer: 'TestCompany',
     percentAlcohol: 100,
     description: 'test description',
-    category: 'Brown',
+    category: 'IPA',
     price: 10000000,
     size: 88888888,
     quantity: 3333333,
