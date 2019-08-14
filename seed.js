@@ -56,7 +56,111 @@ const beveragesData = [
     'Delirium Tremens',
     'Huyghe Brewery',
     8.5,
-
+    'The allusion to pink elephants and the choice of names is not due to chance. With a particular character, the unique taste of results from the use of three different kinds of yeast.',
+    'Belgian',
+    7.99,
+    20,
+    10
+  ),
+  makeBeverageData(
+    'King JJJuliusss',
+    'Tree House Brewing',
+    8.4,
+    'Mango, orange, and sweet grapefruit are predominant in the aroma with hints of pineapple and blended tropical fruit juice.',
+    'IPA',
+    3.99,
+    12,
+    40
+  ),
+  makeBeverageData(
+    'Namaste White',
+    'Dogfish Head Craft Brewery',
+    4.8,
+    'A witbier bursting with good karma. Made with dried organic orange slices, fresh-cut lemongrass and a bit of coriander, this Belgian-style white beer is a great thirst quencher.',
+    'Belgian',
+    1.24,
+    12,
+    35
+  ),
+  makeBeverageData(
+    'Vanilla Oatis',
+    'Ninkasi Brewing',
+    7,
+    'A divine blend of vanilla, coffee, chocolate, and roasted malt notes swirl together to create a smooth Oatmeal Stout with a crisp finish.',
+    'Dark',
+    2.78,
+    12,
+    40
+  ),
+  makeBeverageData(
+    'Brother Thelonious',
+    'North Coast Brewing',
+    9.4,
+    'Like a Belgian "Dark Strong Ale," this beer is rich and robust.',
+    'Dark',
+    9.99,
+    22,
+    50
+  ),
+  makeBeverageData(
+    'Sour Monkey',
+    'Victory Brewing',
+    9.5,
+    'Fruity notes from imported Belgian yeast swirl through a precise souring. Pucker up to a bite of citrus laden tang ending with a delectable experience.',
+    'Sour',
+    3.29,
+    12,
+    30
+  ),
+  makeBeverageData(
+    'Red Trolley Ale',
+    'Karl Strauss Brewing',
+    5.8,
+    'Boldly brewed with a half-ton of caramelized malts, our multi award-winning Irish Red has rich toffee flavors, notes of dried fruit, and a slightly sweet finish.',
+    'Red',
+    1.49,
+    12,
+    70
+  ),
+  makeBeverageData(
+    'Grage Sale Ale',
+    'Sequoia Brewing',
+    6.0,
+    'Double dry hopped pale ale is brewed using 20% rye malt. Bittered and flavored with a combination of Centennial, Cascade, Simcoe, and Chinook hops.',
+    'Pale',
+    2.59,
+    12,
+    30
+  ),
+  makeBeverageData(
+    'Great White',
+    'Lost Coast Brewery',
+    4.8,
+    'A translucent golden color, topped with a hint of citrus, coriander and a secret blend of herbs.',
+    'Belgian',
+    3.04,
+    12,
+    25
+  ),
+  makeBeverageData(
+    'Moose Drool',
+    'Big Sky Brewing',
+    5.1,
+    'It\'s chocolate brown in color with a creamy texture. A malty beer with just enough hop presence to keep it from being too sweet. The aroma mostly comes from the malt with a hint of spice added by the hops.',
+    'Dark',
+    2.00,
+    12,
+    40
+  ),
+  makeBeverageData(
+    'Hazy Little Thing',
+    'Sierra Nevada Brewing',
+    6.7,
+    'Unfiltered, unprocessed IPA, straight from the tanks and into the can.',
+    'IPA',
+    2.88,
+    12,
+    50
   ),
   makeBeverageData(
     'Coors Light',
