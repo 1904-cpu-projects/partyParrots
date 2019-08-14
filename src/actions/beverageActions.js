@@ -8,7 +8,11 @@ const _fetchAllBeverages = response => ({
 
 export const fetchAllBeverages = () => async dispatch => {
   try {
+<<<<<<< HEAD
     const api = await Axios.get('/api/beverages');
+=======
+    const api = await Axios.get('/api/beverages/');
+>>>>>>> dev
     const response = api.data;
     dispatch(_fetchAllBeverages(response));
   } catch (err) {

@@ -99,6 +99,10 @@ router.put('/:id', itemExistsMiddleware, async (req, res, next) => {
       await req.item.destroy();
 
       res.sendStatus(204);
+<<<<<<< HEAD
+=======
+      return;
+>>>>>>> dev
     }
 
     const difference = req.body.quantity - req.item.quantity;

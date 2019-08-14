@@ -1,4 +1,5 @@
 import React from 'react';
+<<<<<<< HEAD
 
 const Option = ({ number }) => <option value={number}>{number}</option>;
 
@@ -13,6 +14,9 @@ const makeOptions = (currentQuantity, quantity) => {
 
   return options;
 };
+=======
+import QuantitySelector from '../QuantitySelector/QuantitySelector';
+>>>>>>> dev
 
 const Item = ({ item, updateItem, deleteItem }) => {
   return (
@@ -48,6 +52,7 @@ const Item = ({ item, updateItem, deleteItem }) => {
         }}
       >
         <div className="field is-grouped">
+<<<<<<< HEAD
           <p className="control">
             <div className="select">
               <select
@@ -62,6 +67,11 @@ const Item = ({ item, updateItem, deleteItem }) => {
               </select>
             </div>
           </p>
+=======
+          <div className="control">
+            <QuantitySelector item={item} showZero={false} />
+          </div>
+>>>>>>> dev
           <p className="control">
             <button
               className="button is-danger"

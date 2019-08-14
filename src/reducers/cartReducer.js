@@ -73,3 +73,13 @@ export const cartTotalSelector = createSelector(
   itemTotalSelector,
   cartTotal
 );
+<<<<<<< HEAD
+=======
+
+export const inCartSelector = id => {
+  return createSelector(
+    itemsSelector,
+    items => items.find(item => item.beverage.id === id)
+  );
+};
+>>>>>>> dev

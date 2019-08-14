@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Form from './LoginForm';
 import { connect } from 'react-redux';
-import { loginUser } from '../actions/user';
+import { loginUser } from '../../actions/user';
 
 class UserLogin extends Component {
   constructor(props) {
