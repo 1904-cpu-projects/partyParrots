@@ -259,7 +259,7 @@ describe('/api/orderItems/', () => {
           .send({
             beverageId: beverage.id,
             purchasePrice: beverage.price,
-            quantity: beverage.quantity - 20,
+            quantity: beverage.quantity,
           })
           .set('cookie', cookie)
           .set('Accept', 'application/json');
