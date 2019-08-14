@@ -7,6 +7,7 @@ import {
   DELETED_ITEM,
   MADE_ITEM,
 } from '../actions/orderItems';
+import { LOGOUT } from '../actions/user';
 
 const initialState = {
   items: [],
@@ -45,6 +46,9 @@ export default (state = initialState, action) => {
         }
       });
       return { ...state, items, makingRequest: false };
+    }
+    case LOGOUT: {
+      return { ...state, makingRequest: false, items: [] };
     }
     default:
       return state;

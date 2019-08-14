@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-function Nav({ loggedIn }) {
+function Nav({ loggedIn, logout }) {
   return (
     <div>
       <nav className="navbar" role="navigation" aria-label="main navigation">
@@ -38,6 +38,17 @@ function Nav({ loggedIn }) {
             )}
           </div>
           <div className="navbar-end">
+            {loggedIn && (
+              <div className="navbar-item">
+                <button
+                  type="button"
+                  className="button is-danger is-small"
+                  onClick={logout}
+                >
+                  Logout
+                </button>
+              </div>
+            )}
             <div className="navbar-item">
               <Link to="/cart" className="button is-light">
                 <i className="fa fa-shopping-cart has-text-grey-dark" />
