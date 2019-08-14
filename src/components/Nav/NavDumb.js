@@ -26,18 +26,18 @@ function Nav({ loggedIn, logout }) {
             <Link to="/products" className="navbar-item has-text-grey">
               Products
             </Link>
-            {!loggedIn && (
-              <Link to="/signup" className="navbar-item has-text-grey">
-                Sign Up
-              </Link>
-            )}
+          </div>
+          <div className="navbar-end">
             {!loggedIn && (
               <Link to="/login" className="navbar-item has-text-grey">
                 Log In
               </Link>
             )}
-          </div>
-          <div className="navbar-end">
+            {!loggedIn && (
+              <Link to="/signup" className="navbar-item has-text-grey">
+                Sign Up
+              </Link>
+            )}
             {loggedIn && (
               <div className="navbar-item">
                 <button
