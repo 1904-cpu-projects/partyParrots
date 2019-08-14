@@ -1,4 +1,5 @@
 import React from 'react';
+import QuantitySelector from '../QuantitySelector/QuantitySelector';
 
 export default function DetailedProduct(props) {
   return (
@@ -58,13 +59,18 @@ export default function DetailedProduct(props) {
                   <div className="is-size-5 has-text-danger">
                     {'$' + props.beverage.price + ' ea.'}
                   </div>
-
+                </div>
+                {props.inCart && props.inCart.id ? (
+                  <div className="level-right control">
+                    <QuantitySelector item={props.inCart} showZero={true} />
+                  </div>
+                ) : (
                   <a className="level-right button is-text">
                     <span className="icon is-size-4" onClick={props.addToCart}>
                       <i className="fas fa-cart-plus" />
                     </span>
                   </a>
-                </div>
+                )}
               </nav>
             </div>
           </article>

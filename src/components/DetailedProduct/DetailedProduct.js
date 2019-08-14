@@ -1,10 +1,10 @@
 import { connect } from 'react-redux';
 import DetailedProduct from './DetailedProductDumb';
-import { makeItem, updateItem as _updateItem } from '../../actions/orderItems';
+import { makeItem } from '../../actions/orderItems';
 import { inCartSelector } from '../../reducers/cartReducer';
 
-const mapStateToProps = state => ({
-  inCart: inCartSelector(state) && true,
+const mapStateToProps = (state, { beverage }) => ({
+  inCart: inCartSelector(beverage.id)(state),
 });
 
 const mapDispatchToProps = (dispatch, { beverage }) => ({

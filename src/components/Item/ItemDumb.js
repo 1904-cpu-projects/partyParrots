@@ -1,18 +1,5 @@
 import React from 'react';
-
-const Option = ({ number }) => <option value={number}>{number}</option>;
-
-const makeOptions = (currentQuantity, quantity) => {
-  const options = [];
-  let i = 2;
-
-  while (i < 11 && i <= currentQuantity + quantity) {
-    options.push(<Option key={i} number={i} />);
-    i++;
-  }
-
-  return options;
-};
+import QuantitySelector from '../QuantitySelector/QuantitySelector';
 
 const Item = ({ item, updateItem, deleteItem }) => {
   return (
@@ -48,20 +35,9 @@ const Item = ({ item, updateItem, deleteItem }) => {
         }}
       >
         <div className="field is-grouped">
-          <p className="control">
-            <div className="select">
-              <select
-                value={item.quantity}
-                onChange={e =>
-                  updateItem(item.id, parseInt(e.target.value, 10))
-                }
-                name="quantity"
-              >
-                <Option number={1} />
-                {makeOptions(item.quantity, item.beverage.quantity)}
-              </select>
-            </div>
-          </p>
+          <div className="control">
+            <QuantitySelector item={item} showZero={false} />
+          </div>
           <p className="control">
             <button
               className="button is-danger"
