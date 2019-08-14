@@ -4,6 +4,7 @@ const morgan = require('morgan');
 const compression = require('compression');
 const helmet = require('helmet');
 const sessionMiddleware = require('./sessionMiddlewarare');
+const sessiodIdMiddleware = require('./sessionIdMiddleware')
 const { serializeUserMiddleware } = require('./serializeUserMiddleware');
 
 const staticPath = path.join(__dirname, '..', '..', 'public');
@@ -13,6 +14,7 @@ app.use(morgan('dev'));
 app.use(helmet());
 app.use(compression());
 app.use(sessionMiddleware);
+app.use(sessiodIdMiddleware)
 app.use(serializeUserMiddleware);
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
