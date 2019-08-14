@@ -1,33 +1,12 @@
-import React from 'react';
-import { withRouter } from 'react-router-dom';
+import React from 'React';
 
-class Checkout extends Component {
-  constructor () {
-    super();
-    this.state = {
-      values: {
 
-      },
-      errors: {},
-    }
-  }
-
-  handleChange(){
-
-  }
-
-  handleSubmit(){
-
-  }
-
-  clear() {
-
-  }
-
-  render() {
-
-    return(
-      <div></div>
-    )
-  }
+const _Checkout = () => {
+  return (
+    <form>
+      <button type='submit'>Checkout</button>
+    </form>
+  )
 }
+
+export default _Checkout;
