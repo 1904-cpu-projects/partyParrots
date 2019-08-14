@@ -251,7 +251,9 @@ describe('/api/orderItems/', () => {
   describe('DELETE /:id', () => {
     test('it deletes an orderItem and updates beverage quantity', async () => {
       try {
+        console.log('test Delete: it deletes an orderItem and updates beverage quantity');
         const [beverage] = await Beverage.findAll({ limit: 1 });
+        console.log('below beverage findAll')
         const res1 = await server
           .post('/api/orderItems/')
           .send({
@@ -261,12 +263,12 @@ describe('/api/orderItems/', () => {
           })
           .set('cookie', cookie)
           .set('Accept', 'application/json');
-
+          console.log('res1')
         const res2 = await server
           .delete(`/api/orderItems/${res1.body.id}`)
           .set('cookie', cookie)
           .set('Accept', 'application/json');
-
+          console.log('res2')
         expect(res2.status).toBe(204);
       } catch (error) {
         throw error;
