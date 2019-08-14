@@ -34,7 +34,7 @@ class ItemList extends Component {
               ) : (
                 items.map(item => <Item key={item.id} item={item} />)
               )}
-              <li className="list-item has-text-centered">Total: {total}</li>
+              <li className="list-item has-text-centered">Total: {total.toFixed(2)}</li>
             </ul>
           </div>
         </section>

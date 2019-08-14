@@ -14,6 +14,10 @@ const Order = db.define('order', {
   purchaseDate: {
     type: Sequelize.DATE,
   },
+  sessionId: {
+    type: Sequelize.STRING,
+    allowNull: true,
+  },
 });
 
 Order.beforeSave(instance => {
