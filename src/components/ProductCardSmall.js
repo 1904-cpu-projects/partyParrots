@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import DetailedProduct from "./DetailedProduct";
+import React, { Component } from 'react';
+import DetailedProduct from './DetailedProduct/DetailedProduct';
 
 export default class ProductCardSmall extends Component {
   constructor(props) {
@@ -7,8 +7,8 @@ export default class ProductCardSmall extends Component {
     this.state = {
       //hard-coded placeholder image until we get seed:
       image:
-        "https://cdn.shoplightspeed.com/shops/611413/files/7188569/lost-coast-brewery-lost-coast-brewery-sharkinator.jpg",
-      modal: false
+        'https://cdn.shoplightspeed.com/shops/611413/files/7188569/lost-coast-brewery-lost-coast-brewery-sharkinator.jpg',
+      modal: false,
     };
 
     this.handleClick = this.handleClick.bind(this);
@@ -17,23 +17,23 @@ export default class ProductCardSmall extends Component {
   }
 
   handleClick() {
-    this.setState({
-      modal: !this.state.modal
-    });
+    this.setState(state => ({
+      modal: !state.modal,
+    }));
   }
 
   onHover() {
     this.setState({
       //hard-coded placeholder image until we get seed:
       image:
-        "https://untappd.akamaized.net/site/beer_logos_hd/beer-677170_7ee29_hd.jpeg"
+        'https://untappd.akamaized.net/site/beer_logos_hd/beer-677170_7ee29_hd.jpeg',
     });
   }
   onLeave() {
     this.setState({
       //hard-coded placeholder image until we get seed:
       image:
-        "https://cdn.shoplightspeed.com/shops/611413/files/7188569/lost-coast-brewery-lost-coast-brewery-sharkinator.jpg"
+        'https://cdn.shoplightspeed.com/shops/611413/files/7188569/lost-coast-brewery-lost-coast-brewery-sharkinator.jpg',
     });
   }
 
@@ -51,13 +51,10 @@ export default class ProductCardSmall extends Component {
               />
             </a>
           </figure>
-          <div
-            className="level center"
-            
-          >
+          <div className="level center">
             <a
               className="title is-7"
-              style={{ margin: "6px" }}
+              style={{ margin: '6px' }}
               onClick={this.handleClick}
             >
               {this.props.beverage.name}
