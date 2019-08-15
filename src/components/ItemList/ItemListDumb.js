@@ -1,15 +1,62 @@
 import React, { Fragment, Component } from 'react';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import Item from '../Item/Item';
 
+const Modal = ({ showModal, closeModal }) => {
+  return (
+    <div className={`modal ${showModal ? 'is-active' : ''}`}>
+      <div className="modal-background" onClick={closeModal} />
+      <div className="modal-content">
+        <div
+          className="box"
+          style={{ display: 'flex', justifyContent: 'center' }}
+        >
+          <div className="field is-grouped">
+            <p className="control">
+              <Link to="/login" className="button is-link">
+                Login for faster checkout!
+              </Link>
+            </p>
+            <p className="control subtitle has-text-centered">
+              OR
+            </p>
+            <p className="control">
+              <Link to="/checkout" className="button is-link">
+                Continue as a guest.
+              </Link>
+            </p>
+          </div>
+        </div>
+      </div>
+      <button
+        type="button"
+        className="modal-close is-large"
+        onClick={closeModal}
+        aria-label="close"
+      />
+    </div>
+  );
+};
+
 class ItemList extends Component {
+  constructor() {
+    super();
+    this.state = {
+      showModal: false,
+    };
+  }
+
   componentDidMount() {
     // try to avoid double with App didMount request by using makingRequest
     !this.props.makingRequest && this.props.fetchItems();
   }
 
   goToCheckout = () => {
-    this.props.history.push('/checkout');
+    if (!this.props.loggedIn && !this.state.showModal) {
+      this.setState({ showModal: true });
+    } else if (this.props.loggedIn) {
+      this.props.history.push('/checkout');
+    }
   };
 
   render() {
@@ -20,6 +67,11 @@ class ItemList extends Component {
 
     return (
       <Fragment>
+        <Modal
+          showModal={this.state.showModal}
+          closeModal={_ => this.setState({ showModal: false })}
+        />
+
         <section className="section">
           <div className="container has-text-centered">
             <h1 className="title">Cart</h1>
@@ -34,7 +86,9 @@ class ItemList extends Component {
               ) : (
                 items.map(item => <Item key={item.id} item={item} />)
               )}
-              <li className="list-item has-text-centered">Total: {total.toFixed(2)}</li>
+              <li className="list-item has-text-centered">
+                Total: {total.toFixed(2)}
+              </li>
             </ul>
           </div>
         </section>

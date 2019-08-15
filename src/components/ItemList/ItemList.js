@@ -11,10 +11,13 @@ const mapDispatchToProps = dispatch => ({
 
 const mapStateToProps = state => {
   const { items, makingRequest } = state.cart;
+  const user = state.user;
+
   return {
     items,
     makingRequest,
     total: cartTotalSelector(state),
+    loggedIn: user.user && user.user.id,
   };
 };
 

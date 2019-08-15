@@ -2,6 +2,7 @@ import { createSelector } from 'reselect';
 import { UPDATED_BEV } from '../actions/sharedConstants';
 import {
   GET_ITEMS,
+  GET_ITEM,
   UPDATED_ITEM,
   START_ITEM_REQ,
   DELETED_ITEM,
@@ -14,6 +15,7 @@ const initialState = {
   makingRequest: false,
 };
 
+// eslint-disable-next-line complexity
 export default (state = initialState, action) => {
   switch (action.type) {
     case START_ITEM_REQ: {
@@ -21,6 +23,10 @@ export default (state = initialState, action) => {
     }
     case GET_ITEMS: {
       const items = action.items;
+      return { ...state, items, makingRequest: false };
+    }
+    case GET_ITEM: {
+      const items = [...state.items, action.item];
       return { ...state, items, makingRequest: false };
     }
     case MADE_ITEM: {
