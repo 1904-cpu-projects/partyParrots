@@ -1,6 +1,6 @@
-import React, { Fragment, Component } from 'react';
-import { withRouter } from 'react-router-dom';
-import Item from '../Item/Item';
+import React, { Fragment, Component } from "react";
+import { withRouter } from "react-router-dom";
+import Item from "../Item/Item";
 
 class ItemList extends Component {
   componentDidMount() {
@@ -9,7 +9,7 @@ class ItemList extends Component {
   }
 
   goToCheckout = () => {
-    this.props.history.push('/checkout');
+    this.props.history.push("/checkout");
   };
 
   render() {
@@ -34,7 +34,9 @@ class ItemList extends Component {
               ) : (
                 items.map(item => <Item key={item.id} item={item} />)
               )}
-              <li className="list-item has-text-centered">Total: {total.toFixed(2)}</li>
+              <li className="list-item has-text-centered">
+                Total: {total.toFixed(2)}
+              </li>
             </ul>
           </div>
         </section>

@@ -1,9 +1,9 @@
-import React from 'react';
-import QuantitySelector from '../QuantitySelector/QuantitySelector';
+import React from "react";
+import QuantitySelector from "../QuantitySelector/QuantitySelector";
 
 export default function DetailedProduct(props) {
   return (
-    <div className={props.modal ? 'modal is-active' : 'modal'}>
+    <div className={props.modal ? "modal is-active" : "modal"}>
       <a className="modal-background" onClick={props.handleClick} />
       <div className="modal-content">
         <div className="box">
@@ -11,27 +11,26 @@ export default function DetailedProduct(props) {
             <div
               className="media-left center"
               style={{
-                height: '370px',
-                width: '300px',
-                marginTop: '20px',
-                marginBottom: '20px',
-                marginRight: '10px',
-                marginLeft: '10px',
+                height: "370px",
+                width: "300px",
+                marginTop: "20px",
+                marginBottom: "20px",
+                marginRight: "10px",
+                marginLeft: "10px"
               }}
             >
-              <figure className="image">
-                <img
-                  src="https://cdn.shoplightspeed.com/shops/611413/files/7188569/lost-coast-brewery-lost-coast-brewery-sharkinator.jpg"
-                  alt="Image"
-                />
-              </figure>
+              <img
+                src={props.beverage.imageURL}
+                style={{ height: "410px", width: "325px" }}
+                alt="Image"
+              />
             </div>
             <div
               className="media-content"
-              style={{ marginTop: '50px', marginRight: '50px' }}
+              style={{ marginTop: "50px", marginRight: "50px" }}
             >
               <div className="content">
-                <div style={{ paddingBottom: '5px' }}>
+                <div style={{ paddingBottom: "5px" }}>
                   <div className="is-size-4 has-text-weight-semibold">
                     {props.beverage.name}
                   </div>
@@ -41,23 +40,23 @@ export default function DetailedProduct(props) {
                 </div>
                 <br />
 
-                <div style={{ paddingBottom: '5px' }}>
+                <div style={{ paddingBottom: "5px" }}>
                   {props.beverage.description}
                 </div>
                 <br />
                 <small>
-                  {props.beverage.size + ' fl. oz.'}
+                  {props.beverage.size + " fl. oz."}
                   <br />
-                  {'Alcohol by Volume: ' + props.beverage.percentAlcohol + '%'}
+                  {"Alcohol by Volume: " + props.beverage.percentAlcohol + "%"}
                   <br />
-                  {'Category: ' + props.beverage.category}
+                  {"Category: " + props.beverage.category}
                 </small>
                 <br />
               </div>
               <nav className="level is-mobile">
                 <div className="level-left">
                   <div className="is-size-5 has-text-danger">
-                    {'$' + props.beverage.price + ' ea.'}
+                    {"$" + props.beverage.price + " ea."}
                   </div>
                 </div>
                 {props.inCart && props.inCart.id ? (

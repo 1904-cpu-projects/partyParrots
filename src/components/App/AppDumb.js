@@ -6,6 +6,8 @@ import Nav from '../Nav/Nav';
 import Products from '../Products';
 import SignUp from '../SignUp/SignUp';
 import ItemList from '../ItemList/ItemList';
+import Home from '../Home';
+import CheckoutForm from '../CheckoutForm';
 
 class App extends Component {
   // fetching beverages here is temporary, but right spot for cart and user
@@ -23,6 +25,8 @@ class App extends Component {
         <GuestOnly exact={true} path="/signup" component={SignUp} />
         <Route exact path="/products" component={Products} />
         <Route exact path="/cart" component={ItemList} />
+        <Route exact path="/home" component={Home} />
+        <Route exact path="/checkout" component={CheckoutForm} />
       </HashRouter>
     );
   }
