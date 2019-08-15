@@ -16,7 +16,9 @@ const makeBeverageData = (
   category,
   price,
   size,
-  quantity
+  quantity,
+  imageURL,
+  hoverURL,
   // eslint-disable-next-line max-params
 ) => ({
   name,
@@ -27,6 +29,8 @@ const makeBeverageData = (
   price,
   size,
   quantity,
+  imageURL,
+  hoverURL,
 });
 
 const usersData = [
@@ -50,7 +54,9 @@ const beveragesData = [
     'IPA',
     13.99,
     12,
-    20
+    20,
+    'https://dydza6t6xitx6.cloudfront.net/ci-ballast-point-sculpin-ipa-d68f4692b85c1416.png',
+    'https://untappd.akamaized.net/site/beer_logos_hd/beer-_5558_hd_1efe39f0ec17fa120978033a71dd26.jpeg'
   ),
   makeBeverageData(
     'Delirium Tremens',
@@ -60,7 +66,9 @@ const beveragesData = [
     'Belgian',
     7.99,
     20,
-    10
+    10,
+    'https://dydza6t6xitx6.cloudfront.net/ci-delirium-tremens-cc7c777c5292a683.png',
+    'http://www.thepoisonreview.com/wp-content/uploads/delirium_tremens_label1.gif',
   ),
   makeBeverageData(
     'King JJJuliusss',
@@ -70,7 +78,7 @@ const beveragesData = [
     'IPA',
     3.99,
     12,
-    40
+    40,
   ),
   makeBeverageData(
     'Namaste White',
@@ -80,7 +88,9 @@ const beveragesData = [
     'Belgian',
     1.24,
     12,
-    35
+    35,
+    'https://dydza6t6xitx6.cloudfront.net/ci-dogfish-head-namaste-b617315e342ddda7.png',
+    'https://untappd.akamaized.net/site/beer_logos_hd/beer-6400_71f33_hd.jpeg'
   ),
   makeBeverageData(
     'Vanilla Oatis',
@@ -90,7 +100,9 @@ const beveragesData = [
     'Dark',
     2.78,
     12,
-    40
+    40,
+    'https://48tk9j3a74jb133e1k2fzz2s-wpengine.netdna-ssl.com/wp-content/uploads/2016/02/Ninkasi-Vanilla-Oatis-bottle.jpg',
+    'https://live.staticflickr.com/65535/48533491746_cd54547ee5.jpg'
   ),
   makeBeverageData(
     'Brother Thelonious',
