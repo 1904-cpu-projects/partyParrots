@@ -1,97 +1,115 @@
 import React from "react";
 
-export default function CheckoutForm() {
+const CheckoutForm = ({ values, errors, isSubmitted, handleChange, handleSubmit, clear }) => {
   return (
     <section className="section">
       <div className="columns is-centered">
         <div className="column is-two-thirds">
-          <form>
+          <form onSubmit={handleSubmit}>
             <div className="field is-centered">
               <div className="has-text-centered">
                 <label className="is-size-3">Place Order</label>
               </div>
             </div>
 
-            <div class="field is-horizontal">
-              <div class="field-label is-normal">
-                <label class="label">Full Name:</label>
+            <div className="field is-horizontal">
+              <div className="field-label is-normal">
+                <label className="label">Full Name:</label>
               </div>
-              <div class="field-body">
-                <div class="field">
-                  <p class="control is-expanded has-icons-left">
-                    <input class="input" type="text" placeholder="First Name" />
-                    <span class="icon is-small is-left">
-                      <i class="fas fa-user" />
-                    </span>
-                  </p>
-                </div>
-                <div class="field">
-                  <p class="control is-expanded has-icons-left has-icons-right">
+              <div className="field-body">
+                <div className="field">
+                  <p className="control is-expanded has-icons-left">
                     <input
-                      class="input"
+                      className="input"
+                      name='firstName'
                       type="text"
+                      onChange={handleChange}
+                      placeholder="First Name"
+                      value={values.firstName}
+                      />
+                    <span className="icon is-small is-left">
+                      <i className="fas fa-user" />
+                    </span>
+                  </p>
+                </div>
+                <div className="field">
+                  <p className="control is-expanded has-icons-left has-icons-right">
+                    <input
+                      className="input"
+                      name='lastName'
+                      type="text"
+                      onChange={handleChange}
                       placeholder="Last Name"
-                      value=""
+                      value={values.lastName}
+
                     />
-                    <span class="icon is-small is-left">
-                      <i class="fas fa-user" />
+                    <span className="icon is-small is-left">
+                      <i className="fas fa-user" />
                     </span>
                   </p>
                 </div>
               </div>
             </div>
 
-            <div class="field is-horizontal">
-              <div class="field-label is-normal">
-                <label class="label">Contact:</label>
+            <div className="field is-horizontal">
+              <div className="field-label is-normal">
+                <label className="label">Contact:</label>
               </div>
-              <div class="field-body">
-                <div class="field">
-                  <p class="control is-expanded has-icons-left has-icons-right">
+              <div className="field-body">
+                <div className="field">
+                  <p className="control is-expanded has-icons-left has-icons-right">
                     <input
-                      class="input"
+                      className="input"
                       type="email"
+                      name='email'
+                      onChange={handleChange}
                       placeholder="Email Address"
-                      value=""
+                      value={values.email}
                     />
-                    <span class="icon is-small is-left">
-                      <i class="fas fa-user" />
+                    <span className="icon is-small is-left">
+                      <i className="fas fa-user" />
                     </span>
                   </p>
                 </div>
 
-                <div class="field">
-                  <p class="control is-expanded has-icons-left has-icons-right">
+                <div className="field">
+                  <p className="control is-expanded has-icons-left has-icons-right">
                     <input
-                      class="input"
-                      type="email"
+                      className="input"
+                      type="tel"
+                      pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                      name='phone'
                       placeholder="Phone Number"
-                      value=""
+                      value={values.phone}
+                      onChange={handleChange}
                     />
-                    <span class="icon is-small is-left">
-                      <i class="fas fa-user" />
+                    <span className="icon is-small is-left">
+                      <i className="fas fa-user" />
                     </span>
                   </p>
-                  <p class="help">example: (xxx) xxx-xxxx</p>
+                  <p className="help">example: 444-876-5309</p>
                 </div>
               </div>
             </div>
 
-            <div class="field is-horizontal">
-              <div class="field-label is-normal">
-                <label class="label">Address Line 1:</label>
+            <div className="field is-horizontal">
+              <div className="field-label is-normal">
+                <label className="label">Address Line 1:</label>
               </div>
-              <div class="field-body">
-                <div class="field">
-                  <div class="control">
-                    <p class="control is-expanded has-icons-left has-icons-right">
+              <div className="field-body">
+                <div className="field">
+                  <div className="control">
+                    <p className="control is-expanded has-icons-left has-icons-right">
                       <input
-                        class="input"
+                        className="input"
                         type="text"
                         placeholder="Street address, P.O. box, company name, c/o"
+                        name='address1'
+                        value={values.address1}
+                        onChange={handleChange}
                       />
-                      <span class="icon is-small is-left">
-                        <i class="fas fa-address-card" />
+                      <span className="icon is-small is-left">
+                        <i className="fas fa-address-card" />
                       </span>
                     </p>
                   </div>
@@ -99,21 +117,24 @@ export default function CheckoutForm() {
               </div>
             </div>
 
-            <div class="field is-horizontal">
-              <div class="field-label is-normal">
-                <label class="label">Address Line 2:</label>
+            <div className="field is-horizontal">
+              <div className="field-label is-normal">
+                <label className="label">Address Line 2:</label>
               </div>
-              <div class="field-body">
-                <div class="field">
-                  <div class="control">
-                    <p class="control is-expanded has-icons-left has-icons-right">
+              <div className="field-body">
+                <div className="field">
+                  <div className="control">
+                    <p className="control is-expanded has-icons-left has-icons-right">
                       <input
-                        class="input"
+                        className="input"
                         type="text"
                         placeholder="Apartment, suite, unit, building, floor, etc."
+                        name='address2'
+                        value={values.address2}
+                        onChange={handleChange}
                       />
-                      <span class="icon is-small is-left">
-                        <i class="fas fa-address-card" />
+                      <span className="icon is-small is-left">
+                        <i className="fas fa-address-card" />
                       </span>
                     </p>
                   </div>
@@ -121,17 +142,24 @@ export default function CheckoutForm() {
               </div>
             </div>
 
-            <div class="field is-horizontal">
-              <div class="field-label is-normal">
-                <label class="label">City:</label>
+            <div className="field is-horizontal">
+              <div className="field-label is-normal">
+                <label className="label">City:</label>
               </div>
-              <div class="field-body">
-                <div class="field">
-                  <div class="control">
-                    <p class="control is-expanded has-icons-left has-icons-right">
-                      <input class="input" type="text" placeholder="City" />
-                      <span class="icon is-small is-left">
-                        <i class="fas fa-city" />
+              <div className="field-body">
+                <div className="field">
+                  <div className="control">
+                    <p className="control is-expanded has-icons-left has-icons-right">
+                      <input
+                      className="input"
+                      type="text"
+                      placeholder="City"
+                      name='city'
+                      value={values.city}
+                      onChange={handleChange}
+                      />
+                      <span className="icon is-small is-left">
+                        <i className="fas fa-city" />
                       </span>
                     </p>
                   </div>
@@ -139,15 +167,15 @@ export default function CheckoutForm() {
               </div>
             </div>
 
-            <div class="field is-horizontal">
-              <div class="field-label">
-                <label class="label">State:</label>
+            <div className="field is-horizontal">
+              <div className="field-label">
+                <label className="label">State:</label>
               </div>
-              <div class="field-body">
-                <div class="field has-addons">
-                  <div class="control is-expanded">
-                    <div class="select is-fullwidth">
-                      <select name="country">
+              <div className="field-body">
+                <div className="field has-addons">
+                  <div className="control is-expanded">
+                    <div className="select is-fullwidth">
+                      <select name="state" onChange={handleChange} >
                         <option value="AL">Alabama</option>
                         <option value="AK">Alaska</option>
                         <option value="AZ">Arizona</option>
@@ -206,17 +234,24 @@ export default function CheckoutForm() {
               </div>
             </div>
 
-            <div class="field is-horizontal">
-              <div class="field-label is-normal">
-                <label class="label">Zip Code:</label>
+            <div className="field is-horizontal">
+              <div className="field-label is-normal">
+                <label className="label">Zip Code:</label>
               </div>
-              <div class="field-body">
-                <div class="field">
-                  <div class="control">
-                    <p class="control is-expanded has-icons-left has-icons-right">
-                      <input class="input" type="text" placeholder="Zip Code" />
-                      <span class="icon is-small is-left">
-                        <i class="fas fa-map-marker-alt" />
+              <div className="field-body">
+                <div className="field">
+                  <div className="control">
+                    <p className="control is-expanded has-icons-left has-icons-right">
+                      <input
+                        className="input"
+                        type="number"
+                        placeholder="Zip Code"
+                        name='zip'
+                        value={values.zip}
+                        onChange={handleChange}
+                      />
+                      <span className="icon is-small is-left">
+                        <i className="fas fa-map-marker-alt" />
                       </span>
                     </p>
                   </div>
@@ -224,39 +259,38 @@ export default function CheckoutForm() {
               </div>
             </div>
 
-            <div class="field is-horizontal">
-              <div class="field-label">
-                <label class="label">Already a member?</label>
-              </div>
-              <div class="field-body">
-                <div class="field is-narrow">
-                  <div class="control">
-                    <label class="radio">
-                      <input type="radio" name="member" />
-                      Yes
-                    </label>
-                    <label class="radio">
-                      <input type="radio" name="member" />
-                      No
-                    </label>
+            <div className="field">
+              <div className="field-label" />
+              <div className="field-body">
+                <div className="field center">
+                  <div className="control">
+                    <button
+                    className="button is-primary"
+                    disabled={isSubmitted}>
+                      Place Order
+                    </button>
                   </div>
                 </div>
               </div>
             </div>
 
-            <div class="field">
-              <div class="field-label" />
-              <div class="field-body">
-                <div class="field center">
-                  <div class="control">
-                    <button class="button is-primary">Place Order</button>
+            <div className="field">
+              <div className="field-label" />
+              <div className="field-body">
+                <div className="field center">
+                  <div className="control">
+                    <button className="button is-danger" onClick={clear}>Clear</button>
                   </div>
                 </div>
               </div>
             </div>
+
           </form>
+          {isSubmitted && <div>Order Successful!</div>}
         </div>
       </div>
     </section>
   );
 }
+
+export default CheckoutForm;

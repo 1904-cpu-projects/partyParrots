@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import _Checkout from './CheckoutDumb';
 import CheckoutForm from './CheckoutForm';
 
 class Checkout extends React.Component {
@@ -15,15 +14,17 @@ class Checkout extends React.Component {
         address1: '',
         address2: '',
         city: '',
-        state: 'Alabama',
+        state: 'AL',
         zip: '',
       },
       errors: {},
+      isSubmitted: false
     };
 
   }
 
-  clear = () => {
+  clear = (ev) => {
+    ev.preventDefault();
     this.setState({
       values: {
         firstName: '',
@@ -33,9 +34,10 @@ class Checkout extends React.Component {
         address1: '',
         address2: '',
         city: '',
-        state: 'Alabama',
+        state: 'AL',
         zip: '',
-      }
+      },
+      errors: {},
     })
   };
 
@@ -56,12 +58,14 @@ class Checkout extends React.Component {
 
   handleSubmit = async (ev) => {
     ev.preventDefault();
-
+    this.setState(state => ({
+      ...state,
+      isSubmitted: true
+    }));
   };
 
   render(){
     const { handleSubmit, handleChange, clear, state } = this;
-
     return (
       <div>
         <CheckoutForm
