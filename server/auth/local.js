@@ -21,10 +21,16 @@ router.post(
   }
 );
 
-router.put('/login', async (req, res, next) => {
+router.put('/login', findGuestCartMiddleware(Order), async (req, res, next) => {
   try {
     const user = await User.login(req.body.email, req.body.password);
     req.session.userId = user.id;
+
+    if (req.guestCart) {
+      console.log('guest cart!!!!', req.guestCart);
+      await req.guestCart.setUserOrMerge(user);
+    }
+
     res.json(user);
   } catch (error) {
     next(error);

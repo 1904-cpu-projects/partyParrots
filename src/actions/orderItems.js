@@ -62,6 +62,7 @@ export const getItem = id => async (dispatch, _, axios) => {
   }
 };
 
+// eslint-disable-next-line complexity
 export const makeItem = body => async (dispatch, _, axios) => {
   try {
     dispatch(startRequest());
@@ -70,8 +71,10 @@ export const makeItem = body => async (dispatch, _, axios) => {
       validateStatus,
     });
 
-    if (status === 400 && data && data.id && data.quantity) {
+    if (status === 400 && data && data.id && data.category) {
       dispatch(updatedBeverage(data));
+    } else if (status === 400 && data && data.id && data.purchasePrice) {
+      dispatch(gotItem(data));
     } else if (status === 200 && data.id) {
       dispatch(madeItem(data));
     }

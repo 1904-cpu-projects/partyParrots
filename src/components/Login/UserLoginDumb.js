@@ -40,7 +40,7 @@ class UserLogin extends Component {
     const { name, value } = target;
     this.setState(state => ({
       ...state,
-      values: { ...this.state.values, [name]: value },
+      values: { ...state.values, [name]: value },
     }));
   };
 
