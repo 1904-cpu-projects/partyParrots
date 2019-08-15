@@ -27,7 +27,6 @@ router.put('/login', findGuestCartMiddleware(Order), async (req, res, next) => {
     req.session.userId = user.id;
 
     if (req.guestCart) {
-      console.log('guest cart!!!!', req.guestCart);
       await req.guestCart.setUserOrMerge(user);
     }
 
