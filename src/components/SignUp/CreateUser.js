@@ -63,7 +63,7 @@ class CreateUser extends Component {
         this.handleErrors(res.data.error);
       } else {
         this.props._loginUser(res.data);
-        this.props.history.push('/products');
+        this.props.history.goBack();
       }
     } catch (err) {
       console.error(err);

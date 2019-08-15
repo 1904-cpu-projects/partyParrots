@@ -62,7 +62,8 @@
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
     "reselect": "^4.0.0",
-    "sequelize": "^5.12.1"
+    "sequelize": "^5.12.1",
+    "uuid": "^3.3.2"
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",
