@@ -1,33 +1,75 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import _Checkout from './CheckoutDumb';
+import CheckoutForm from './CheckoutForm';
 
 class Checkout extends React.Component {
   constructor(){
     super();
     this.state = {
-      values: {},
+      values: {
+        firstName: '',
+        lastName: '',
+        email: '',
+        phone: '',
+        address1: '',
+        address2: '',
+        city: '',
+        state: 'Alabama',
+        zip: '',
+      },
       errors: {},
     };
 
   }
 
   clear = () => {
-    return 'hi'
+    this.setState({
+      values: {
+        firstName: '',
+        lastName: '',
+        email: '',
+        phone: '',
+        address1: '',
+        address2: '',
+        city: '',
+        state: 'Alabama',
+        zip: '',
+      }
+    })
   };
 
-  handleChange = () => {
-    return 'hi'
+  handleErrors = errors => {
+    this.setState(state => ({
+      ...state,
+      errors
+    }));
+  }
+
+  handleChange = ({ target }) => {
+    const { name, value } = target;
+    this.setState(state => ({
+      ...state,
+      values: { ...state.values, [name]: value },
+    }))
   };
 
-  handleSubmit = () => {
-    return 'hi'
+  handleSubmit = async (ev) => {
+    ev.preventDefault();
+
   };
 
   render(){
+    const { handleSubmit, handleChange, clear, state } = this;
+
     return (
       <div>
-        <_Checkout />
+        <CheckoutForm
+          handleChange={handleChange}
+          handleSubmit={handleSubmit}
+          clear={clear}
+          {...state}
+        />
       </div>
     )
   }
