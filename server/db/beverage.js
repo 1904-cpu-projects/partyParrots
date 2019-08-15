@@ -57,7 +57,15 @@ const Beverage = db.define('beverage', {
   imageURL: {
     type: Sequelize.STRING,
     defaultValue:
-      'https://brouwlandprod-yappa.netdna-ssl.com/image/fancy/products-20151110012036-0175273.jpg',
+      'https://cdn.shoplightspeed.com/shops/611413/files/7188569/lost-coast-brewery-lost-coast-brewery-sharkinator.jpg',
+    validate: {
+      isURL: true,
+    },
+  },
+  hoverURL: {
+    type: Sequelize.STRING,
+    defaultValue:
+      'https://untappd.akamaized.net/site/beer_logos_hd/beer-677170_7ee29_hd.jpeg',
     validate: {
       isURL: true,
     },
