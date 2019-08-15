@@ -2,37 +2,47 @@ import React from 'react';
 import { connect } from 'react-redux';
 import _Checkout from './CheckoutDumb';
 
-class Checkout extends Component {
-  constructor () {
-    super();
-    this.state = {
-      values: {
-
-      },
-      errors: {},
-    }
-  }
-
-  handleChange(){
-
-  }
-
-  handleSubmit(){
-
-  }
-
-  clear() {
-
-  }
-
-  render() {
-
-    return(
-      <div>
-        <_Checkout />
-      </div>
-    )
-  }
+const Checkout = () => {
+  return <hr />
 }
 
-export default connect(null, null)(Checkout);
+export default Checkout;
+
+// class Checkout extends Component {
+//   constructor () {
+//     super();
+//     this.state = {
+//       values: {
+
+//       },
+//       errors: {},
+//     }
+//   }
+
+//   handleChange(){
+
+//   }
+
+//   handleSubmit(){
+
+//   }
+
+//   clear() {
+
+//   }
+
+//   render() {
+//     return(
+//       <div>
+//         <hr />
+//       </div>
+//     )
+//   }
+// }
+
+// export default Checkout;
+
+// export default connect(
+//   null,
+//   null
+//   )(Checkout);
