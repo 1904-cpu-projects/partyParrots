@@ -44,8 +44,6 @@ Order.prototype.setUserOrMerge = async function(user) {
       await this.reload({ include: [{ model: OrderItem }] });
       const guestCartItems = this.order_items;
 
-      console.log('items!!!', guestCartItems);
-
       guestCartItems.forEach(async guestCartItem => {
         const existingItem = await OrderItem.findOne({
           where: {
@@ -69,7 +67,6 @@ Order.prototype.setUserOrMerge = async function(user) {
 
       return this.destroy();
     } else {
-      console.log('setting user!!!');
       return this.setUser(user);
     }
   } catch (error) {
