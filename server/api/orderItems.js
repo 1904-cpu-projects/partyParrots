@@ -65,7 +65,8 @@ router.post('/', async (req, res, next) => {
     });
 
     if (existingItem) {
-      res.sendStatus(400);
+      await existingItem.reload({ include: [{ model: Beverage }] });
+      return res.status(400).json(existingItem);
     }
 
     await Beverage.updateQuantity(beverageId, 'subtract', quantity);
