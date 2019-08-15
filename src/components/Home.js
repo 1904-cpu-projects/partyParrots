@@ -6,10 +6,13 @@ export default function Home() {
     <CSSTransitionGroup
       transitionAppear={true}
       transitionName="backgroundFadeIn"
+      transitionAppearTimeout={9000}
+      transitionLeaveTimeout={9000}
+      transitionEnterTimeout={9000}
     >
       <div key="1" className="background example-enter">
         <section style={{ height: "100vh", width: "100vw" }}>
-          <CSSTransitionGroup transitionAppear={true} transitionName="title1">
+          <CSSTransitionGroup transitionAppear={true} transitionName="title1" transitionAppearTimeout={9000}  transitionLeaveTimeout={9000} transitionEnterTimeout={9000}>
             <div
               style={{
                 color: "white",
@@ -22,7 +25,7 @@ export default function Home() {
             </div>
           </CSSTransitionGroup>
 
-          <CSSTransitionGroup transitionAppear={true} transitionName="title2">
+          <CSSTransitionGroup transitionAppear={true} transitionName="title2" transitionAppearTimeout={9000}  transitionLeaveTimeout={9000} transitionEnterTimeout={9000}>
             <div
               style={{
                 marginLeft: "420px",
