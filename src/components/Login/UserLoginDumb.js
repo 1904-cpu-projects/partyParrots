@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 import Form from './LoginForm';
 import { connect } from 'react-redux';
 import { loginUser } from '../../actions/user';
@@ -74,7 +75,7 @@ class UserLogin extends Component {
           <div className="column is-one-third">
             <div className="field is-centered">
               <div className="has-text-centered">
-                <label className="is-size-3">Log In</label>
+                <label className="is-size-3">Log In! Or <Link to='/signup'>sign up</Link>!</label>
               </div>
             </div>
             <Form
