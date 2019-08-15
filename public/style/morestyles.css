@@ -39,3 +39,10 @@
   opacity: 1;
   transition: opacity 2800ms ease-in;
 }
+
+hr {
+  border: 0;
+  height: 1px;
+  background-image: linear-gradient(to right, rgba(194, 187, 187, 0), rgba(203, 202, 204, 0.75), rgba(109, 107, 107, 0));
+  
+}
