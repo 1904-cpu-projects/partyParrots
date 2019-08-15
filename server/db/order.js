@@ -27,4 +27,10 @@ Order.beforeSave(instance => {
   return instance;
 });
 
+Order.prototype.setUser = function({ id }) {
+  this.userId = id;
+  this.sessionId = null;
+  return this.save();
+};
+
 module.exports = Order;

@@ -33,9 +33,23 @@ const isLoggedInMiddleware = (req, res, next) => {
   }
 };
 
+const findGuestCartMiddleware = Order => async (req, _, next) => {
+  try {
+    const sessionId = req.session.id;
+    if (sessionId) {
+      const cart = await Order.findOne({ where: { sessionId } });
+      req.guestCart = cart ? cart : null;
+    }
+    next();
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = {
   isAdminMiddleware,
   isLoggedInMiddleware,
+  findGuestCartMiddleware,
   AuthError,
   QuantityError,
 };
