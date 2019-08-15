@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from 'react-router-dom';
 
 const CheckoutForm = ({ values, errors, isSubmitted, handleChange, handleSubmit, clear }) => {
   return (
@@ -279,14 +280,26 @@ const CheckoutForm = ({ values, errors, isSubmitted, handleChange, handleSubmit,
               <div className="field-body">
                 <div className="field center">
                   <div className="control">
-                    <button className="button is-danger" onClick={clear}>Clear</button>
+                    <button
+                    className="button is-danger"
+                    onClick={clear}
+                    disabled={isSubmitted}>
+                      Clear
+                  </button>
                   </div>
                 </div>
               </div>
             </div>
 
           </form>
-          {isSubmitted && <div>Order Successful!</div>}
+          {isSubmitted &&
+            <div>
+              Order Successful!
+              <Link to='/products'>
+                Continue Browsing
+              </Link>
+            </div>
+          }
         </div>
       </div>
     </section>
