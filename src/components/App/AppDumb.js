@@ -7,7 +7,7 @@ import Products from '../Products';
 import SignUp from '../SignUp/SignUp';
 import ItemList from '../ItemList/ItemList';
 import Home from '../Home';
-import CheckoutForm from '../CheckoutForm';
+import Checkout from '../Checkout/Checkout';
 
 class App extends Component {
   // fetching beverages here is temporary, but right spot for cart and user
@@ -20,13 +20,13 @@ class App extends Component {
   render() {
     return (
       <HashRouter>
-        <Route path="/" component={Nav} />
+        <Nav />
         <GuestOnly exact={true} path="/login" component={LoginForm} />
         <GuestOnly exact={true} path="/signup" component={SignUp} />
         <Route exact path="/products" component={Products} />
         <Route exact path="/cart" component={ItemList} />
-        <Route exact path="/home" component={Home} />
-        <Route exact path="/checkout" component={CheckoutForm} />
+        <Route exact path="/" component={Home} />
+        <Route exact path="/checkout" component={Checkout} />
       </HashRouter>
     );
   }
