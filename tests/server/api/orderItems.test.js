@@ -35,17 +35,8 @@ afterAll(async () => {
 describe('/api/orderItems/', () => {
   let cookie;
 
-  describe('is shielded from logged out clients', () => {
-    test('sends status 401 to a logged out client', async () => {
-      try {
-        const res = await server.get('/api/orderItems/');
-        expect(res.status).toBe(401);
-      } catch (error) {
-        throw error;
-      }
-    });
-
-    test('lets logged in clients make requests', async () => {
+  describe('get cookie', () => {
+    test('lets clients make requests', async () => {
       try {
         const res1 = await server.put('/auth/local/login').send({
           email: 'tester@email.com',
@@ -257,7 +248,7 @@ describe('/api/orderItems/', () => {
           .send({
             beverageId: beverage.id,
             purchasePrice: beverage.price,
-            quantity: beverage.quantity - 20,
+            quantity: beverage.quantity,
           })
           .set('cookie', cookie)
           .set('Accept', 'application/json');

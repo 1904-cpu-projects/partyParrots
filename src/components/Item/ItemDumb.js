@@ -23,7 +23,7 @@ const Item = ({ item, updateItem, deleteItem }) => {
           <p>
             {item.beverage.name} by {item.beverage.manufacturer}
           </p>
-          <p>$ {item.beverage.price}</p>
+          <p>$ {item.beverage.price} ea.</p>
         </div>
       </div>
 

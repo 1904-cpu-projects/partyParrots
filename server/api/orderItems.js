@@ -14,11 +14,19 @@ router.use(async (req, res, next) => {
     req.method === 'POST' ||
     (req.method === 'GET' && req.originalUrl === '/api/orderItems/')
   ) {
-    const userId = req.user.id;
-    const [order] = await Order.findOrCreate({
-      where: { userId, purchased: false },
-    });
-    req.orderId = order.id;
+    if (req.user) {
+      const userId = req.user.id;
+      const [order] = await Order.findOrCreate({
+        where: { userId, purchased: false },
+      });
+      req.orderId = order.id;
+    } else {
+      const sessionId = req.session.id;
+      const [order] = await Order.findOrCreate({
+        where: { sessionId, purchased: false },
+      });
+      req.orderId = order.id;
+    }
   }
   next();
 });
@@ -57,7 +65,8 @@ router.post('/', async (req, res, next) => {
     });
 
     if (existingItem) {
-      res.sendStatus(400);
+      await existingItem.reload({ include: [{ model: Beverage }] });
+      return res.status(400).json(existingItem);
     }
 
     await Beverage.updateQuantity(beverageId, 'subtract', quantity);

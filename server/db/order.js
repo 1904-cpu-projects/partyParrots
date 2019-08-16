@@ -1,5 +1,6 @@
 const Sequelize = require('sequelize');
 const db = require('./connection');
+const OrderItem = require('./orderItem');
 
 const Order = db.define('order', {
   id: {
@@ -14,6 +15,10 @@ const Order = db.define('order', {
   purchaseDate: {
     type: Sequelize.DATE,
   },
+  sessionId: {
+    type: Sequelize.STRING,
+    allowNull: true,
+  },
 });
 
 Order.beforeSave(instance => {
@@ -22,5 +27,51 @@ Order.beforeSave(instance => {
   }
   return instance;
 });
+
+Order.prototype.setUser = function({ id }) {
+  this.userId = id;
+  this.sessionId = null;
+  return this.save();
+};
+
+Order.prototype.setUserOrMerge = async function(user) {
+  try {
+    const existingOrder = await Order.findOne({
+      where: { userId: user.id, purchased: false },
+    });
+
+    if (existingOrder) {
+      await this.reload({ include: [{ model: OrderItem }] });
+      const guestCartItems = this.order_items;
+
+      guestCartItems.forEach(async guestCartItem => {
+        const existingItem = await OrderItem.findOne({
+          where: {
+            beverageId: guestCartItem.beverageId,
+            orderId: existingOrder.id,
+          },
+        });
+
+        if (existingItem) {
+          await Promise.all([
+            existingItem.update({
+              quantity: guestCartItem.quantity,
+              purchasePrice: guestCartItem.purchasePrice,
+            }),
+            guestCartItem.destroy(),
+          ]);
+        } else {
+          await guestCartItem.update({ orderId: existingOrder.id });
+        }
+      });
+
+      return this.destroy();
+    } else {
+      return this.setUser(user);
+    }
+  } catch (error) {
+    throw error;
+  }
+};
 
 module.exports = Order;

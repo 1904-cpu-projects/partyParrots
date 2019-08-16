@@ -7,3 +7,42 @@
 .full-height {
   height: 100%
 }
+
+.background {
+  background-image: url("./bougieBrewsBackground.jpg");
+  background-size: cover;
+}
+
+.backgroundFadeIn-appear {
+  opacity: 0.01;
+}
+
+.backgroundFadeIn-appear.backgroundFadeIn-appear-active {
+  opacity: 1;
+  transition: opacity 700ms ease-in;
+}
+
+.title1-appear {
+  opacity: 0.01;
+}
+
+.title1-appear.title1-appear-active {
+  opacity: 1;
+  transition: opacity 1300ms ease-in;
+}
+
+.title2-appear {
+  opacity: 0.01;
+}
+
+.title2-appear.title2-appear-active {
+  opacity: 1;
+  transition: opacity 2800ms ease-in;
+}
+
+hr {
+  border: 0;
+  height: 1px;
+  background-image: linear-gradient(to right, rgba(194, 187, 187, 0), rgba(203, 202, 204, 0.75), rgba(109, 107, 107, 0));
+  
+}
