@@ -1,10 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import CheckoutForm from './CheckoutForm';
+import axios from 'axios';
 
 class Checkout extends React.Component {
-  constructor(){
-    super();
+  constructor(props){
+    super(props);
     this.state = {
       values: {
         firstName: '',
@@ -58,14 +59,23 @@ class Checkout extends React.Component {
 
   handleSubmit = async (ev) => {
     ev.preventDefault();
-    this.setState(state => ({
-      ...state,
-      isSubmitted: true
-    }));
+    try {
+      const res = await axios.put('/api/checkout', {
+        ...this.state.values,
+      });
+      this.setState(state => ({
+        ...state,
+        isSubmitted: true
+      }));
+    }
+    catch (err) {
+      console.log(err);
+    }
   };
 
   render(){
-    const { handleSubmit, handleChange, clear, state } = this;
+    const { handleSubmit, handleChange, clear, state, props } = this;
+    console.log(props.user.firstName)
     return (
       <div>
         <CheckoutForm
@@ -79,8 +89,14 @@ class Checkout extends React.Component {
   }
 }
 
+const mapStateToProps = state => {
+  const user = state.user.user ? state.user.user : {}
+  return {
+    user
+  }
+}
 
 export default connect(
-  null,
+  mapStateToProps,
   null
   )(Checkout);
