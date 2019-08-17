@@ -9,14 +9,14 @@ const Address = require('./address');
 User.hasMany(Order);
 Order.belongsTo(User);
 
+Address.hasMany(User);
+User.belongsTo(Address);
+
 Order.hasMany(OrderItem);
 OrderItem.belongsTo(Order);
 
 Beverage.hasMany(OrderItem);
 OrderItem.belongsTo(Beverage);
-
-Address.belongsTo(User);
-User.hasMany(Address);
 
 module.exports = {
   db,

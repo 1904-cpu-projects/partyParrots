@@ -75,7 +75,6 @@ class Checkout extends React.Component {
 
   render(){
     const { handleSubmit, handleChange, clear, state, props } = this;
-    console.log(props.user.firstName)
     return (
       <div>
         <CheckoutForm
