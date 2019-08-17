@@ -1,5 +1,6 @@
-// look into heroku node env to make below condititional
-require('dotenv').config();
+if (!process.env.IS_PRODUCTION) {
+  require('dotenv').config();
+}
 
 const path = require('path');
 const express = require('express');

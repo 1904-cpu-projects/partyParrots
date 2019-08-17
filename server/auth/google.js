@@ -5,7 +5,8 @@ const Axios = require('axios');
 const { User, Order } = require('../db/index');
 const { findGuestCartMiddleware } = require('../../utils/backend');
 
-const redirect_uri = 'http://localhost:3000/auth/google/callback';
+const redirect_uri =
+  process.env.REDIRECT_URI || 'http://localhost:3000/auth/google/callback';
 const emailScope = 'https://www.googleapis.com/auth/userinfo.email';
 const userScope = 'https://www.googleapis.com/auth/userinfo.profile';
 
