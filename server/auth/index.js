@@ -2,6 +2,7 @@ const router = require('express').Router();
 const { removeCachedUser } = require('../app/serializeUserMiddleware');
 
 router.use('/local', require('./local'));
+router.use('/google', require('./google'));
 
 router.get('/me', (req, res) => {
   if (req.user) {

@@ -93,6 +93,7 @@ const Markup = ({ handleSubmit, handleChange, clear, values, errors }) => {
           <button type="submit" className="button is-primary is-rounded">
             Sign up
           </button>
+          {' '}
           <button type="button" className="button is-rounded" onClick={clear}>
             Clear
           </button>
