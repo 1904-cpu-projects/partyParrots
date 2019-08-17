@@ -1,7 +1,7 @@
 import React from 'react';
 import QuantitySelector from '../QuantitySelector/QuantitySelector';
 
-const Item = ({ item, updateItem, deleteItem }) => {
+const Item = ({ item, deleteItem, display }) => {
   return (
     <div
       style={{
@@ -19,7 +19,6 @@ const Item = ({ item, updateItem, deleteItem }) => {
         }}
       >
         <div className="content">
-          {/* make beverage name a link to single bev modal route */}
           <p>
             {item.beverage.name} by {item.beverage.manufacturer}
           </p>
@@ -36,17 +35,31 @@ const Item = ({ item, updateItem, deleteItem }) => {
       >
         <div className="field is-grouped">
           <div className="control">
-            <QuantitySelector item={item} showZero={false} />
+            {display ? (
+              <div className="select">
+                <select readOnly={true} value={item.quantity}>
+                  <option value={item.quantity}>{item.quantity}</option>
+                </select>
+              </div>
+            ) : (
+              <QuantitySelector
+                display={display}
+                item={item}
+                showZero={false}
+              />
+            )}
           </div>
-          <p className="control">
-            <button
-              className="button is-danger"
-              type="button"
-              onClick={() => deleteItem(item.id)}
-            >
-              Delete
-            </button>
-          </p>
+          {!display && (
+            <p className="control">
+              <button
+                className="button is-danger"
+                type="button"
+                onClick={() => deleteItem(item.id)}
+              >
+                Delete
+              </button>
+            </p>
+          )}
         </div>
       </div>
     </div>
