@@ -15,9 +15,7 @@ const parseValidate = e => {
   } else if (key === 'isEmail') {
     msg = sentenceCase(`${path} must be a valid email address.`);
   } else if (key === 'len' && path === 'password') {
-    msg = 'Password must be at least 7 characters long.';
-  } else if ((key === 'min' || key === 'max') && path === 'GPA') {
-    msg = 'GPA must be greater than 0.0 and less than 5.0.';
+    msg = 'Password must be at least 5 characters long.';
   }
 
   return msg;
