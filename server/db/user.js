@@ -78,6 +78,7 @@ User.beforeUpdate(async instance => {
 User.prototype.toJSON = function() {
   const values = this.get();
   delete values.password;
+  delete values.googleId;
   return values;
 };
 
