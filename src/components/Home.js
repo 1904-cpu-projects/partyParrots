@@ -35,7 +35,7 @@ export default function Home() {
                 fontWeight: "bold"
               }}
             >
-              Boujee Brews
+              Bougie Brews
             </div>
             <div style={{ marginLeft: "300px" }} />
           </CSSTransitionGroup>
