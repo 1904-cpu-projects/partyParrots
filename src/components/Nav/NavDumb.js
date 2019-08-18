@@ -25,7 +25,13 @@ function Nav({ loggedIn, logout, navOpen, toggleNav }) {
         <div
           id="Navbar"
           className={`navbar-menu ${navOpen ? 'is-active' : ''}`}
-          onClick={toggleNav}
+          onClick={e => {
+            if (navOpen) {
+              toggleNav(e);
+            } else {
+              e.preventDefault();
+            }
+          }}
         >
           <div className="navbar-start">
             <Link to="/products" className="navbar-item has-text-grey">
