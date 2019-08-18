@@ -75,32 +75,39 @@ class Products extends Component {
 
         <div className="container" style={{ marginBottom: '2%' }}>
           <form onSubmit={e => e.preventDefault()}>
-            <div className="field is-grouped">
-              <label className="label is-sr-only">Category:</label>
-              <div className="select">
-                <select
-                  value={queries.category ? queries.category : ''}
-                  onChange={e => this.changeCategory(e.target.value)}
-                >
-                  <option value="">-- Select a category --</option>
-                  {BeverageCategories.map(cat => (
-                    <option key={cat} value={cat}>
-                      {cat}
-                    </option>
-                  ))}
-                </select>
-              </div>
-            </div>
+            <div className="field is-horizontal" style={{ width: '40%' }}>
+              <div className="field-body">
+                <div className="field">
+                  <label className="label is-sr-only">Category:</label>
+                  <div className="control">
+                    <div className="select">
+                      <select
+                        value={queries.category ? queries.category : ''}
+                        onChange={e => this.changeCategory(e.target.value)}
+                      >
+                        <option value="">-- Select a category --</option>
+                        {BeverageCategories.map(cat => (
+                          <option key={cat} value={cat}>
+                            {cat}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                  </div>
+                </div>
 
-            <div className="field">
-              <label className="label is-sr-only">Search:</label>
-              <div className="control">
-                <input
-                  className="input"
-                  type="text"
-                  value={queries.search ? queries.search : ''}
-                  onChange={e => this.changeSearch(e.target.value)}
-                />
+                <div className="field">
+                  <label className="label is-sr-only">Search:</label>
+                  <div className="control">
+                    <input
+                      placeholder="search"
+                      className="input"
+                      type="text"
+                      value={queries.search ? queries.search : ''}
+                      onChange={e => this.changeSearch(e.target.value)}
+                    />
+                  </div>
+                </div>
               </div>
             </div>
           </form>
