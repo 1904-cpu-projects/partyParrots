@@ -9,32 +9,61 @@ class Products extends Component {
   componentDidMount() {
     const values = qs.parse(this.props.location.search);
     const category = values.category || 'All';
-    this.props.fetchBevs(category);
+    const search = values.search || 'All';
+    this.props.fetchBevs(category, search);
   }
 
   componentDidUpdate(prevProps) {
-    const prevCategory = qs.parse(prevProps.location.search).category;
-    const category = qs.parse(this.props.location.search).category;
+    const prevQuery = qs.parse(prevProps.location.search);
+    const query = qs.parse(this.props.location.search);
 
-    if (prevCategory !== category) {
-      const _category = category || 'All';
-      this.props.fetchBevs(_category);
+    const prevCategory = prevQuery.category;
+    const prevSearch = prevQuery.search;
+    const category = query.category;
+    const search = query.search;
+
+    if (prevCategory !== category || prevSearch !== search) {
+      this.props.fetchBevs(category, search);
     }
   }
 
   changeCategory = category => {
+    const queries = qs.parse(this.props.location.search);
+
     if (category === '') {
-      this.props.history.push('/products');
-      return;
+      delete queries.category;
+    } else {
+      queries.category = category;
     }
 
+    if (!queries.search && !queries.category) {
+      this.props.history.push('/products');
+    } else {
+      const stringified = qs.stringify(queries);
+      this.props.history.push(`/products?${stringified}`);
+    }
+  };
+
+  changeSearch = search => {
     const queries = qs.parse(this.props.location.search);
-    queries.category = category;
-    const stringified = qs.stringify(queries);
-    this.props.history.push(`/products?${stringified}`);
+
+    if (search === '') {
+      delete queries.search;
+    } else {
+      queries.search = search;
+    }
+
+    if (!queries.search && !queries.category) {
+      this.props.history.push('/products');
+    } else {
+      const stringified = qs.stringify(queries);
+      this.props.history.push(`/products?${stringified}`);
+    }
   };
 
   render() {
+    const queries = qs.parse(this.props.location.search);
+
     return (
       <section className="section" style={{ paddingTop: '90px' }}>
         <div style={{ marginBottom: '50px' }}>
@@ -49,7 +78,10 @@ class Products extends Component {
             <div className="field is-grouped">
               <label className="label is-sr-only">Category:</label>
               <div className="select">
-                <select onChange={e => this.changeCategory(e.target.value)}>
+                <select
+                  value={queries.category ? queries.category : ''}
+                  onChange={e => this.changeCategory(e.target.value)}
+                >
                   <option value="">-- Select a category --</option>
                   {BeverageCategories.map(cat => (
                     <option key={cat} value={cat}>
@@ -57,6 +89,18 @@ class Products extends Component {
                     </option>
                   ))}
                 </select>
+              </div>
+            </div>
+
+            <div className="field">
+              <label className="label is-sr-only">Search:</label>
+              <div className="control">
+                <input
+                  className="input"
+                  type="text"
+                  value={queries.search ? queries.search : ''}
+                  onChange={e => this.changeSearch(e.target.value)}
+                />
               </div>
             </div>
           </form>
@@ -81,8 +125,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  fetchBevs(category) {
-    dispatch(fetchAllBeverages(category));
+  fetchBevs(category, search) {
+    dispatch(fetchAllBeverages(category, search));
   },
 });
 
