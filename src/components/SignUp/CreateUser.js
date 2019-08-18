@@ -62,6 +62,8 @@ class CreateUser extends Component {
 
       if (res.data.error) {
         this.handleErrors(res.data.error);
+      } else if (res.data.errors) {
+        this.handleErrors(res.data.errors);
       } else {
         this.props._loginUser(res.data);
         this.props.history.goBack();

@@ -10,6 +10,7 @@ const helmet = require('helmet');
 const sessionMiddleware = require('./sessionMiddlewarare');
 const sessiodIdMiddleware = require('./sessionIdMiddleware');
 const { serializeUserMiddleware } = require('./serializeUserMiddleware');
+const erorrMiddleware = require('./errorMiddleware');
 
 const staticPath = path.join(__dirname, '..', '..', 'public');
 const app = express();
@@ -29,5 +30,7 @@ app.use('/auth', require('../auth/index'));
 app.use('/api', require('../api/index.js'));
 
 app.get('/hello', (req, res) => res.send('hi!'));
+
+app.use(erorrMiddleware);
 
 module.exports = app;

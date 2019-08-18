@@ -12,6 +12,7 @@ const Form = ({ values, errors, handleChange, handleSubmit, clear }) => {
             value={values.email}
             onChange={handleChange}
             placeholder="Email Address"
+            required
           />
           <span className="icon is-small is-left">
             <i className="fas fa-envelope" />
@@ -30,6 +31,7 @@ const Form = ({ values, errors, handleChange, handleSubmit, clear }) => {
             value={values.password}
             onChange={handleChange}
             placeholder="Password"
+            required
           />
           <span className="icon is-small is-left">
             <i className="fas fa-key" />
@@ -48,7 +50,7 @@ const Form = ({ values, errors, handleChange, handleSubmit, clear }) => {
         <div className="has-text-centered">
           <button type="submit" className="button is-primary is-rounded">
             Login
-          </button>{' '}
+          </button>
           <button type="button" className="button is-rounded" onClick={clear}>
             Clear
           </button>

@@ -38,6 +38,7 @@ const User = db.define('user', {
     allowNull: true,
     validate: {
       notEmpty: true,
+      len: [5]
     },
   },
   imageURL: {
