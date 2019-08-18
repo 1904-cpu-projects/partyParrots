@@ -21,6 +21,7 @@ const Markup = ({ handleSubmit, handleChange, clear, values, errors }) => {
             value={firstName}
             onChange={handleChange}
             placeholder="First Name"
+            required
           />
           <span className="icon is-small is-left">
             <i className="fas fa-user-plus" />
@@ -40,6 +41,7 @@ const Markup = ({ handleSubmit, handleChange, clear, values, errors }) => {
             value={lastName}
             onChange={handleChange}
             placeholder="Last Name"
+            required
           />
           <span className="icon is-small is-left">
             <i className="fas fa-user-plus" />
@@ -59,6 +61,7 @@ const Markup = ({ handleSubmit, handleChange, clear, values, errors }) => {
             value={email}
             onChange={handleChange}
             placeholder="Email Address"
+            required
           />
           <span className="icon is-small is-left">
             <i className="fas fa-envelope" />
@@ -78,6 +81,7 @@ const Markup = ({ handleSubmit, handleChange, clear, values, errors }) => {
             value={password}
             onChange={handleChange}
             placeholder="Create a Password"
+            required
           />
           <span className="icon is-small is-left">
             <i className="fas fa-key" />
