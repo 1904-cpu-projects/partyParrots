@@ -35,7 +35,7 @@ const User = db.define('user', {
   },
   password: {
     type: Sequelize.STRING,
-    allowNull: false,
+    allowNull: true,
     validate: {
       notEmpty: true,
       len: [5]
@@ -53,9 +53,16 @@ const User = db.define('user', {
     type: Sequelize.BOOLEAN,
     defaultValue: false,
   },
+  googleId: {
+    unique: true,
+    type: Sequelize.STRING,
+  },
 });
 
 User.beforeCreate(async instance => {
+  if (instance.googleId) {
+    return;
+  }
   const hash = await User.hash(instance.password);
   instance.password = hash;
   return instance;
@@ -72,6 +79,7 @@ User.beforeUpdate(async instance => {
 User.prototype.toJSON = function() {
   const values = this.get();
   delete values.password;
+  delete values.googleId;
   return values;
 };
 
@@ -95,6 +103,10 @@ User.signup = async function({
   imageURL,
 }) {
   try {
+    if (!password) {
+      throw new AuthError('Password is a required field.', 'password');
+    }
+
     const defaults = { firstName, lastName, password };
     if (imageURL) {
       defaults.imageURL = imageURL;
@@ -103,9 +115,11 @@ User.signup = async function({
       where: { email },
       defaults,
     });
+
     if (created) {
       return user;
     }
+
     throw new AuthError('A user is already registered to this email.', 'email');
   } catch (error) {
     throw error;

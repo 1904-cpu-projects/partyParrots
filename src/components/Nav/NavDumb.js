@@ -7,7 +7,7 @@ function Nav({ loggedIn, logout }) {
       <nav className="navbar" role="navigation" aria-label="main navigation">
         <div className="navbar-brand">
           <Link to="/" className="navbar-item has-text-grey-darker">
-            Bougie Brews
+            Boujee Brews
           </Link>
           <a
             role="button"
