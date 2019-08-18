@@ -74,8 +74,8 @@ class Products extends Component {
         </div>
 
         <div className="container" style={{ marginBottom: '2%' }}>
-          <form onSubmit={e => e.preventDefault()}>
-            <div className="field is-horizontal" style={{ width: '40%' }}>
+          <form style={{ display: 'flex', justifyContent: 'start'}} onSubmit={e => e.preventDefault()}>
+            <div className="field is-horizontal">
               <div className="field-body">
                 <div className="field">
                   <label className="label is-sr-only">Category:</label>
@@ -98,7 +98,7 @@ class Products extends Component {
 
                 <div className="field">
                   <label className="label is-sr-only">Search:</label>
-                  <div className="control">
+                  <div className="control is-expanded">
                     <input
                       placeholder="search"
                       className="input"
