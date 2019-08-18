@@ -60,7 +60,7 @@ class Checkout extends React.Component {
   handleSubmit = async (ev) => {
     ev.preventDefault();
     try {
-      const res = await axios.put('/api/checkout', {
+      const res = await axios.put('/api/orders/checkout', {
         ...this.state.values,
       });
       this.setState(state => ({

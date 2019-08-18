@@ -9,23 +9,22 @@ const Address = db.define('address', {
   },
   address1: {
     type: Sequelize.STRING,
-    // allowNull: false,
+    allowNull: false,
   },
   address2: {
     type: Sequelize.STRING,
-    // allowNull: false,
   },
   city: {
     type: Sequelize.STRING,
-    // allowNull: false,
+    allowNull: false,
   },
   state: {
     type: Sequelize.STRING,
-    // allowNull: false,
+    allowNull: false,
   },
   zip: {
     type: Sequelize.STRING,
-    // allowNull: false,
+    allowNull: false,
   },
   phone: {
     type: Sequelize.STRING,

@@ -77,8 +77,8 @@ const CheckoutForm = ({ values, errors, isSubmitted, handleChange, handleSubmit,
                   <p className="control is-expanded has-icons-left has-icons-right">
                     <input
                       className="input"
-                      // type="tel"
-                      // pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                      type="tel"
+                      pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
                       name='phone'
                       placeholder="Phone Number"
                       value={values.phone}
