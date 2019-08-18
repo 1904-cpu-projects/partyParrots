@@ -51,6 +51,7 @@ const Form = ({ values, errors, handleChange, handleSubmit, clear }) => {
           <button type="submit" className="button is-primary is-rounded">
             Login
           </button>
+          {' '}
           <button type="button" className="button is-rounded" onClick={clear}>
             Clear
           </button>
