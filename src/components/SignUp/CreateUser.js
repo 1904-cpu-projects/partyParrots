@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import axios from 'axios';
 import Markup from './Markup';
+import Google from '../Google';
 
 const validateStatus = _status => {
   return (_status >= 200 && _status < 300) || _status === 401;
@@ -85,6 +86,12 @@ class CreateUser extends Component {
               clear={clear}
               {...state}
             />
+          </div>
+        </div>
+
+        <div className="columns is-centered">
+          <div className="column is-one-third">
+            <Google />
           </div>
         </div>
       </section>
