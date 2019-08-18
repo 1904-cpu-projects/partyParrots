@@ -1,18 +1,27 @@
 import { FETCH_ALL_BEVERAGES, UPDATED_BEV } from './sharedConstants';
-import Axios from 'axios';
 
 const _fetchAllBeverages = response => ({
   type: FETCH_ALL_BEVERAGES,
   payload: response,
 });
 
-export const fetchAllBeverages = () => async dispatch => {
+export const fetchAllBeverages = (cat = 'All') => async (
+  dispatch,
+  _,
+  axios
+) => {
   try {
-    const api = await Axios.get('/api/beverages/');
-    const response = api.data;
-    dispatch(_fetchAllBeverages(response));
-  } catch (err) {
-    console.log('there was an error in fetchAllBeverages');
+    let url = '/api/beverages';
+
+    if (cat !== 'All' && cat) {
+      url += `?category=${cat}`;
+    }
+
+    const { data } = await axios.get(url);
+    const action = _fetchAllBeverages(data);
+    dispatch(action);
+  } catch (error) {
+    console.error(error);
   }
 };
 

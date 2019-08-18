@@ -15,7 +15,6 @@ class App extends Component {
   componentDidMount() {
     this.props.fetchMe();
     this.props.fetchItems();
-    this.props.fetchBeverages();
   }
 
   render() {
