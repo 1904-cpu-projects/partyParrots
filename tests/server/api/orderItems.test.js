@@ -20,14 +20,16 @@ beforeAll(async () => {
     firstName: 'test',
     lastName: 'test',
     email: 'tester@email.com',
-    password: 'test',
+    password: 'test888',
   });
 });
 
 afterAll(async () => {
   const order = await Order.findOne({ where: { userId: user.id } });
-  await OrderItem.destroy({ where: { orderId: order.id } });
-  await order.destroy();
+  if (order) {
+    await OrderItem.destroy({ where: { orderId: order.id } });
+    await order.destroy();
+  }
   await user.destroy();
   return db.close();
 });
@@ -40,7 +42,7 @@ describe('/api/orderItems/', () => {
       try {
         const res1 = await server.put('/auth/local/login').send({
           email: 'tester@email.com',
-          password: 'test',
+          password: 'test888',
         });
         cookie = res1.headers['set-cookie'];
 
