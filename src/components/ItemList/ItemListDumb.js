@@ -15,7 +15,7 @@ const Modal = ({ showModal, closeModal }) => {
             </p>
             <div
               style={{
-                width: '60%',
+                width: '65%',
                 margin: 'auto',
                 display: 'flex',
                 justifyContent: 'space-between',
