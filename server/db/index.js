@@ -12,6 +12,8 @@ Order.belongsTo(User);
 Address.hasMany(User);
 User.belongsTo(Address);
 
+Order.belongsTo(Address);
+
 Order.hasMany(OrderItem);
 OrderItem.belongsTo(Order);
 
