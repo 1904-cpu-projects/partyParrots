@@ -4,9 +4,15 @@ const Beverage = require('./beverage');
 const Session = require('./session');
 const Order = require('./order');
 const OrderItem = require('./orderItem');
+const Address = require('./address');
 
 User.hasMany(Order);
 Order.belongsTo(User);
+
+Address.hasMany(User);
+User.belongsTo(Address);
+
+Order.belongsTo(Address);
 
 Order.hasMany(OrderItem);
 OrderItem.belongsTo(Order);
@@ -21,4 +27,5 @@ module.exports = {
   Session,
   Order,
   OrderItem,
+  Address,
 };
