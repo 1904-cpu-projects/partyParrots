@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import Form from './LoginForm';
 import { connect } from 'react-redux';
 import { loginUser } from '../../actions/user';
+import Google from '../Google';
 
 class UserLogin extends Component {
   constructor(props) {
@@ -45,7 +46,7 @@ class UserLogin extends Component {
     }));
   };
 
-  handleSubmit = async (ev) => {
+  handleSubmit = async ev => {
     ev.preventDefault();
     try {
       const res = await axios.put('/auth/local/login', {
@@ -55,8 +56,8 @@ class UserLogin extends Component {
       if (res.data.error) {
         this.handleErrors(res.data.error);
       } else {
-        this.props._loginUser(res.data)
-        window.history.back()
+        this.props._loginUser(res.data);
+        window.history.back();
       }
     } catch (err) {
       if (err.message.includes('401')) {
@@ -75,7 +76,9 @@ class UserLogin extends Component {
           <div className="column is-one-third">
             <div className="field is-centered">
               <div className="has-text-centered">
-                <label className="is-size-3">Log In! Or <Link to='/signup'>sign up</Link>!</label>
+                <label className="is-size-3">
+                  Log In! Or <Link to="/signup">sign up</Link>!
+                </label>
               </div>
             </div>
             <Form
@@ -86,18 +89,24 @@ class UserLogin extends Component {
             />
           </div>
         </div>
+
+        <div className="columns is-centered">
+          <div className="column is-one-third">
+            <Google />
+          </div>
+        </div>
       </section>
     );
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {
-    _loginUser: (user) => {
-      dispatch(loginUser(user))
-    }
-  }
-}
+    _loginUser: user => {
+      dispatch(loginUser(user));
+    },
+  };
+};
 
 export default connect(
   null,

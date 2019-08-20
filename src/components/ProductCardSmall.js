@@ -1,12 +1,12 @@
-import React, { Component } from "react";
-import DetailedProduct from "./DetailedProduct/DetailedProduct";
+import React, { Component } from 'react';
+import DetailedProduct from './DetailedProduct/DetailedProduct';
 
 export default class ProductCardSmall extends Component {
   constructor(props) {
     super(props);
     this.state = {
       image: this.props.beverage.imageURL,
-      modal: false
+      modal: false,
     };
 
     this.handleClick = this.handleClick.bind(this);
@@ -16,18 +16,18 @@ export default class ProductCardSmall extends Component {
 
   handleClick() {
     this.setState(state => ({
-      modal: !state.modal
+      modal: !state.modal,
     }));
   }
 
   onHover() {
     this.setState({
-      image: this.props.beverage.hoverURL
+      image: this.props.beverage.hoverURL,
     });
   }
   onLeave() {
     this.setState({
-      image: this.props.beverage.imageURL
+      image: this.props.beverage.imageURL,
     });
   }
 
@@ -38,7 +38,7 @@ export default class ProductCardSmall extends Component {
           <a onClick={this.handleClick}>
             <img
               src={this.state.image}
-              style={{ height: "285px", width: "225px" }}
+              style={{ height: '285px', width: '225px' }}
               onMouseEnter={this.onHover}
               onMouseLeave={this.onLeave}
             />
@@ -46,7 +46,7 @@ export default class ProductCardSmall extends Component {
           <div className="level center">
             <a
               className="title is-7"
-              style={{ margin: "6px" }}
+              style={{ margin: '6px' }}
               onClick={this.handleClick}
             >
               {this.props.beverage.name}

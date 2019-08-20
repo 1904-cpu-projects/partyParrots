@@ -21,14 +21,14 @@ export default function Home() {
                 fontStyle: "italic"
               }}
             >
-              <div style={{ marginLeft: "200px" }}>Welcome To...</div>
+              <div style={{ marginLeft: "1em" }}>Welcome To...</div>
             </div>
           </CSSTransitionGroup>
 
           <CSSTransitionGroup transitionAppear={true} transitionName="title2" transitionAppearTimeout={9000}  transitionLeaveTimeout={9000} transitionEnterTimeout={9000}>
             <div
               style={{
-                marginLeft: "420px",
+                textAlign: 'center',
                 marginTop: "10px",
                 fontSize: "100px",
                 color: "white",
