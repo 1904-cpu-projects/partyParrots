@@ -60,6 +60,9 @@ function Nav({ loggedIn, logout, navOpen, toggleNav }) {
                 </button>
               </div>
             )}
+              <Link className='navbar-item has-text-grey' to='/orders'>
+                Past Transactions
+              </Link>
             <div className="navbar-item">
               <Link to="/cart" className="button is-light">
                 <i className="fa fa-shopping-cart has-text-grey-dark" />
