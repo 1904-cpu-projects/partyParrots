@@ -54,7 +54,7 @@ const beveragesData = [
     'IPA',
     13.99,
     12,
-    20,
+    1000,
     'https://dydza6t6xitx6.cloudfront.net/ci-ballast-point-sculpin-ipa-d68f4692b85c1416.png',
     'https://untappd.akamaized.net/site/beer_logos_hd/beer-_5558_hd_1efe39f0ec17fa120978033a71dd26.jpeg'
   ),
@@ -66,7 +66,7 @@ const beveragesData = [
     'Belgian',
     7.99,
     20,
-    10,
+    1000,
     'https://dydza6t6xitx6.cloudfront.net/ci-delirium-tremens-cc7c777c5292a683.png',
     'http://www.thepoisonreview.com/wp-content/uploads/delirium_tremens_label1.gif',
   ),
@@ -78,7 +78,7 @@ const beveragesData = [
     'Belgian',
     1.24,
     12,
-    35,
+    1000,
     'https://dydza6t6xitx6.cloudfront.net/ci-dogfish-head-namaste-b617315e342ddda7.png',
     'https://untappd.akamaized.net/site/beer_logos_hd/beer-6400_71f33_hd.jpeg'
   ),
@@ -90,7 +90,7 @@ const beveragesData = [
     'Dark',
     2.78,
     12,
-    40,
+    1000,
     'https://48tk9j3a74jb133e1k2fzz2s-wpengine.netdna-ssl.com/wp-content/uploads/2016/02/Ninkasi-Vanilla-Oatis-bottle.jpg',
     'https://live.staticflickr.com/65535/48533491746_cd54547ee5.jpg'
   ),
@@ -102,7 +102,7 @@ const beveragesData = [
     'Dark',
     9.99,
     22,
-    50,
+    1000,
     'https://products3.imgix.drizly.com/ci-north-coast-brother-thelonious-belgian-abbey-ale-4000616477ca4688.jpeg?auto=format%2Ccompress&fm=jpeg&q=20',
     'https://s.hdnux.com/photos/71/15/17/14996456/3/rawImage.jpg'
   ),
@@ -114,7 +114,7 @@ const beveragesData = [
     'Sour',
     3.29,
     12,
-    30,
+    1000,
     'https://www.totalwine.com/dynamic/490x/media/sys_master/twmmedia/hd8/hc1/9664172490782.png',
     'https://www.wlvliquors.com/wp-content/uploads/2019/02/Victory-Sour-Monkey.jpeg'
   ),
@@ -126,7 +126,7 @@ const beveragesData = [
     'Red',
     1.49,
     12,
-    70,
+    1000,
     'https://i.pinimg.com/originals/d1/26/36/d126367ef4562fdcc0bf3a5e870f3b61.jpg',
     'http://sanjosebarandgrill.com/wp-content/uploads/2016/07/redtrolley-600x600.jpg'
   ),
@@ -138,7 +138,7 @@ const beveragesData = [
     'Belgian',
     3.04,
     12,
-    25,
+    1000,
     'https://www.totalwine.com/dynamic/490x/media/sys_master/twmmedia/h45/h4c/8799641927710.png',
     'https://cdn1.wine-searcher.net/images/labels/67/76/10206776.jpg'
   ),
@@ -150,7 +150,7 @@ const beveragesData = [
     'Dark',
     2.00,
     12,
-    40,
+    1000,
     'https://beersavant.files.wordpress.com/2012/10/moosedrool.jpg',
     'https://live.staticflickr.com/65535/48559474316_dcdcf5326c.jpg'
   ),
@@ -162,10 +162,10 @@ const beveragesData = [
     'IPA',
     2.88,
     12,
-    50,
+    1000,
     'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQAajwpzKBiorPOH90w0S5DgBy7qxmp0b44gjdhn0272q1auOiT',
     'https://untappd.akamaized.net/site/beer_logos_hd/beer-2412786_19db7_hd.jpeg'
-    
+
   ),
   makeBeverageData(
     'Coors Light',
@@ -175,7 +175,7 @@ const beveragesData = [
     'Lager',
     1.99,
     12,
-    50,
+    1000,
     'https://dydza6t6xitx6.cloudfront.net/ci-coors-light-9373e1becba78338.jpeg',
     'https://www.gomersofkansas.com/wp-content/uploads/2018/03/Coors-Light-Logo.jpg'
   ),
@@ -187,7 +187,7 @@ const beveragesData = [
     'Lager',
     1.99,
     12,
-    50,
+    1000,
     'https://paneco-sg-moonshine-production-s3-amazonaws-com.freetls.fastly.net/spree/images/572/product/budweiser-330ml-bottle.jpg?1504014978',
     'https://cdn.freebiesupply.com/logos/large/2x/budweiser-logo-png-transparent.png'
   ),
@@ -199,7 +199,7 @@ const beveragesData = [
     'Lager',
     1.99,
     12,
-    50,
+    1000,
     'https://cdn.shoplightspeed.com/shops/611413/files/7449685/miller-brewing-co-miller-lite-beer-6pk-bottles.jpg',
     'http://drink101.com/wp-content/uploads/2008/09/edward_40_hands.jpg'
   ),
@@ -211,7 +211,7 @@ const beveragesData = [
     'IPA',
     3.49,
     12,
-    50,
+    1000,
     'https://cdn.shopify.com/s/files/1/0592/5937/products/Firestone_Walker_805_12OZ_BTL_grande.jpeg?v=1415378564',
     'https://pbs.twimg.com/profile_images/509172546176958464/bo-fa98S.jpeg'
   ),
@@ -223,7 +223,7 @@ const beveragesData = [
     'Dark',
     11.99,
     12,
-    50,
+    1000,
     'https://www.beerhawk.co.uk/media/catalog/product/cache/aefcd4d8d5c59ba860378cf3cd2e94da/a/m/amundsen_bourbonba_marshmallow_psycho.png',
     'https://untappd.akamaized.net/site/beer_logos_hd/beer-2191044_e9ab1_hd.jpeg'
   ),
@@ -236,7 +236,7 @@ const beveragesData = [
     'Dark',
     11.50,
     12,
-    50,
+    1000,
     'https://www.beerhawk.co.uk/media/catalog/product/cache/aefcd4d8d5c59ba860378cf3cd2e94da/a/m/amundsen_pecan_psychosis.png',
     'https://res.cloudinary.com/ratebeer/image/upload/e_trim:15/d_beer_img_default.png,f_auto/beer_568645'
   ),
@@ -248,7 +248,7 @@ const beveragesData = [
   'Red',
   1.23,
   12,
-  66,
+  1000,
   'https://www.ohbeautifulbeer.com/wp-content/uploads/2011/04/FatTire12ozBottle.jpg',
   'https://beerstreetjournal.com/wp-content/uploads/861269_254821267986419_1772612280_o.jpg'
   ),
@@ -260,7 +260,7 @@ const beveragesData = [
     'IPA',
     3.49,
     12,
-    50,
+    1000,
     'https://cdn.shoplightspeed.com/shops/611413/files/7188569/lost-coast-brewery-lost-coast-brewery-sharkinator.jpg',
     'https://untappd.akamaized.net/site/beer_logos_hd/beer-677170_7ee29_hd.jpeg'
   ),
