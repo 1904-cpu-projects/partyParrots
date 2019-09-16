@@ -1,4 +1,5 @@
 const express = require('express');
+const Sequelize = require('sequelize');
 const router = express.Router();
 const { Beverage } = require('../db/index');
 const { BeverageCategories } = require('../../utils/index');
@@ -35,16 +36,20 @@ router.use((req, res, next) => {
 
 router.get('/', async (req, res, next) => {
   try {
-    const { category } = req.query;
-    let beverages;
+    const { category, search } = req.query;
+    const where = {};
 
     if (category && categories[category]) {
-      beverages = await Beverage.findAll({
-        where: { category },
-      });
-    } else {
-      beverages = await Beverage.findAll();
+      where.category = category;
     }
+
+    if (search) {
+      where.name = {
+        [Sequelize.Op.startsWith]: search[0].toUpperCase() + search.slice(1),
+      };
+    }
+
+    const beverages = await Beverage.findAll({ where });
 
     res.json(beverages);
   } catch (err) {

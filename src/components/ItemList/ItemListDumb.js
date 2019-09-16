@@ -1,26 +1,39 @@
 import React, { Fragment, Component } from 'react';
 import { withRouter, Link } from 'react-router-dom';
 import Item from '../Item/Item';
+import Google from '../Google';
 
 const Modal = ({ showModal, closeModal }) => {
   return (
     <div className={`modal ${showModal ? 'is-active' : ''}`}>
       <div className="modal-background" onClick={closeModal} />
       <div className="modal-content">
-        <div
-          className="box"
-          style={{ display: 'flex', justifyContent: 'center' }}
-        >
-          <div className="field is-grouped">
-            <p className="control">
-              <Link to="/login" className="button is-link">
-                Login for faster checkout!
-              </Link>
+        <div className="box">
+          <div className="field">
+            <p className="content subtitle has-text-centered">
+              For faster checkout
             </p>
-            <p className="control subtitle has-text-centered">
-              OR
-            </p>
-            <p className="control">
+            <div
+              style={{
+                width: '65%',
+                margin: 'auto',
+                display: 'flex',
+                justifyContent: 'space-between',
+              }}
+            >
+              <div className="control">
+                <Link to="/login" className="button is-link">
+                  Log in with us
+                </Link>
+              </div>
+              <Google size={true} destination="checkout" />
+            </div>
+          </div>
+
+          <div className="content subtitle has-text-centered">OR</div>
+
+          <div className="field">
+            <p className="control has-text-centered">
               <Link to="/checkout" className="button is-link">
                 Continue as a guest.
               </Link>
@@ -28,6 +41,7 @@ const Modal = ({ showModal, closeModal }) => {
           </div>
         </div>
       </div>
+
       <button
         type="button"
         className="modal-close is-large"

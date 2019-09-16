@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-function Nav({ loggedIn, logout }) {
+function Nav({ loggedIn, logout, navOpen, toggleNav }) {
   return (
     <div>
       <nav className="navbar" role="navigation" aria-label="main navigation">
@@ -11,7 +11,8 @@ function Nav({ loggedIn, logout }) {
           </Link>
           <a
             role="button"
-            className="navbar-burger burger"
+            className={`navbar-burger burger ${navOpen ? 'is-active' : ''}`}
+            onClick={toggleNav}
             aria-label="menu"
             aria-expanded="false"
             data-target="navbarBasicExample"
@@ -21,7 +22,17 @@ function Nav({ loggedIn, logout }) {
             <span aria-hidden="true" />
           </a>
         </div>
-        <div id="Navbar" className="navbar-menu">
+        <div
+          id="Navbar"
+          className={`navbar-menu ${navOpen ? 'is-active' : ''}`}
+          onClick={e => {
+            if (navOpen) {
+              toggleNav(e);
+            } else {
+              e.preventDefault();
+            }
+          }}
+        >
           <div className="navbar-start">
             <Link to="/products" className="navbar-item has-text-grey">
               Products
@@ -49,6 +60,9 @@ function Nav({ loggedIn, logout }) {
                 </button>
               </div>
             )}
+              <Link className='navbar-item has-text-grey' to='/orders'>
+                Past Transactions
+              </Link>
             <div className="navbar-item">
               <Link to="/cart" className="button is-light">
                 <i className="fa fa-shopping-cart has-text-grey-dark" />
