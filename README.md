@@ -1,6 +1,6 @@
 ## Bougie Brews
 
-Bougie Brews is a fullstack e-commerce site selling beer. Bougie Brews represents the Grace Shopper project in senior phase at Fullstack Academy.
+Bougie Brews is a fullstack e-commerce site selling craft beer. Bougie Brews represents the Grace Shopper project in senior phase at Fullstack Academy.
 
 ## Major Technologies/Frameworks
 
